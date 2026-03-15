@@ -5,9 +5,10 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
+
 public class ChoiceCraftLauncher {
 
     public static void main(String[] args) {
-        Display game = new Display(800, 600);
+        new Thread(new GameLoop()).start();
     }
 }
