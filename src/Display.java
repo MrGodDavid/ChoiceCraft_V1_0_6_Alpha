@@ -47,12 +47,28 @@ public class Display extends JFrame {
         super.setVisible(true);
     }
 
+    /**
+     * Render ChoiceCraft game through Display class.
+     * <p>Precondition: input ChoiceCraft game is not null.</p>
+     * <p>Postcondition: renders ChoiceCraft game.</p>
+     *
+     * @param choiceCraft that is not null.
+     */
     public void render(ChoiceCraft choiceCraft) {
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics g = bufferStrategy.getDrawGraphics();
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        Rectangle rectangle = choiceCraft.getRectangle();
+        g.setColor(Color.BLUE);
+        g.fillRect(
+                (int) rectangle.getX(),
+                (int) rectangle.getY(),
+                (int) rectangle.getWidth(),
+                (int) rectangle.getHeight()
+        );
         g.dispose();
         bufferStrategy.show();
     }

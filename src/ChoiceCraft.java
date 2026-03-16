@@ -6,6 +6,8 @@
  * ========================================================================================================================
  */
 
+import java.awt.*;
+
 /**
  * ChoiceCraft game.
  *
@@ -15,6 +17,7 @@
 public class ChoiceCraft {
 
     private final Display display;
+    private final Rectangle rectangle;
 
     /**
      * Construct ChoiceCraft game.
@@ -26,13 +29,29 @@ public class ChoiceCraft {
      */
     public ChoiceCraft(int width, int height) {
         display = new Display(width, height);
+        rectangle = new Rectangle(0, 0, 50, 50);
     }
 
+    /**
+     * Update ChoiceCraft game once. Call this method multiple times in one second. (UPS)
+     * <p>Precondition: none</p>
+     * <p>Postcondition: update ChoiceCraft game once.</p>
+     */
     public void update() {
-
+        rectangle.setLocation((int) (rectangle.getX() + 1), (int) (rectangle.getY() + 1));
     }
 
+    /**
+     * Render ChoiceCraft game once. Call this method multiple times in one second. (FPS)
+     * <p>Precondition: none</p>
+     * <p>Postcondition: render ChoiceCraft game once.</p>
+     */
     public void render() {
         display.render(this);
+    }
+
+
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }
