@@ -14,7 +14,7 @@ import java.awt.*;
  * @author David Liu
  * @since 3/15/2026
  */
-public class ChoiceCraft {
+public final class ChoiceCraft {
 
     private final Display display;
     private final Rectangle rectangle;

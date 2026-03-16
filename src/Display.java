@@ -16,7 +16,7 @@ import java.awt.image.BufferStrategy;
  * @author David Liu.
  * @since 3/15/2026
  */
-public class Display extends JFrame {
+public final class Display extends JFrame {
 
     private final Canvas canvas;
 

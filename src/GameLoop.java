@@ -12,7 +12,7 @@
  * @author David Liu
  * @since 3/15/2026
  */
-public class GameLoop implements Runnable {
+public final class GameLoop implements Runnable {
 
     private final ChoiceCraft choiceCraft;
 
@@ -42,11 +42,13 @@ public class GameLoop implements Runnable {
             accumulator += lastRenderTimeInSeconds;
             lastUpdate = currentTime;
 
-            while (accumulator >= updateRate) {
-                update();
-                accumulator -= updateRate;
+            if (accumulator >= updateRate) {
+                while (accumulator >= updateRate) {
+                    update();
+                    accumulator -= updateRate;
+                }
+                render();
             }
-            render();
             printStat();
         }
     }
