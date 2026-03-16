@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * Square class.
+ * Player of ChoiceCraft.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
@@ -11,12 +11,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Square class.
+ * Player class.
  *
  * @author David Liu
  * @since 3/15/2026
  */
-public class Square extends GameObject {
+public class Player extends GameObject {
+
+    private final Controller controller;
+
+    public Player(Controller controller) {
+        super();
+        this.controller = controller;
+    }
 
     /**
      * Update game object of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft every frame.
@@ -26,7 +33,22 @@ public class Square extends GameObject {
      */
     @Override
     public void update() {
-        position = new Position(position.getX() + 1,  position.getY() + 1);
+        int deltaX = 0;
+        int deltaY = 0;
+
+        if (controller.isRequestingUp()) {
+            deltaY--;
+        }
+        if (controller.isRequestingDown()) {
+            deltaY++;
+        }
+        if (controller.isRequestingLeft()) {
+            deltaX--;
+        }
+        if (controller.isRequestingRight()) {
+            deltaX++;
+        }
+        position = new Position(position.getX() + deltaX, position.getY() + deltaY);
     }
 
     /**

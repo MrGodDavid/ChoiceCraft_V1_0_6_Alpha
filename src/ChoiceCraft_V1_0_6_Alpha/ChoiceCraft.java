@@ -7,7 +7,6 @@
  */
 package ChoiceCraft_V1_0_6_Alpha;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public final class ChoiceCraft {
 
     private final Display display;
     private final List<GameObject> gameObjects;
+    private final KeyboardInput keyboardInput;
 
     /**
      * Construct ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game.
@@ -31,9 +31,11 @@ public final class ChoiceCraft {
      * @param height that is a positive integer.
      */
     public ChoiceCraft(int width, int height) {
-        display = new Display(width, height);
-        gameObjects = new ArrayList<>();
-        gameObjects.add(new Square());
+        this.keyboardInput = new KeyboardInput();
+        this.display = new Display(width, height, keyboardInput);
+        this.gameObjects = new ArrayList<>();
+
+        gameObjects.add(new Player(new PlayerController(keyboardInput)));
     }
 
     /**
