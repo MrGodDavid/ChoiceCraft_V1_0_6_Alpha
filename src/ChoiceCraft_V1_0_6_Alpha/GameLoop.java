@@ -1,13 +1,14 @@
 /**
  * ========================================================================================================================
- * ChoiceCraft game loop.
+ * ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game loop.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
+package ChoiceCraft_V1_0_6_Alpha;
 
 /**
- * GameLoop of ChoiceCraft.
+ * ChoiceCraft_V1_0_6_Alpha.GameLoop of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft.
  *
  * @author David Liu
  * @since 3/15/2026
@@ -28,6 +29,8 @@ public final class GameLoop implements Runnable {
 
     /**
      * Runs this operation.
+     * <p>Precondition: none</p>
+     * <p>Postcondition: run ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game.</p>
      */
     @Override
     public void run() {
@@ -54,9 +57,9 @@ public final class GameLoop implements Runnable {
     }
 
     /**
-     * Update ChoiceCraft game once. Call this method multiple times in one second. (UPS)
+     * Update ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game once. Call this method multiple times in one second. (UPS)
      * <p>Precondition: none</p>
-     * <p>Postcondition: update ChoiceCraft game once.</p>
+     * <p>Postcondition: update ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game once.</p>
      */
     private void update() {
         choiceCraft.update();
@@ -64,9 +67,9 @@ public final class GameLoop implements Runnable {
     }
 
     /**
-     * Render ChoiceCraft game once. Call this method multiple times in one second. (FPS)
+     * Render ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game once. Call this method multiple times in one second. (FPS)
      * <p>Precondition: none</p>
-     * <p>Postcondition: render ChoiceCraft game once.</p>
+     * <p>Postcondition: render ChoiceCraft_V1_0_6_Alpha.ChoiceCraft game once.</p>
      */
     private void render() {
         choiceCraft.render();
@@ -74,14 +77,14 @@ public final class GameLoop implements Runnable {
     }
 
     /**
-     * Prints statistics of ChoiceCraft. Including UPS and FPS, free memory and used memory of game in runtime.
-     * <p>Precondition: ChoiceCraft is running.</p>
-     * <p>Postcondition: Prints UPS and FPS stat of ChoiceCraft.</p>
+     * Prints statistics of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft. Including UPS and FPS, free memory and used memory of game in runtime.
+     * <p>Precondition: ChoiceCraft_V1_0_6_Alpha.ChoiceCraft is running.</p>
+     * <p>Postcondition: Prints UPS and FPS stat of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft.</p>
      */
     private void printStat() {
         if (System.currentTimeMillis() > nextStatTime) {
-            System.out.print("[ChoiceCraft StatPrinter]: \t");
-            System.out.printf("[FPS: %d, UPS: %d] \t||\t",  fps, ups);
+            System.out.print("[ChoiceCraft_V1_0_6_Alpha.ChoiceCraft StatPrinter]: \t");
+            System.out.printf("[FPS: %d, UPS: %d] \t||\t", fps, ups);
             fps = ups = 0;
             nextStatTime = System.currentTimeMillis() + 1000;
 
