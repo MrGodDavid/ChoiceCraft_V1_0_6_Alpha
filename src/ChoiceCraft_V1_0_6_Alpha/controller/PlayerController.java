@@ -5,7 +5,9 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha;
+package ChoiceCraft_V1_0_6_Alpha.controller;
+
+import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 
 import java.awt.event.KeyEvent;
 

@@ -5,7 +5,11 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha;
+package ChoiceCraft_V1_0_6_Alpha.entity;
+
+import ChoiceCraft_V1_0_6_Alpha.display.Display;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,7 +30,7 @@ public class Player extends GameObject {
     }
 
     /**
-     * Update game object of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft every frame.
+     * Update game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft every frame.
      * <p>Precondition: none</p>
      * <p>Postcondition: game loop update all game objects that has own update() implementation
      * every frame ups times</p>
@@ -52,12 +56,12 @@ public class Player extends GameObject {
     }
 
     /**
-     * Game objects of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft each provide sprite (graphic) to rendering system
-     * {@link Display ChoiceCraft_V1_0_6_Alpha.Display class}
-     * <p>Precondition: game object exists in ChoiceCraft_V1_0_6_Alpha.ChoiceCraft.</p>
-     * <p>Postcondition: return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft</p>
+     * Game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft each provide sprite (graphic) to rendering system
+     * {@link Display ChoiceCraft_V1_0_6_Alpha.display.Display class}
+     * <p>Precondition: game object exists in ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.</p>
+     * <p>Postcondition: return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft</p>
      *
-     * @return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.ChoiceCraft.
+     * @return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
      */
     @Override
     public Image getSprite() {

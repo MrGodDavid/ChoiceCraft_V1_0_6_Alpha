@@ -5,7 +5,7 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha;
+package ChoiceCraft_V1_0_6_Alpha.controller;
 
 /**
  * Define behaviors of all input listeners that implements this interface of ChoiceCraft.
