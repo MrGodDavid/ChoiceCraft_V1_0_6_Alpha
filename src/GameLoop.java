@@ -5,13 +5,26 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
+
+/**
+ * GameLoop of ChoiceCraft.
+ *
+ * @author David Liu
+ * @since 3/15/2026
+ */
 public class GameLoop implements Runnable {
+
+    private final ChoiceCraft choiceCraft;
 
     private boolean running;
     private final double updateRate = 1.0d / 60.0d;
 
     private long nextStatTime;
     private int fps, ups;
+
+    public GameLoop(ChoiceCraft choiceCraft) {
+        this.choiceCraft = choiceCraft;
+    }
 
     /**
      * Runs this operation.
@@ -44,6 +57,7 @@ public class GameLoop implements Runnable {
      * <p>Postcondition: update ChoiceCraft game once.</p>
      */
     private void update() {
+        choiceCraft.update();
         ups++;
     }
 
@@ -53,6 +67,7 @@ public class GameLoop implements Runnable {
      * <p>Postcondition: render ChoiceCraft game once.</p>
      */
     private void render() {
+        choiceCraft.render();
         fps++;
     }
 

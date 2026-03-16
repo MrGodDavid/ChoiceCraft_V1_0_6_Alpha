@@ -8,6 +8,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 /**
  * Display ChoiceCraft game window.
@@ -40,7 +41,19 @@ public class Display extends JFrame {
         super.add(canvas);
         super.pack();
 
+        canvas.createBufferStrategy(3);
+
         super.setLocationRelativeTo(null);
         super.setVisible(true);
+    }
+
+    public void render(ChoiceCraft choiceCraft) {
+        BufferStrategy bufferStrategy = canvas.getBufferStrategy();
+        Graphics g = bufferStrategy.getDrawGraphics();
+
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        g.dispose();
+        bufferStrategy.show();
     }
 }
