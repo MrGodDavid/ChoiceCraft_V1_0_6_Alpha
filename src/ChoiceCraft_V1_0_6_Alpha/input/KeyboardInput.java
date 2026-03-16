@@ -17,7 +17,7 @@ import java.awt.event.KeyListener;
  * @author David Liu
  * @since 3/15/2026
  */
-public class KeyboardInput implements KeyListener {
+public final class KeyboardInput implements KeyListener {
 
     private final boolean[] pressed;
 

@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * Superclass for all game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
+ * Superclass for all game objects of ChoiceCraft.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
@@ -14,7 +14,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import java.awt.*;
 
 /**
- * Superclass for all game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
+ * Superclass for all game objects of ChoiceCraft.
  *
  * @author David Liu
  * @since 3/15/2026
@@ -38,7 +38,7 @@ public abstract class GameObject {
     }
 
     /**
-     * Update game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft every frame.
+     * Update game object of ChoiceCraft every frame.
      * <p>Precondition: none</p>
      * <p>Postcondition: game loop update all game objects that has own update() implementation
      * every frame ups times</p>
@@ -46,12 +46,12 @@ public abstract class GameObject {
     public abstract void update();
 
     /**
-     * Game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft each provide sprite (graphic) to rendering system
+     * Game objects of ChoiceCraft each provide sprite (graphic) to rendering system
      * {@link Display ChoiceCraft_V1_0_6_Alpha.display.Display class}
-     * <p>Precondition: game object exists in ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.</p>
-     * <p>Postcondition: return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft</p>
+     * <p>Precondition: game object exists in ChoiceCraft.</p>
+     * <p>Postcondition: return the sprite of game object of ChoiceCraft</p>
      *
-     * @return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
+     * @return the sprite of game object of ChoiceCraft.
      */
     public abstract Image getSprite();
 

@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game.
+ * ChoiceCraft game.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game.
+ * ChoiceCraft game.
  *
  * @author David Liu
  * @since 3/15/2026
@@ -29,9 +29,9 @@ public final class ChoiceCraft {
     private final KeyboardInput keyboardInput;
 
     /**
-     * Construct ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game.
+     * Construct ChoiceCraft game.
      * <p>Precondition: input dimension that is positive for both width and height.</p>
-     * <p>Postcondition: initialize ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game with desired width and height.</p>
+     * <p>Postcondition: initialize ChoiceCraft game with desired width and height.</p>
      *
      * @param width  that is a positive integer.
      * @param height that is a positive integer.
@@ -45,9 +45,9 @@ public final class ChoiceCraft {
     }
 
     /**
-     * Update ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game once. Call this method multiple times in one second. (UPS)
+     * Update ChoiceCraft game once. Call this method multiple times in one second. (UPS)
      * <p>Precondition: none</p>
-     * <p>Postcondition: update ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game once.</p>
+     * <p>Postcondition: update ChoiceCraft game once.</p>
      */
     public void update() {
         for (GameObject gameObject : gameObjects) {
@@ -56,9 +56,9 @@ public final class ChoiceCraft {
     }
 
     /**
-     * Render ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game once. Call this method multiple times in one second. (FPS)
-     * <p>Precondition: none</p>
-     * <p>Postcondition: render ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game once.</p>
+     * Render ChoiceCraft game through Display class.
+     * <p>Precondition: input ChoiceCraft game is not null.</p>
+     * <p>Postcondition: renders ChoiceCraft game.</p>
      */
     public void render() {
         display.render(this);

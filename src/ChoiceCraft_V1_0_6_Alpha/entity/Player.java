@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
  * @author David Liu
  * @since 3/15/2026
  */
-public class Player extends GameObject {
+public final class Player extends GameObject {
 
     private final Controller controller;
 

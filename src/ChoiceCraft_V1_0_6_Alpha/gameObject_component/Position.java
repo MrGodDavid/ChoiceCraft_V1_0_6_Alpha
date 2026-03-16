@@ -1,10 +1,11 @@
-package ChoiceCraft_V1_0_6_Alpha.gameObject_component; /**
+/**
  * ========================================================================================================================
  * ChoiceCraft_V1_0_6_Alpha.component.Position component of game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
+package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
 
 /**
  * ChoiceCraft_V1_0_6_Alpha.component.Position component of game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
@@ -12,7 +13,7 @@ package ChoiceCraft_V1_0_6_Alpha.gameObject_component; /**
  * @author David Liu
  * @since 3/15/2026
  */
-public class Position {
+public final class Position {
 
     private int x;
     private int y;

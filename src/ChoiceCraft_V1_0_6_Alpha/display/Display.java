@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * ChoiceCraft_V1_0_6_Alpha.display.Display class.
+ * Display class.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
@@ -16,7 +16,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 /**
- * ChoiceCraft_V1_0_6_Alpha.display.Display ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game window.
+ * Display ChoiceCraft game window.
  *
  * @author David Liu.
  * @since 3/15/2026
@@ -24,23 +24,26 @@ import java.awt.image.BufferStrategy;
 public final class Display extends JFrame {
 
     private final Canvas canvas;
+    private final Renderer renderer;
 
     /**
-     * Initializes ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game window. Creates a JFrame as game window. Sets the title, dimension, closing operation,
+     * Initializes ChoiceCraft game window. Creates a JFrame as game window. Sets the title, dimension, closing operation,
      * resizeable, opening location, and visibility of game window.
-     * <p>Construct a canva as paint component of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game.</p>
+     * <p>Construct a canva as paint component of game.ChoiceCraft game.</p>
      * <p>Add {@link KeyboardInput keyboardInput} to keyListener to game window.</p>
      * <p>Precondition: window width and height are positive numbers. The KeyboardInput is not null.</p>
-     * <p>Postcondition: creates ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game window with root paint component.</p>
+     * <p>Postcondition: creates ChoiceCraft game window with root paint component.</p>
      *
      * @param width         that is a positive integer.
      * @param height        that is a positive integer.
      * @param keyboardInput that is not null.
      */
     public Display(int width, int height, KeyboardInput keyboardInput) {
-        super.setTitle("ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft V1.0.6 Alpha");
+        super.setTitle("ChoiceCraft V1.0.6 Alpha");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setResizable(false);
+
+        this.renderer = new Renderer();
 
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
@@ -56,9 +59,9 @@ public final class Display extends JFrame {
     }
 
     /**
-     * Render ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game through ChoiceCraft_V1_0_6_Alpha.display.Display class.
-     * <p>Precondition: input ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game is not null.</p>
-     * <p>Postcondition: renders ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft game.</p>
+     * Render ChoiceCraft game through Display class.
+     * <p>Precondition: input ChoiceCraft game is not null.</p>
+     * <p>Postcondition: renders ChoiceCraft game.</p>
      *
      * @param choiceCraft that is not null.
      */
@@ -69,13 +72,7 @@ public final class Display extends JFrame {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        for (GameObject gameObject : choiceCraft.getGameObjects()) {
-            g.drawImage(gameObject.getSprite(),
-                    gameObject.getPosition().getX(),
-                    gameObject.getPosition().getY(),
-                    null
-            );
-        }
+        renderer.render(choiceCraft, g);
 
         g.dispose();
         bufferStrategy.show();
