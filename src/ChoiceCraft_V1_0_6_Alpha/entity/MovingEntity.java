@@ -29,6 +29,7 @@ public abstract class MovingEntity extends GameObject {
 
     /**
      * Update game object of ChoiceCraft every frame.
+     * <p>Update movement of Moving Entity</p>
      * <p>Precondition: none</p>
      * <p>Postcondition: game loop update all game objects that has own update() implementation
      * every frame ups times</p>

@@ -16,7 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
  * @author David Liu
  * @since 3/16/2026
  */
-public class Movement {
+public final class Movement {
 
     private Vector2d vector;
     private double speed;
@@ -27,7 +27,11 @@ public class Movement {
     }
 
     /**
-     * Update movement component of game objects of ChoiceCraft every frame.
+     * Update player's directional vector based in inputs from controller.
+     * <p>The input controller defines the direction of player's movement. North (up), South (down), East (right), West (left)
+     * Northeast, Southeast, Northwest, and Southwest. Before applying the directional vector on movement component in
+     * {@link ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity MovingEntity}, first normalize the vector, then multiply it by
+     * the speed of the player. </p>
      * <p>Precondition: input controller is not null.</p>
      * <p>Postcondition: game loop update movement component of game object.</p>
      *
@@ -46,7 +50,6 @@ public class Movement {
             deltaX++;
         vector = new Vector2d(deltaX, deltaY);
         vector.normalize();
-        System.out.println(vector.length());
         vector.multiply(speed);
     }
 
