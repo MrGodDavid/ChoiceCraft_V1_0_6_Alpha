@@ -7,6 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
 
+import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
+
 /**
  * ChoiceCraft_V1_0_6_Alpha.component.Position component of game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
  *
@@ -15,8 +17,8 @@ package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
  */
 public final class Position {
 
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
     /**
      * Construct a position component for game objects in ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
@@ -31,11 +33,25 @@ public final class Position {
         this.y = y;
     }
 
-    public int getX() {
+    public void apply(Movement movement) {
+        Vector2d vector = movement.getVector();
+        x += vector.getX();
+        y += vector.getY();
+    }
+
+    public int intX() {
+        return (int) Math.round(x);
+    }
+
+    public int intY() {
+        return (int) Math.round(y);
+    }
+
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 }

@@ -31,8 +31,8 @@ public class Renderer {
     public void render(ChoiceCraft choiceCraft, Graphics g) {
         for (GameObject gameObject : choiceCraft.getGameObjects()) {
             g.drawImage(gameObject.getSprite(),
-                    gameObject.getPosition().getX(),
-                    gameObject.getPosition().getY(),
+                    gameObject.getPosition().intX(),
+                    gameObject.getPosition().intY(),
                     null
             );
         }
