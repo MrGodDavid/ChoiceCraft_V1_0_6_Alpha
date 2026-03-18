@@ -25,6 +25,8 @@ import java.util.List;
  */
 public final class ChoiceCraft {
 
+    public static final int SPRITE_SIZE = 64;
+
     private final Display display;
     private final List<GameObject> gameObjects;
     private final KeyboardInput keyboardInput;
@@ -45,7 +47,7 @@ public final class ChoiceCraft {
         this.display = new Display(width, height, keyboardInput);
         this.gameObjects = new ArrayList<>();
 
-        gameObjects.add(new Player(new PlayerController(keyboardInput)));
+        gameObjects.add(new Player(new PlayerController(keyboardInput), spriteLibrary));
     }
 
     /**

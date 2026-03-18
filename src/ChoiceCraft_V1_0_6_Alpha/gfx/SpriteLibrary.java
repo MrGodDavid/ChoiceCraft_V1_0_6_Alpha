@@ -52,11 +52,10 @@ public class SpriteLibrary {
 
             for (String sheetName : sheetsFolder) {
                 spriteSet.addSheet(
-                        sheetName.substring(sheetName.length() - 4),
+                        sheetName.substring(0, sheetName.length() - 4),
                         ImageUtils.loadImage(pathToFolder + "/" + sheetName)
                 );
             }
-
             units.put(folderName, spriteSet);
         }
     }
@@ -88,5 +87,9 @@ public class SpriteLibrary {
         URL resource = SpriteLibrary.class.getResource(basePath);
         File file = new File(resource.getFile());
         return file.list((current, name) -> new File(current, name).isDirectory());
+    }
+
+    public SpriteSet getEntitySprite(String name) {
+        return units.get(name);
     }
 }
