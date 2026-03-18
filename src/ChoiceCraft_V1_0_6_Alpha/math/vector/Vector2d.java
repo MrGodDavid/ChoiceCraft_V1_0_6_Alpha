@@ -7,6 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.math.vector;
 
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
+
 /**
  * Vector 2d class.
  *
@@ -42,6 +44,18 @@ public class Vector2d {
         double length = this.length();
         this.x /= length;
         this.y /= length;
+    }
+
+    public Direction toDirection() {
+        if (x == 0d && y > 0d) return Direction.SOUTH;
+        if (x < 0d && y > 0d) return Direction.SOUTH_WEST;
+        if (x < 0d && y == 0d) return Direction.WEST;
+        if (x < 0d && y < 0d) return Direction.NORTH_WEST;
+        if (x == 0d && y < 0d) return Direction.NORTH;
+        if (x > 0d && y < 0d) return Direction.NORTH_EAST;
+        if (x > 0d && y == 0d) return Direction.EAST;
+        if (x > 0d && y > 0d) return Direction.SOUTH_EAST;
+        return Direction.SOUTH;
     }
 
     public double getX() {

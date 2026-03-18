@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.gfx;
 
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,12 +26,14 @@ public class AnimationManager {
     private int currentFrameTime;
     private int updatesPerFrame;
     private int frameIndex;
+    private int directionIndex;
 
     public AnimationManager(SpriteSet spriteSet) {
         this.spriteSet = spriteSet;
         this.updatesPerFrame = 5;
         this.frameIndex = 0;
         this.currentFrameTime = 0;
+        this.directionIndex = 0;
 
         playAnimation("player_idle_8dir_spritesheet");
     }
@@ -44,7 +47,9 @@ public class AnimationManager {
      */
     public Image getSprite() {
         return currentAnimationSheet.getSubimage(
-                frameIndex * ChoiceCraft.SPRITE_SIZE, 0, ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE
+                frameIndex * ChoiceCraft.SPRITE_SIZE,
+                directionIndex * ChoiceCraft.SPRITE_SIZE,
+                ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE
         );
     }
 
@@ -52,15 +57,18 @@ public class AnimationManager {
      * Update the current animation frame in AnimationManager.
      * <p>Precondition: none.</p>
      * <p>Postcondition: update the current animation frame in AnimationManager.</p>
+     *
+     * @param direction indicates the direction of game entity. It also indicates the row index of its animation sheet.
      */
-    public void update() {
+    public void update(Direction direction) {
         currentFrameTime++;
+        directionIndex = direction.getAnimationRow();
 
         if (currentFrameTime >= updatesPerFrame) {
             currentFrameTime = 0;
             frameIndex++;
 
-            if (frameIndex >= currentAnimationSheet.getWidth() / ChoiceCraft.SPRITE_SIZE - 1) {
+            if (frameIndex >= currentAnimationSheet.getWidth() / ChoiceCraft.SPRITE_SIZE) {
                 frameIndex = 0;
             }
         }

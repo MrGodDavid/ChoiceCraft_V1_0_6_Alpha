@@ -9,12 +9,12 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Movement;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Moveable entity in ChoiceCraft.
@@ -25,14 +25,17 @@ import java.awt.image.BufferedImage;
 public abstract class MovingEntity extends GameObject {
 
     protected Controller controller;
-    private Movement movement;
     private AnimationManager animationManager;
+
+    private Motion motion;
+    private Direction direction;
 
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
         super();
         this.controller = controller;
-        this.movement = new Movement(2);
         this.animationManager = new AnimationManager(spriteLibrary.getEntitySprite("player"));
+        this.motion = new Motion(1);
+        this.direction = Direction.SOUTH;
     }
 
     /**
@@ -44,9 +47,25 @@ public abstract class MovingEntity extends GameObject {
      */
     @Override
     public void update() {
-        movement.update(controller);
-        position.apply(movement);
-        animationManager.update();
+        motion.update(controller);
+        position.apply(motion);
+        manageDirection();
+        decideAnimation();
+        animationManager.update(direction);
+    }
+
+    private void decideAnimation() {
+        if (motion.isMoving()) {
+            animationManager.playAnimation("player_walking_8dir_spritesheet");
+        } else {
+            animationManager.playAnimation("player_idle_8dir_spritesheet");
+        }
+    }
+
+    private void manageDirection() {
+        if (motion.isMoving()) {
+            this.direction = Direction.fromMotion(motion);
+        }
     }
 
     /**

@@ -16,12 +16,12 @@ import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
  * @author David Liu
  * @since 3/16/2026
  */
-public final class Movement {
+public final class Motion {
 
     private Vector2d vector;
     private double speed;
 
-    public Movement(double speed) {
+    public Motion(double speed) {
         this.speed = speed;
         this.vector = new Vector2d();
     }
@@ -55,5 +55,9 @@ public final class Movement {
 
     public Vector2d getVector() {
         return vector;
+    }
+
+    public boolean isMoving() {
+        return vector.length() > 0;
     }
 }
