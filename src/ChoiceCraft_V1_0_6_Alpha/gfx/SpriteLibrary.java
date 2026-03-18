@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class SpriteLibrary {
 
-    private static final String ENTITY_SPRITES_PATH = "/resources/sprites/entity";
+    private static final String ENTITY_SPRITES_PATH = "/sprites/entity";
 
     private Map<String, SpriteSet> units;
 
@@ -55,6 +55,7 @@ public class SpriteLibrary {
     }
 
     private String[] getFolderNames(String basePath) {
+        System.out.println(SpriteLibrary.class.getResource("/"));
         URL resource = SpriteLibrary.class.getResource(basePath);
         File file = new File(resource.getFile());
         return file.list((current, name) -> new File(current, name).isDirectory());

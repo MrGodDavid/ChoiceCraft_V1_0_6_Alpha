@@ -30,7 +30,7 @@ public class ImageUtils {
      */
     public static Image loadImage(String filePath) {
         try {
-            return ImageIO.read(ImageUtils.class.getClassLoader().getResourceAsStream(filePath));
+            return ImageIO.read(ImageUtils.class.getResource(filePath));
         } catch (IOException e) {
             System.out.println("Failed to load image from file: " + filePath);
         }
