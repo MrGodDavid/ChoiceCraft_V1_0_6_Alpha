@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 
@@ -59,20 +60,20 @@ public final class Display extends JFrame {
     }
 
     /**
-     * Render ChoiceCraft game through Display class.
-     * <p>Precondition: input ChoiceCraft game is not null.</p>
-     * <p>Postcondition: renders ChoiceCraft game.</p>
+     * Render ChoiceCraft in Display class.
+     * <p>Precondition: input ChoiceCraft's current state is not null.</p>
+     * <p>Postcondition: renders state of ChoiceCraft.</p>
      *
-     * @param choiceCraft that is not null.
+     * @param state that is not null.
      */
-    public void render(ChoiceCraft choiceCraft) {
+    public void render(State state) {
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics g = bufferStrategy.getDrawGraphics();
 
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        renderer.render(choiceCraft, g);
+        renderer.render(state, g);
 
         g.dispose();
         bufferStrategy.show();

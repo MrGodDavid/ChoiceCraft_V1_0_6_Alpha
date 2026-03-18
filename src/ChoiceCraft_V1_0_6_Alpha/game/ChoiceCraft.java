@@ -7,6 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game;
 
+import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
+import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
@@ -28,10 +30,8 @@ public final class ChoiceCraft {
     public static final int SPRITE_SIZE = 64;
 
     private final Display display;
-    private final List<GameObject> gameObjects;
     private final KeyboardInput keyboardInput;
-
-    private final SpriteLibrary spriteLibrary;
+    private State state;
 
     /**
      * Construct ChoiceCraft game.
@@ -42,12 +42,9 @@ public final class ChoiceCraft {
      * @param height that is a positive integer.
      */
     public ChoiceCraft(int width, int height) {
-        this.spriteLibrary = new SpriteLibrary();
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
-        this.gameObjects = new ArrayList<>();
-
-        gameObjects.add(new Player(new PlayerController(keyboardInput), spriteLibrary));
+        this.state = new GameState(this.keyboardInput);
     }
 
     /**
@@ -56,9 +53,7 @@ public final class ChoiceCraft {
      * <p>Postcondition: update ChoiceCraft game once.</p>
      */
     public void update() {
-        for (GameObject gameObject : gameObjects) {
-            gameObject.update();
-        }
+        state.update();
     }
 
     /**
@@ -67,10 +62,6 @@ public final class ChoiceCraft {
      * <p>Postcondition: renders ChoiceCraft game.</p>
      */
     public void render() {
-        display.render(this);
-    }
-
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
+        display.render(state);
     }
 }

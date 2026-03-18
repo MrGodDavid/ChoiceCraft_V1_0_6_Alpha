@@ -7,6 +7,10 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.gfx;
 
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
@@ -22,7 +26,8 @@ public class SpriteLibrary {
 
     private static final String ENTITY_SPRITES_PATH = "/sprites/entity";
 
-    private Map<String, SpriteSet> units;
+    private final Map<String, SpriteSet> gameEntities;
+    private final Map<String, Image> tiles;
 
     /**
      * No-arg constructor of this class.
@@ -31,7 +36,9 @@ public class SpriteLibrary {
      * Map.</p>
      */
     public SpriteLibrary() {
-        units = new HashMap<String, SpriteSet>();
+        this.gameEntities = new HashMap<String, SpriteSet>();
+        this.tiles = new HashMap<>();
+
         loadSpritesFromDisk();
     }
 
@@ -43,6 +50,18 @@ public class SpriteLibrary {
      * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
      */
     private void loadSpritesFromDisk() {
+        loadGameEntities();
+        loadTiles();
+    }
+
+    /**
+     * Load sprites of game entities from disk. This method looks all folders in a specific resource path. For each
+     * folder in the resource folder, this method looks all the image resources and store each image into a SpriteSet,
+     * and finally, store each SpriteSet into the sprite Map.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
+     */
+    private void loadGameEntities() {
         String[] folderNames = getFolderNames(ENTITY_SPRITES_PATH);
 
         for (String folderName : folderNames) {
@@ -56,8 +75,26 @@ public class SpriteLibrary {
                         ImageUtils.loadImage(pathToFolder + "/" + sheetName)
                 );
             }
-            units.put(folderName, spriteSet);
+            gameEntities.put(folderName, spriteSet);
         }
+    }
+
+    /**
+     * Load sprites of game tiles from disk. This method looks all folders in a specific resource path. For each
+     * folder in the resource folder, this method looks all the image resources and store each image into a SpriteSet,
+     * and finally, store each SpriteSet into the sprite Map.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
+     */
+    private void loadTiles() {
+        BufferedImage image = new BufferedImage(ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+
+        g2d.setColor(Color.RED);
+        g2d.drawRect(0, 0, ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE);
+        g2d.dispose();
+
+        tiles.put("default", image);
     }
 
     /**
@@ -90,6 +127,10 @@ public class SpriteLibrary {
     }
 
     public SpriteSet getEntitySprite(String name) {
-        return units.get(name);
+        return gameEntities.get(name);
+    }
+
+    public Image getTile(String name) {
+        return tiles.get(name);
     }
 }
