@@ -177,7 +177,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-        TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.PLAYER, ANIMATION_STATE.ATTACKING_SHORT_IRON_SWORD);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ZOMBIE_BASIC, ANIMATION_STATE.HURTING);
         texturePacker.pack();
     }
 }
