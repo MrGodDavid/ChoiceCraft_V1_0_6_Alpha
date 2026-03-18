@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game;
 
+import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
@@ -28,6 +29,8 @@ public final class ChoiceCraft {
     private final List<GameObject> gameObjects;
     private final KeyboardInput keyboardInput;
 
+    private final SpriteLibrary spriteLibrary;
+
     /**
      * Construct ChoiceCraft game.
      * <p>Precondition: input dimension that is positive for both width and height.</p>
@@ -37,6 +40,7 @@ public final class ChoiceCraft {
      * @param height that is a positive integer.
      */
     public ChoiceCraft(int width, int height) {
+        this.spriteLibrary = new SpriteLibrary();
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
         this.gameObjects = new ArrayList<>();

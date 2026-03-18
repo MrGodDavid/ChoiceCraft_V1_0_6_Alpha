@@ -113,7 +113,7 @@ public class TexturePacker {
             y += height;
         }
         String outputName = name.getKey() + "_" + state.getKey() + "_8dir_spritesheet.png";
-        String outputDirectory = "src/assets/graphics/" + outputName;
+        String outputDirectory = "resources/graphics_output/" + outputName;
         try {
             File output = new File(outputDirectory);
             if (!ImageIO.write(packedImage, "png", output)) {
@@ -171,7 +171,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-        TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ZOMBIE_BASIC, ANIMATION_STATE.HURTING);
+        TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.PLAYER, ANIMATION_STATE.IDLE);
         texturePacker.pack();
     }
 }
