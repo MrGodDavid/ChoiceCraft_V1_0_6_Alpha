@@ -7,10 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.display;
 
-import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
-import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 
 import javax.swing.*;
 import java.awt.*;

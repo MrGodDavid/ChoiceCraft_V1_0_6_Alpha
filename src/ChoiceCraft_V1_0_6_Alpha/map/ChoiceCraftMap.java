@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.map;
 
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -32,6 +33,13 @@ public class ChoiceCraftMap {
         for (Tile[] tile : tiles) {
             Arrays.fill(tile, new Tile(spriteLibrary));
         }
+    }
+
+    public int getWidth() {
+        return tiles.length * ChoiceCraft.SPRITE_SIZE;
+    }
+    public int getHeight() {
+        return tiles[0].length  * ChoiceCraft.SPRITE_SIZE;
     }
 
     public Tile[][] getTiles() {

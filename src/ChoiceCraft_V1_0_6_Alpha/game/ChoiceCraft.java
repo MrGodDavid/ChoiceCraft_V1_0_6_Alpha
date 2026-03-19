@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.game;
 
 import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
@@ -44,7 +45,7 @@ public final class ChoiceCraft {
     public ChoiceCraft(int width, int height) {
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
-        this.state = new GameState(this.keyboardInput);
+        this.state = new GameState(new Size(width, height), this.keyboardInput);
     }
 
     /**

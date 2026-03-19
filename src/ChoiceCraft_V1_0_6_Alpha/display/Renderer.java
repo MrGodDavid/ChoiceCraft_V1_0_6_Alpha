@@ -20,7 +20,7 @@ import java.awt.*;
  * @author David Liu
  * @since 3/15/2026
  */
-public class Renderer {
+public final class Renderer {
 
     /**
      * Render all game objects' sprites in ChoiceCraft.
@@ -32,11 +32,11 @@ public class Renderer {
      */
     public void render(State state, Graphics g) {
         renderMap(state, g);
-
+        Camera camera = state.getCamera();
         for (GameObject gameObject : state.getGameObjects()) {
             g.drawImage(gameObject.getSprite(),
-                    gameObject.getPosition().intX(),
-                    gameObject.getPosition().intY(),
+                    gameObject.getPosition().intX() - camera.getPosition().intX() - gameObject.getSize().getWidth() / 2,
+                    gameObject.getPosition().intY() - camera.getPosition().intY() - gameObject.getSize().getHeight() / 2,
                     null
             );
         }
@@ -52,12 +52,13 @@ public class Renderer {
      */
     private void renderMap(State state, Graphics g) {
         Tile[][] tiles = state.getGameMap().getTiles();
+        Camera camera = state.getCamera();
         for (int row = 0; row < tiles.length; row++) {
             for (int col = 0; col < tiles[row].length; col++) {
                 g.drawImage(
                         tiles[row][col].getSprite(),
-                        row * ChoiceCraft.SPRITE_SIZE,
-                        col * ChoiceCraft.SPRITE_SIZE,
+                        row * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intX(),
+                        col * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intY(),
                         null
                 );
             }
