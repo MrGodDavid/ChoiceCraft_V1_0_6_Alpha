@@ -67,9 +67,9 @@ public abstract class MovingEntity extends GameObject {
             }
         } else if (this instanceof NPC) {
             if (motion.isMoving()) {
-                animationManager.playAnimation("zombie_basic_walking_8dir_spritesheet");
+                animationManager.playAnimation("enchanter_walking_8dir_spritesheet");
             } else {
-                animationManager.playAnimation("zombie_basic_idle_8dir_spritesheet");
+                animationManager.playAnimation("enchanter_idle_8dir_spritesheet");
             }
         }
     }

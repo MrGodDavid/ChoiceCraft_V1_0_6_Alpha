@@ -21,7 +21,7 @@ public class NPC extends MovingEntity{
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);
-        this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("zombie_basic"));    }
+        this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("enchanter"));    }
 
     @Override
     public String toString() {

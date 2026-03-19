@@ -17,6 +17,7 @@ import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -47,10 +48,15 @@ public abstract class State {
      * <p>Postcondition: update State once.</p>
      */
     public void update() {
+        sortObjectsByPosition();
         for (GameObject gameObject : gameObjects) {
             gameObject.update();
         }
         camera.update(this);
+    }
+
+    private void sortObjectsByPosition() {
+        gameObjects.sort(Comparator.comparing(gameObject -> gameObject.getPosition().getY()));
     }
 
     public List<GameObject> getGameObjects() {

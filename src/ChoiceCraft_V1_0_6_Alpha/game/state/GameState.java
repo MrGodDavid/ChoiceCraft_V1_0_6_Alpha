@@ -11,6 +11,8 @@ import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.Player;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
@@ -39,6 +41,7 @@ public final class GameState extends State {
     private void initializeCharacters() {
         Player player = new Player(new PlayerController(keyboardInput), spriteLibrary);
         NPC npc = new NPC(new NPCController(), spriteLibrary);
+        npc.setPosition(new Position(3 * ChoiceCraft.SPRITE_SIZE, 2 * ChoiceCraft.SPRITE_SIZE));
 
         gameObjects.addAll(List.of(player, npc));
         camera.focusOn(player);
