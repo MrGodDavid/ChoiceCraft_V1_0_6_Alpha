@@ -24,8 +24,6 @@ import java.util.Map;
  */
 public class SpriteLibrary {
 
-    private static final String ENTITY_SPRITES_PATH = "/sprites/entity";
-
     private final Map<String, SpriteSet> gameEntities;
     private final Map<String, Image> tiles;
 
@@ -50,8 +48,8 @@ public class SpriteLibrary {
      * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
      */
     private void loadSpritesFromDisk() {
-        loadGameEntities();
-        loadTiles();
+        loadGameEntities("/sprites/entity");
+        loadTiles("/sprites/tiles_resized");
     }
 
     /**
@@ -60,14 +58,16 @@ public class SpriteLibrary {
      * and finally, store each SpriteSet into the sprite Map.
      * <p>Precondition: none.</p>
      * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
+     *
+     * @param path that indicates the path of sprites.
      */
-    private void loadGameEntities() {
-        String[] folderNames = getFolderNames(ENTITY_SPRITES_PATH);
+    private void loadGameEntities(String path) {
+        String[] folderNames = getFolderNames(path);
 
         for (String folderName : folderNames) {
             SpriteSet spriteSet = new SpriteSet();
-            String pathToFolder = ENTITY_SPRITES_PATH + "/" + folderName;
-            String[] sheetsFolder = getSheetsInFolder(ENTITY_SPRITES_PATH + "/" + folderName);
+            String pathToFolder = path + "/" + folderName;
+            String[] sheetsFolder = getImagesInFolder(path + "/" + folderName);
 
             for (String sheetName : sheetsFolder) {
                 spriteSet.addSheet(
@@ -85,16 +85,17 @@ public class SpriteLibrary {
      * and finally, store each SpriteSet into the sprite Map.
      * <p>Precondition: none.</p>
      * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
+     *
+     * @param path that indicates the path of sprites.
      */
-    private void loadTiles() {
-        BufferedImage image = new BufferedImage(ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = image.createGraphics();
-
-        g2d.setColor(Color.RED);
-        g2d.drawRect(0, 0, ChoiceCraft.SPRITE_SIZE, ChoiceCraft.SPRITE_SIZE);
-        g2d.dispose();
-
-        tiles.put("default", image);
+    private void loadTiles(String path) {
+        String[] imagesInFolder = getImagesInFolder(path);
+        for (String fileName : imagesInFolder) {
+            tiles.put(
+                    fileName.substring(0, fileName.length() - 4),
+                    ImageUtils.loadImage(path + "/" + fileName)
+            );
+        }
     }
 
     /**
@@ -105,7 +106,7 @@ public class SpriteLibrary {
      * @param basePath that is not null.
      * @return an array of names of all animation sheets in that folder.
      */
-    private String[] getSheetsInFolder(String basePath) {
+    private String[] getImagesInFolder(String basePath) {
         URL resource = SpriteLibrary.class.getResource(basePath);
         File file = new File(resource.getFile());
         return file.list((current, name) -> new File(current, name).isFile());
