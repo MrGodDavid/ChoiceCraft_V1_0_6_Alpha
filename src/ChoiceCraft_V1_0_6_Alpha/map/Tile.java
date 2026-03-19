@@ -22,7 +22,7 @@ public class Tile {
     private Image sprite;
 
     public Tile(SpriteLibrary spriteLibrary) {
-        this.sprite = spriteLibrary.getTile("grass_block_top");
+        this.sprite = spriteLibrary.getTile("resized_grass_block_top");
     }
 
     public Image getSprite() {
