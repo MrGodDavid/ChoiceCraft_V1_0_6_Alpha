@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
  */
 public class AnimationManager {
 
-    private final SpriteSet spriteSet;
+    private SpriteSet spriteSet;
     private BufferedImage currentAnimationSheet;
     private int currentFrameTime;
     private int updatesPerFrame;
@@ -83,5 +83,10 @@ public class AnimationManager {
      */
     public void playAnimation(String name) {
         this.currentAnimationSheet = (BufferedImage) spriteSet.getAnimationSheet(name);
+    }
+
+    public void playNewAnimation(String name, SpriteSet spriteSet) {
+        this.spriteSet = spriteSet;
+        playAnimation(name);
     }
 }

@@ -54,11 +54,23 @@ public abstract class MovingEntity extends GameObject {
         animationManager.update(direction);
     }
 
+    /**
+     * When adding a new NPC or MovingEntity that overrides the AnimationManager in its constructor, must also handle
+     * this case as well.
+     */
     private void decideAnimation() {
-        if (motion.isMoving()) {
-            animationManager.playAnimation("player_walking_8dir_spritesheet");
-        } else {
-            animationManager.playAnimation("player_idle_8dir_spritesheet");
+        if (this instanceof Player) {
+            if (motion.isMoving()) {
+                animationManager.playAnimation("player_walking_8dir_spritesheet");
+            } else {
+                animationManager.playAnimation("player_idle_8dir_spritesheet");
+            }
+        } else if (this instanceof NPC) {
+            if (motion.isMoving()) {
+                animationManager.playAnimation("zombie_basic_walking_8dir_spritesheet");
+            } else {
+                animationManager.playAnimation("zombie_basic_idle_8dir_spritesheet");
+            }
         }
     }
 

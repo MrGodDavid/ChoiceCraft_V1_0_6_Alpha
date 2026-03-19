@@ -47,4 +47,9 @@ public class SpriteSet {
     public Image getAnimationSheet(String name) {
         return this.animationSheets.get(name);
     }
+
+    @Override
+    public String toString() {
+        return "SpriteSet: \n" + this.animationSheets.toString();
+    }
 }

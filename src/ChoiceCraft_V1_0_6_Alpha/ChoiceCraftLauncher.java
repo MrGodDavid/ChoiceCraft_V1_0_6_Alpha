@@ -19,6 +19,8 @@ import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 public final class ChoiceCraftLauncher {
 
     public static void main(String[] args) {
-        new Thread(new GameLoop(new ChoiceCraft(800, 600))).start();
+        ChoiceCraft game = new ChoiceCraft(800, 600); // fully constructed
+        GameLoop loop = new GameLoop(game);
+        new Thread(loop).start(); // start AFTER initialization
     }
 }

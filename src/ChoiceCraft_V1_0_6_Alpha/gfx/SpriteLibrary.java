@@ -127,6 +127,11 @@ public class SpriteLibrary {
         return file.list((current, name) -> new File(current, name).isDirectory());
     }
 
+    @Override
+    public String toString() {
+        return "GameEntities: \n" + gameEntities + "\nTiles: \n" + tiles;
+    }
+
     public SpriteSet getEntitySprite(String name) {
         return gameEntities.get(name);
     }
