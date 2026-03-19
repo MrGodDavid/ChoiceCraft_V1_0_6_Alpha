@@ -142,7 +142,9 @@ public class TexturePacker {
     }
 
     public enum ENTITY_NAME {
-        PLAYER, ZOMBIE_BASIC;
+        PLAYER,
+        ZOMBIE_BASIC,
+        ENCHANTER;
 
         private final String key;
 
@@ -177,7 +179,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ZOMBIE_BASIC, ANIMATION_STATE.HURTING);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.WALKING);
         texturePacker.pack();
     }
 }
