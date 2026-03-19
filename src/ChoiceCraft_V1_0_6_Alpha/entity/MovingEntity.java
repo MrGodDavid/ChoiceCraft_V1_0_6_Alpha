@@ -25,17 +25,17 @@ import java.awt.*;
 public abstract class MovingEntity extends GameObject {
 
     protected Controller controller;
-    private AnimationManager animationManager;
+    protected AnimationManager animationManager;
 
-    private Motion motion;
-    private Direction direction;
+    protected Motion motion;
+    protected Direction direction;
 
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
         super();
         this.controller = controller;
-        this.animationManager = new AnimationManager(spriteLibrary.getEntitySprite("player"));
         this.motion = new Motion(1);
         this.direction = Direction.SOUTH;
+        this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("player"));
     }
 
     /**

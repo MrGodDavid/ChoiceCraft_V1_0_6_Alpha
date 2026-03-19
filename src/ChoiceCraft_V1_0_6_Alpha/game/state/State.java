@@ -38,7 +38,6 @@ public abstract class State {
         this.gameObjects = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.keyboardInput = keyboardInput;
-        this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
         this.camera = new Camera(windowSize);
     }
 

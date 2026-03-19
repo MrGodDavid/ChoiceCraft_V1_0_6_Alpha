@@ -28,14 +28,14 @@ public class AnimationManager {
     private int frameIndex;
     private int directionIndex;
 
-    public AnimationManager(SpriteSet spriteSet) {
+    public AnimationManager(String name, SpriteSet spriteSet) {
         this.spriteSet = spriteSet;
         this.updatesPerFrame = 5;
         this.frameIndex = 0;
         this.currentFrameTime = 0;
         this.directionIndex = 0;
 
-        playAnimation("player_idle_8dir_spritesheet");
+        playAnimation(name);
     }
 
     /**
