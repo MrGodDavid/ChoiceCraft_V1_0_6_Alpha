@@ -10,6 +10,8 @@ package ChoiceCraft_V1_0_6_Alpha.display;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.map.Tile;
 
 import java.awt.*;
@@ -34,11 +36,13 @@ public final class Renderer {
         renderMap(state, g);
         Camera camera = state.getCamera();
         for (GameObject gameObject : state.getGameObjects()) {
-            g.drawImage(gameObject.getSprite(),
-                    gameObject.getPosition().intX() - camera.getPosition().intX() - gameObject.getSize().getWidth() / 2,
-                    gameObject.getPosition().intY() - camera.getPosition().intY() - gameObject.getSize().getHeight() / 2,
-                    null
-            );
+            if (camera.isInView(gameObject)) {
+                g.drawImage(gameObject.getSprite(),
+                        gameObject.getPosition().intX() - camera.getPosition().intX() - gameObject.getSize().getWidth() / 2,
+                        gameObject.getPosition().intY() - camera.getPosition().intY() - gameObject.getSize().getHeight() / 2,
+                        null
+                );
+            }
         }
     }
 
@@ -51,12 +55,16 @@ public final class Renderer {
      * @param g     rendering pipeline that is not null.
      */
     private void renderMap(State state, Graphics g) {
-        Tile[][] tiles = state.getGameMap().getTiles();
+        ChoiceCraftMap map = state.getGameMap();
         Camera camera = state.getCamera();
-        for (int row = 0; row < tiles.length; row++) {
-            for (int col = 0; col < tiles[row].length; col++) {
+
+        Position start = map.getViewableStartingGridPosition(camera);
+        Position end = map.getViewableEndingGridPosition(camera);
+
+        for (int row = start.intX(); row < end.intX(); row++) {
+            for (int col = start.intY(); col < end.intY(); col++) {
                 g.drawImage(
-                        tiles[row][col].getSprite(),
+                        map.getTiles()[row][col].getSprite(),
                         row * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intX(),
                         col * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intY(),
                         null

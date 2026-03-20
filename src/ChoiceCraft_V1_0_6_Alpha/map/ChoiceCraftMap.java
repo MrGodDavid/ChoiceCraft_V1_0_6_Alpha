@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.map;
 
+import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
@@ -21,6 +22,8 @@ import java.util.Arrays;
  * @since 3/18/2026
  */
 public final class ChoiceCraftMap {
+
+    private static final int SAFETY_SPACE = 2;
 
     private Tile[][] tiles;
 
@@ -47,6 +50,20 @@ public final class ChoiceCraftMap {
         double x = Math.random() * tiles.length * ChoiceCraft.SPRITE_SIZE;
         double y = Math.random() * tiles[0].length * ChoiceCraft.SPRITE_SIZE;
         return new Position(x, y);
+    }
+
+    public Position getViewableStartingGridPosition(Camera camera) {
+        return new Position(
+                Math.max(0, camera.getPosition().getX() / ChoiceCraft.SPRITE_SIZE - SAFETY_SPACE),
+                Math.max(0, camera.getPosition().getY() / ChoiceCraft.SPRITE_SIZE - SAFETY_SPACE)
+        );
+    }
+
+    public Position getViewableEndingGridPosition(Camera camera) {
+        return new Position(
+                Math.min(tiles.length, (camera.getPosition().getX() + camera.getSize().getWidth()) / ChoiceCraft.SPRITE_SIZE + SAFETY_SPACE),
+                Math.min(tiles[0].length, (camera.getPosition().getY() + camera.getSize().getHeight()) / ChoiceCraft.SPRITE_SIZE + SAFETY_SPACE)
+        );
     }
 
     public int getWidth() {

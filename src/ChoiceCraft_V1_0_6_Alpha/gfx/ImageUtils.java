@@ -7,8 +7,11 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.gfx;
 
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
@@ -18,6 +21,10 @@ import java.io.IOException;
  * @since 3/17/2026
  */
 public final class ImageUtils {
+
+    public static final int ALPHA_OPAQUE = 1;
+    public static final int ALPHA_BIT_MASKED = 2;
+    public static final int ALPHA_BLEND = 3;
 
     /**
      * Load image from input file path.
@@ -30,10 +37,25 @@ public final class ImageUtils {
      */
     public static Image loadImage(String filePath) {
         try {
-            return ImageIO.read(ImageUtils.class.getResource(filePath));
+            Image imageFromDisk = ImageIO.read(ImageUtils.class.getResource(filePath));
+            BufferedImage compatibleImage = (BufferedImage) createCompatibleImage(
+                    new Size(imageFromDisk.getWidth(null), imageFromDisk.getHeight(null)),
+                    ALPHA_BIT_MASKED
+            );
+
+            Graphics2D g2d = compatibleImage.createGraphics();
+            g2d.drawImage(imageFromDisk, 0, 0, null);
+            g2d.dispose();
+            return compatibleImage;
         } catch (IOException e) {
             System.out.println("Failed to load image from file: " + filePath);
         }
         return null;
+    }
+
+    public static Image createCompatibleImage(Size size, int transparency) {
+        GraphicsConfiguration graphicsConfiguration = GraphicsEnvironment.getLocalGraphicsEnvironment().
+                getDefaultScreenDevice().getDefaultConfiguration();
+        return graphicsConfiguration.createCompatibleImage(size.getWidth(), size.getHeight(), transparency);
     }
 }

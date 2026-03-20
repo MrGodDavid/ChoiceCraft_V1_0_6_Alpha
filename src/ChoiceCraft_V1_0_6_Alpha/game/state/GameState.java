@@ -40,10 +40,18 @@ public final class GameState extends State {
      */
     private void initializeCharacters() {
         Player player = new Player(new PlayerController(keyboardInput), spriteLibrary);
-        NPC npc = new NPC(new NPCController(), spriteLibrary);
-        npc.setPosition(new Position(3 * ChoiceCraft.SPRITE_SIZE, 2 * ChoiceCraft.SPRITE_SIZE));
 
-        gameObjects.addAll(List.of(player, npc));
+        gameObjects.add(player);
         camera.focusOn(player);
+
+        initializeAllNPCs(100);
+    }
+
+    private void initializeAllNPCs(int numberOfNpc) {
+        for (int i = 0; i < numberOfNpc; i++) {
+            NPC npc = new NPC(new NPCController(), spriteLibrary);
+            npc.setPosition(gameMap.getRandomPosition());
+            gameObjects.add(npc);
+        }
     }
 }

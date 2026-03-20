@@ -8,10 +8,12 @@
 package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 
+import java.awt.*;
 import java.util.Optional;
 
 /**
@@ -22,14 +24,28 @@ import java.util.Optional;
  */
 public final class Camera {
 
+    private static final int SAFETY_SPACE = ChoiceCraft.SPRITE_SIZE / 2;
+
     private Position position;
     private Size windowSize;
+    private Rectangle viewBound;
 
     private Optional<GameObject> objectWithFocus; // we don't have to center camera on object.
 
     public Camera(Size windowSize) {
         this.position = new Position(0, 0);
         this.windowSize = windowSize;
+
+        calculateViewBound();
+    }
+
+    private void calculateViewBound() {
+        viewBound = new Rectangle(
+                position.intX(),
+                position.intY(),
+                windowSize.getWidth() + SAFETY_SPACE,
+                windowSize.getHeight() + SAFETY_SPACE
+        );
     }
 
     /**
@@ -58,6 +74,7 @@ public final class Camera {
             this.position.setY(objectPosition.getY() - (double) windowSize.getHeight() / 2);
 
             clampWithinBounds(state);
+            calculateViewBound();
         }
     }
 
@@ -70,7 +87,20 @@ public final class Camera {
             position.setY(state.getGameMap().getHeight() - windowSize.getHeight());
     }
 
+    public boolean isInView(GameObject gameObject) {
+        return viewBound.intersects(
+                gameObject.getPosition().intX(),
+                gameObject.getPosition().intY(),
+                gameObject.getSize().getWidth(),
+                gameObject.getSize().getHeight()
+        );
+    }
+
     public Position getPosition() {
         return position;
+    }
+
+    public Size getSize() {
+        return windowSize;
     }
 }
