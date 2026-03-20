@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.entity.effect.Speeding;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
 import java.awt.*;
@@ -24,6 +25,7 @@ public final class Player extends MovingEntity {
 
     public Player(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);
+        effects.add(new Speeding());
     }
 
     @Override

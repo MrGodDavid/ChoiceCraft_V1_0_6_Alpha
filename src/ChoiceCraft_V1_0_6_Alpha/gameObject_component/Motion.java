@@ -53,6 +53,10 @@ public final class Motion {
         vector.multiply(speed);
     }
 
+    public void multiply(double speedMultiplier) {
+        vector.multiply(speedMultiplier);
+    }
+
     public Vector2d getVector() {
         return vector;
     }

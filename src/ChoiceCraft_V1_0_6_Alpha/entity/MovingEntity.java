@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
+import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
@@ -16,6 +17,9 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Moveable entity in ChoiceCraft.
@@ -30,6 +34,7 @@ public abstract class MovingEntity extends GameObject {
 
     protected Motion motion;
     protected Direction direction;
+    protected List<Effect> effects;
 
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
         super();
@@ -37,6 +42,7 @@ public abstract class MovingEntity extends GameObject {
         this.motion = new Motion(1);
         this.direction = Direction.SOUTH;
         this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("player"));
+        this.effects = new ArrayList<>();
     }
 
     /**
@@ -51,10 +57,30 @@ public abstract class MovingEntity extends GameObject {
     @Override
     public void update(State state) {
         motion.update(controller);
-        position.apply(motion);
+        animationManager.update(direction);
+
+        Iterator<Effect> iterator = effects.iterator();
+        while (iterator.hasNext()) {
+            Effect effect = iterator.next();
+            effect.update(state, this);
+        }
+
         manageDirection();
         decideAnimation();
-        animationManager.update(direction);
+
+        position.apply(motion);
+
+        cleanEffects();
+    }
+
+    private void cleanEffects() {
+        Iterator<Effect> iterator = effects.iterator();
+        while (iterator.hasNext()) {
+            Effect effect = iterator.next();
+            if (effect.shouldDelete()) {
+                iterator.remove();
+            }
+        }
     }
 
     /**
@@ -81,6 +107,10 @@ public abstract class MovingEntity extends GameObject {
         if (motion.isMoving()) {
             this.direction = Direction.fromMotion(motion);
         }
+    }
+
+    public void multiplySpeed(double speedMultiplier) {
+        motion.multiply(speedMultiplier);
     }
 
     /**

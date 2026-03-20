@@ -13,7 +13,7 @@ package ChoiceCraft_V1_0_6_Alpha.game;
  * @author David Liu.
  * @since 3/19/2026
  */
-public class Time {
+public final class Time {
 
     private int updateSinceStart;
 
