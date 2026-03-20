@@ -7,10 +7,9 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game.state;
 
-import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
-import ChoiceCraft_V1_0_6_Alpha.entity.Player;
+import ChoiceCraft_V1_0_6_Alpha.game.Time;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
@@ -34,12 +33,14 @@ public abstract class State {
 
     protected ChoiceCraftMap gameMap;
     protected Camera camera;
+    protected Time time;
 
     public State(Size windowSize, KeyboardInput keyboardInput) {
         this.gameObjects = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.keyboardInput = keyboardInput;
         this.camera = new Camera(windowSize);
+        this.time = new Time();
     }
 
     /**
@@ -50,7 +51,7 @@ public abstract class State {
     public void update() {
         sortObjectsByPosition();
         for (GameObject gameObject : gameObjects) {
-            gameObject.update();
+            gameObject.update(this);
         }
         camera.update(this);
     }
@@ -69,5 +70,9 @@ public abstract class State {
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public Time getTime() {
+        return time;
     }
 }

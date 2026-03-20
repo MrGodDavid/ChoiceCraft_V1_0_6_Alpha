@@ -19,7 +19,7 @@ import java.awt.image.BufferedImage;
  * @author David Liu
  * @since 3/17/2026
  */
-public class AnimationManager {
+public final class AnimationManager {
 
     private SpriteSet spriteSet;
     private BufferedImage currentAnimationSheet;

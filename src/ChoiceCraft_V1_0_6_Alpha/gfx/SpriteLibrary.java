@@ -22,7 +22,7 @@ import java.util.Map;
  * @author David Liu
  * @since 3/17/2026
  */
-public class SpriteLibrary {
+public final class SpriteLibrary {
 
     private final Map<String, SpriteSet> gameEntities;
     private final Map<String, Image> tiles;

@@ -19,7 +19,7 @@ import java.util.Arrays;
  * @author David Liu.
  * @since 3/18/2026
  */
-public class ChoiceCraftMap {
+public final class ChoiceCraftMap {
 
     private Tile[][] tiles;
 
@@ -38,6 +38,7 @@ public class ChoiceCraftMap {
     public int getWidth() {
         return tiles.length * ChoiceCraft.SPRITE_SIZE;
     }
+
     public int getHeight() {
         return tiles[0].length  * ChoiceCraft.SPRITE_SIZE;
     }

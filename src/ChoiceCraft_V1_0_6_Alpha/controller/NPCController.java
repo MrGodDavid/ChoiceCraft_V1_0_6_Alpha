@@ -13,7 +13,7 @@ package ChoiceCraft_V1_0_6_Alpha.controller;
  * @author David Liu
  * @since 3/19/2026
  */
-public class NPCController implements Controller{
+public final class NPCController implements Controller{
 
     /**
      * Check if the user is requesting down command in ChoiceCraft.

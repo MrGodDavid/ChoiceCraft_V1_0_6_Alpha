@@ -17,7 +17,7 @@ import java.awt.*;
  * @author David Liu.
  * @since 3/18/2026
  */
-public class Tile {
+public final class Tile {
 
     private Image sprite;
 

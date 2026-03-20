@@ -17,7 +17,7 @@ import java.util.Map;
  * @author David Liu
  * @since 3/17/2026
  */
-public class SpriteSet {
+public final class SpriteSet {
 
     private Map<String, Image> animationSheets;
 

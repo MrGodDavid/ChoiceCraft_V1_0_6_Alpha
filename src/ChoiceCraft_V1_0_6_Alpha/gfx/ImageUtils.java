@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author David Liu
  * @since 3/17/2026
  */
-public class ImageUtils {
+public final class ImageUtils {
 
     /**
      * Load image from input file path.

@@ -15,6 +15,8 @@ package ChoiceCraft_V1_0_6_Alpha.game;
  */
 public final class GameLoop implements Runnable {
 
+    public static final int  UPDATES_PER_SECOND = 60;
+
     private final ChoiceCraft choiceCraft;
 
     private boolean running;
