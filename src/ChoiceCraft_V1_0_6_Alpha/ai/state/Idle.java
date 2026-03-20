@@ -30,7 +30,7 @@ public final class Idle extends AIState{
      */
     @Override
     protected AITransition initializeTransition() {
-        return new AITransition("idle", this::processIsAIConditionMet);
+        return new AITransition("wander", this::processIsAIConditionMet);
     }
 
     /**

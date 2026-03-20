@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.map;
 
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -33,6 +34,19 @@ public final class ChoiceCraftMap {
         for (Tile[] tile : tiles) {
             Arrays.fill(tile, new Tile(spriteLibrary));
         }
+    }
+
+    /**
+     * Generate a random position in ChoiceCraft game map.
+     * <p>Precondition: none.</p>.
+     * <p>Postcondition: generate a random position.</p>
+     *
+     * @return a random position.
+     */
+    public Position getRandomPosition() {
+        double x = Math.random() * tiles.length * ChoiceCraft.SPRITE_SIZE;
+        double y = Math.random() * tiles[0].length * ChoiceCraft.SPRITE_SIZE;
+        return new Position(x, y);
     }
 
     public int getWidth() {

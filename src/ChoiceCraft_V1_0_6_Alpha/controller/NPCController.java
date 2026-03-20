@@ -7,25 +7,17 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.controller;
 
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+
 /**
  * Controller for NPC in ChoiceCraft
  *
  * @author David Liu
  * @since 3/19/2026
  */
-public final class NPCController implements Controller{
+public final class NPCController implements Controller {
 
-    /**
-     * Check if the user is requesting down command in ChoiceCraft.
-     * <p>Precondition: none.</p>
-     * <p>Postcondition: game object being updated by down command.</p>
-     *
-     * @return true if user is requesting down command.
-     */
-    @Override
-    public boolean isRequestingDown() {
-        return false;
-    }
+    private boolean up, left, down, right;
 
     /**
      * Check if the user is requesting up command in ChoiceCraft.
@@ -36,7 +28,7 @@ public final class NPCController implements Controller{
      */
     @Override
     public boolean isRequestingUp() {
-        return false;
+        return up;
     }
 
     /**
@@ -48,7 +40,19 @@ public final class NPCController implements Controller{
      */
     @Override
     public boolean isRequestingLeft() {
-        return false;
+        return left;
+    }
+
+    /**
+     * Check if the user is requesting down command in ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: game object being updated by down command.</p>
+     *
+     * @return true if user is requesting down command.
+     */
+    @Override
+    public boolean isRequestingDown() {
+        return down;
     }
 
     /**
@@ -60,6 +64,33 @@ public final class NPCController implements Controller{
      */
     @Override
     public boolean isRequestingRight() {
-        return false;
+        return right;
+    }
+
+    /**
+     * Move the NPC from current position to its target position.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: npc moves from its current position to its target position.</p>
+     *
+     * @param target  position that npc will move to.
+     * @param current position of the npc right now.
+     */
+    public void moveToTarget(Position target, Position current) {
+        double deltaX = target.getX() - current.getX();
+        double deltaY = target.getY() - current.getY();
+
+        up = deltaY < 0 && Math.abs(deltaY) > Position.PROXIMITY_RANGE;
+        left = deltaX < 0 && Math.abs(deltaX) > Position.PROXIMITY_RANGE;
+        down = deltaY > 0 && Math.abs(deltaY) > Position.PROXIMITY_RANGE;
+        right = deltaX > 0 && Math.abs(deltaX) > Position.PROXIMITY_RANGE;
+    }
+
+    /**
+     * Stop the NPC from moving to different targets or anywhere else.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: stop the NPC from moving to different targets or anywhere else.</p>
+     */
+    public void stop() {
+        up = left = down = right = false;
     }
 }

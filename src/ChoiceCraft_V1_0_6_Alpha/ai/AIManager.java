@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.ai;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.state.AIState;
 import ChoiceCraft_V1_0_6_Alpha.ai.state.Idle;
+import ChoiceCraft_V1_0_6_Alpha.ai.state.Wander;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -45,8 +46,11 @@ public final class AIManager {
     private void transitionTo(String nextState) {
         System.out.println("Transitioning to " + nextState);
         switch (nextState) {
-            case "idle":
-            default: currentAIState = new Idle();
+            case "wander":
+                currentAIState = new Wander();
+                return;
+            default:
+                currentAIState = new Idle();
         }
     }
 }

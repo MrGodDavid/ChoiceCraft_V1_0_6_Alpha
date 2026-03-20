@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.game.state;
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.Time;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
@@ -58,6 +59,17 @@ public abstract class State {
 
     private void sortObjectsByPosition() {
         gameObjects.sort(Comparator.comparing(gameObject -> gameObject.getPosition().getY()));
+    }
+
+    /**
+     * Wrapper method of getRandomPosition() in {@link ChoiceCraftMap GameMap}.
+     * <p>Precondition: see ChoiceCraftMap getRandomPosition()</p>.
+     * <p>Postcondition: generate a random position.</p>
+     *
+     * @return a random position.
+     */
+    public Position getRandomPosition() {
+       return gameMap.getRandomPosition();
     }
 
     public List<GameObject> getGameObjects() {
