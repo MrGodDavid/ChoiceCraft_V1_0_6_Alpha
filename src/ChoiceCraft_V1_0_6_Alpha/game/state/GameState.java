@@ -15,8 +15,11 @@ import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
-import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
+
+import java.awt.*;
 
 /**
  * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
@@ -34,10 +37,14 @@ public final class GameState extends State {
     }
 
     private void initializeUI() {
-        UIContainer uiContainer = new UIContainer();
-        uiContainer.setPadding(new Spacing(50));
-        uiContainer.setMargin(new Spacing(100));
-        uiContainers.add(uiContainer);
+        VerticalContainer container = new VerticalContainer();
+        container.setPadding(new Spacing(20));
+        container.setBackground(Color.GRAY);
+        container.addUIComponent(new HorizontalContainer());
+        container.addUIComponent(new HorizontalContainer());
+        container.addUIComponent(new HorizontalContainer());
+
+        uiContainers.add(container);
     }
 
     /**
