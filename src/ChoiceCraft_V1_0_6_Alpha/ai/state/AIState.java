@@ -44,10 +44,26 @@ public abstract class AIState {
      */
     public abstract void update(State state, NPC currentCharacter);
 
+    /**
+     * Wrapper method of {@link AITransition#shouldTransition(State, NPC)}.
+     * <p>Precondition: state and currentCharacter are not null.</p>
+     * <p>Postcondition: return a boolean that indicates whether the game object should transit to other AIState.</p>
+     *
+     * @param state            current game state that is not null.
+     * @param currentCharacter current game object that is not null.
+     * @return true if current game object should transit to its next AIState.
+     */
     public boolean shouldTransition(State state, NPC currentCharacter) {
         return transition.shouldTransition(state, currentCharacter);
     }
 
+    /**
+     * Wrapper method of {@link AITransition#getNextState()}
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return the name key that indicates the next state of game object.</p>
+     *
+     * @return the name key that indicates the next state of game object.
+     */
     public String getNextState() {
         return transition.getNextState();
     }
