@@ -11,15 +11,11 @@ import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.Player;
-import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
-import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+import ChoiceCraft_V1_0_6_Alpha.entity.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
-
-import java.util.List;
 
 /**
  * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
@@ -51,10 +47,10 @@ public final class GameState extends State {
 
     private void initializeAllNPCs(int numberOfNpc) {
         for (int i = 0; i < numberOfNpc; i++) {
-            NPC npc = new NPC(new NPCController(), spriteLibrary);
-            npc.setPosition(gameMap.getRandomPosition());
-            npc.addEffect(new Happy());
-            gameObjects.add(npc);
+            Enchanter enchanter = new Enchanter(new NPCController(), spriteLibrary);
+            enchanter.setPosition(gameMap.getRandomPosition());
+            enchanter.addEffect(new Happy());
+            gameObjects.add(enchanter);
         }
     }
 }

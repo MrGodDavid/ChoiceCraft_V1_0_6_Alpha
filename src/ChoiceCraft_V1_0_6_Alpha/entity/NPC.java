@@ -23,7 +23,7 @@ import java.util.Optional;
  * @author David Liu
  * @since 3/19/2026
  */
-public class NPC extends MovingEntity{
+public abstract class NPC extends MovingEntity {
 
     private final AIManager aiManager;
 
