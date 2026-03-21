@@ -164,6 +164,7 @@ public class TexturePacker {
         ATTACKING_ARCHERY_OAK_BOW,
         ATTACKING_FIST,
         ATTACKING_SHORT_IRON_SWORD,
+        GREETING,
         HURTING;
 
         private final String key;
@@ -179,7 +180,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.WALKING);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.GREETING);
         texturePacker.pack();
     }
 }
