@@ -23,6 +23,7 @@ public final class AnimationManager {
 
     private SpriteSet spriteSet;
     private BufferedImage currentAnimationSheet;
+    private String currentAnimationName;
     private int currentFrameTime;
     private int updatesPerFrame;
     private int frameIndex;
@@ -34,6 +35,7 @@ public final class AnimationManager {
         this.frameIndex = 0;
         this.currentFrameTime = 0;
         this.directionIndex = 0;
+        this.currentAnimationName = "";
 
         playAnimation(name);
     }
@@ -82,7 +84,11 @@ public final class AnimationManager {
      * @param name that is used to find the animation that user wants to play.
      */
     public void playAnimation(String name) {
-        this.currentAnimationSheet = (BufferedImage) spriteSet.getAnimationSheet(name);
+        if (!name.equals(currentAnimationName)) {
+            this.currentAnimationSheet = (BufferedImage) spriteSet.getAnimationSheet(name);
+            this.currentAnimationName = name;
+            frameIndex = 0;
+        }
     }
 
     public void playNewAnimation(String name, SpriteSet spriteSet) {

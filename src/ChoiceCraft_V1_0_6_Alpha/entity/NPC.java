@@ -9,9 +9,13 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
+import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
+
+import java.util.Optional;
 
 /**
  * Superclass for all ChoiceCraft npc.

@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
+import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
@@ -20,6 +21,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Moveable entity in ChoiceCraft.
@@ -35,6 +37,7 @@ public abstract class MovingEntity extends GameObject {
     protected Motion motion;
     protected Direction direction;
     protected List<Effect> effects;
+    protected Optional<Action> action;
 
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
         super();
@@ -43,6 +46,7 @@ public abstract class MovingEntity extends GameObject {
         this.direction = Direction.SOUTH;
         this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("player"));
         this.effects = new ArrayList<>();
+        this.action = Optional.empty();
     }
 
     /**
@@ -56,7 +60,9 @@ public abstract class MovingEntity extends GameObject {
      */
     @Override
     public void update(State state) {
-        motion.update(controller);
+        handleAction(state);
+        handleMotion();
+
         animationManager.update(direction);
 
         Iterator<Effect> iterator = effects.iterator();
@@ -73,13 +79,32 @@ public abstract class MovingEntity extends GameObject {
         cleanEffects();
     }
 
+    private void handleAction(State state) {
+        if (action.isPresent()) {
+            action.get().update(state, this);
+        }
+    }
+
+    private void handleMotion() {
+        if (!action.isPresent()) {
+            motion.update(controller);
+        } else {
+            motion.stop();
+        }
+    }
+
     private void cleanEffects() {
+        // CLEAN UP EFFECTS
         Iterator<Effect> iterator = effects.iterator();
         while (iterator.hasNext()) {
             Effect effect = iterator.next();
             if (effect.shouldDelete()) {
                 iterator.remove();
             }
+        }
+        // CLEAN UP MOTIONS
+        if (action.isPresent() && action.get().isDone()) {
+            action = Optional.empty();
         }
     }
 
@@ -95,7 +120,9 @@ public abstract class MovingEntity extends GameObject {
                 animationManager.playAnimation("player_idle_8dir_spritesheet");
             }
         } else if (this instanceof NPC) {
-            if (motion.isMoving()) {
+            if (action.isPresent()) {
+                animationManager.playAnimation(action.get().getAnimationName());
+            } else if (motion.isMoving()) {
                 animationManager.playAnimation("enchanter_walking_8dir_spritesheet");
             } else {
                 animationManager.playAnimation("enchanter_idle_8dir_spritesheet");
@@ -124,6 +151,14 @@ public abstract class MovingEntity extends GameObject {
     @Override
     public Image getSprite() {
         return animationManager.getSprite();
+    }
+
+    public void perform(Action action) {
+        this.action = Optional.of(action);
+    }
+
+    public void addEffect(Effect effect) {
+        effects.add(effect);
     }
 
     public Controller getController() {
