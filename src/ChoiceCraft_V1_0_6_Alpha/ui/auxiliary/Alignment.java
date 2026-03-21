@@ -19,7 +19,7 @@ package ChoiceCraft_V1_0_6_Alpha.ui.auxiliary;
  * @since 3/21/2026
  */
 
-public class Alignment {
+public final class Alignment {
 
     public enum Position {
         START, CENTER, END;
