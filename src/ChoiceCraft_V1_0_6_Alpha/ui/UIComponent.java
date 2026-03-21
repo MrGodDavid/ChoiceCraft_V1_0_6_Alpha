@@ -36,8 +36,8 @@ public abstract class UIComponent {
      * Constructs a default UIComponent that has the following properties:
      * <li>Position - default position is (0, 0).</li>
      * <li>Size - default size is 1px by 1px.</li>
-     * <li>Margin - default margin 0.</li>
-     * <li>Padding - default padding is 5px in all directions.</li>
+     * <li>Margin - default margin is 0px.</li>
+     * <li>Padding - default padding is 0px.</li>
      * </p>
      * <p>For margin and padding, see {@link Spacing}</p>
      */
@@ -45,7 +45,7 @@ public abstract class UIComponent {
         position = new Position(0, 0);
         size = new Size(1, 1);
         margin = new Spacing(0);
-        padding = new Spacing(5);
+        padding = new Spacing(0);
     }
 
     /**

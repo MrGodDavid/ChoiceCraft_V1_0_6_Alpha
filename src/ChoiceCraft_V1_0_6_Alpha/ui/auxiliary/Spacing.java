@@ -19,7 +19,7 @@ package ChoiceCraft_V1_0_6_Alpha.ui.auxiliary;
  * @author David Liu
  * @since 3/21/2026
  */
-public class Spacing {
+public final class Spacing {
 
     private int top, right, bottom, left;
 

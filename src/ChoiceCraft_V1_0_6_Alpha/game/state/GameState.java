@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
@@ -39,10 +40,8 @@ public final class GameState extends State {
     private void initializeUI() {
         VerticalContainer container = new VerticalContainer();
         container.setPadding(new Spacing(20));
-        container.setBackground(Color.GRAY);
-        container.addUIComponent(new HorizontalContainer());
-        container.addUIComponent(new HorizontalContainer());
-        container.addUIComponent(new HorizontalContainer());
+        container.setBackground(Color.LIGHT_GRAY);
+        container.addUIComponent(new UIText("I am using my own font in ChoiceCraft!!! :)"));
 
         uiContainers.add(container);
     }
