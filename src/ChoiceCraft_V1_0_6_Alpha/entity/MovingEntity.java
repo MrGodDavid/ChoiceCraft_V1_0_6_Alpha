@@ -159,12 +159,13 @@ public abstract class MovingEntity extends GameObject {
     }
 
     /**
-     * Game objects of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft each provide sprite (graphic) to rendering system
-     * {@link Display ChoiceCraft_V1_0_6_Alpha.display.Display class}
-     * <p>Precondition: game object exists in ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.</p>
-     * <p>Postcondition: return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft</p>
+     * Game objects of ChoiceCraft each provide sprite (graphic) to rendering system
+     * {@link Display Display class}.
+     * <p>Wrapper method of {@link AnimationManager#getSprite()}</p>
+     * <p>Precondition: game object exists in ChoiceCraft.</p>
+     * <p>Postcondition: return the sprite of game object of ChoiceCraft</p>
      *
-     * @return the sprite of game object of ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft.
+     * @return the sprite of game object of ChoiceCraft.
      */
     @Override
     public Image getSprite() {

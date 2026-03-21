@@ -13,6 +13,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.map.Tile;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
 import java.awt.*;
 
@@ -34,6 +35,22 @@ public final class Renderer {
      */
     public void render(State state, Graphics g) {
         renderMap(state, g);
+        renderGameObjects(state, g);
+        renderUI(state, g);
+    }
+
+    private void renderUI(State state, Graphics g) {
+        for (UIContainer uiContainer : state.getUiContainers()) {
+            g.drawImage(
+                    uiContainer.getSprite(),
+                    uiContainer.getPosition().intX(),
+                    uiContainer.getPosition().intY(),
+                    null
+            );
+        }
+    }
+
+    private void renderGameObjects(State state, Graphics g) {
         Camera camera = state.getCamera();
         for (GameObject gameObject : state.getGameObjects()) {
             if (camera.isInView(gameObject)) {

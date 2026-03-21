@@ -15,6 +15,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 public abstract class State {
 
     protected final List<GameObject> gameObjects;
+    protected final List<UIContainer> uiContainers;
     protected final SpriteLibrary spriteLibrary;
     protected final KeyboardInput keyboardInput;
 
@@ -41,6 +43,7 @@ public abstract class State {
 
     public State(Size windowSize, KeyboardInput keyboardInput) {
         this.gameObjects = new ArrayList<>();
+        this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.keyboardInput = keyboardInput;
         this.camera = new Camera(windowSize);
@@ -56,6 +59,9 @@ public abstract class State {
         sortObjectsByPosition();
         for (GameObject gameObject : gameObjects) {
             gameObject.update(this);
+        }
+        for (UIContainer uiContainer : uiContainers) {
+            uiContainer.update(this);
         }
         camera.update(this);
     }
@@ -103,5 +109,9 @@ public abstract class State {
 
     public Time getTime() {
         return time;
+    }
+
+    public List<UIContainer> getUiContainers() {
+        return uiContainers;
     }
 }

@@ -15,6 +15,8 @@ import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
 /**
  * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
@@ -28,6 +30,14 @@ public final class GameState extends State {
         super(windowSize, keyboardInput);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
         initializeCharacters();
+        initializeUI();
+    }
+
+    private void initializeUI() {
+        UIContainer uiContainer = new UIContainer();
+        uiContainer.setPadding(new Spacing(50));
+        uiContainer.setMargin(new Spacing(100));
+        uiContainers.add(uiContainer);
     }
 
     /**

@@ -40,7 +40,7 @@ public final class ChoiceCraft {
     public ChoiceCraft(int width, int height) {
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
-        this.settings = new ChoiceCraftSettings(true);
+        this.settings = new ChoiceCraftSettings(false);
         this.state = new GameState(new Size(width, height), this.keyboardInput);
     }
 
