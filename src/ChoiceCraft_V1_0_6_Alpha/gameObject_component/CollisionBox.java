@@ -2,7 +2,7 @@
  * ========================================================================================================================
  * Collision box component of game objects of ChoiceCraft.
  * <p>
- * Author: David Liu.                                                                                   Date:3/15/2026
+ * Author: David Liu.                                                                                   Date:3/21/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
@@ -13,7 +13,7 @@ import java.awt.*;
  * Collision box component of game objects of ChoiceCraft.
  *
  * @author David Liu
- * @since 3/15/2026
+ * @since 3/21/2026
  */
 public final class CollisionBox {
 

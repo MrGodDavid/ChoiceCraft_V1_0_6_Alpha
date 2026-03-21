@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game;
 
+import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
 import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
@@ -25,6 +26,7 @@ public final class ChoiceCraft {
 
     private final Display display;
     private final KeyboardInput keyboardInput;
+    private final ChoiceCraftSettings settings;
     private State state;
 
     /**
@@ -38,6 +40,7 @@ public final class ChoiceCraft {
     public ChoiceCraft(int width, int height) {
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
+        this.settings = new ChoiceCraftSettings(true);
         this.state = new GameState(new Size(width, height), this.keyboardInput);
     }
 
@@ -52,10 +55,11 @@ public final class ChoiceCraft {
 
     /**
      * Render ChoiceCraft game through Display class.
+     * <p>This is the wrapper method of {@link Display#render(State, boolean)}.</p>
      * <p>Precondition: input ChoiceCraft game is not null.</p>
      * <p>Postcondition: renders ChoiceCraft game.</p>
      */
     public void render() {
-        display.render(state);
+        display.render(state, settings.isDebugMode());
     }
 }

@@ -24,6 +24,7 @@ public final class Display extends JFrame {
 
     private final Canvas canvas;
     private final Renderer renderer;
+    private final DebugRenderer debugRenderer;
 
     /**
      * Initializes ChoiceCraft game window. Creates a JFrame as game window. Sets the title, dimension, closing operation,
@@ -43,6 +44,7 @@ public final class Display extends JFrame {
         super.setResizable(false);
 
         this.renderer = new Renderer();
+        this.debugRenderer = new DebugRenderer();
 
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
@@ -64,7 +66,7 @@ public final class Display extends JFrame {
      *
      * @param state that is not null.
      */
-    public void render(State state) {
+    public void render(State state, boolean debugMode) {
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics g = bufferStrategy.getDrawGraphics();
 
@@ -72,6 +74,9 @@ public final class Display extends JFrame {
         g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         renderer.render(state, g);
+        if (debugMode) {
+            debugRenderer.render(state, g);
+        }
 
         g.dispose();
         bufferStrategy.show();

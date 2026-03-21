@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -41,6 +42,8 @@ public abstract class MovingEntity extends GameObject {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
+    protected Size collisionBoxSize;
+
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
         super();
         this.controller = controller;
@@ -49,6 +52,7 @@ public abstract class MovingEntity extends GameObject {
         this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("player"));
         this.effects = new ArrayList<>();
         this.action = Optional.empty();
+        this.collisionBoxSize = new Size(14, 34);
     }
 
     /**
@@ -180,7 +184,9 @@ public abstract class MovingEntity extends GameObject {
      */
     @Override
     public CollisionBox getCollisionBox() {
-        return new CollisionBox(new Rectangle(position.intX(), position.intY(), size.getWidth(), size.getHeight()));
+        return new CollisionBox(
+                new Rectangle(position.intX(), position.intY(), collisionBoxSize.getWidth(), collisionBoxSize.getHeight())
+        );
     }
 
     /**
