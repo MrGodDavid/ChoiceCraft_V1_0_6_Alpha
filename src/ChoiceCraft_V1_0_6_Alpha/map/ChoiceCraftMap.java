@@ -41,7 +41,7 @@ public final class ChoiceCraftMap {
 
     /**
      * Generate a random position in ChoiceCraft game map.
-     * <p>Precondition: none.</p>.
+     * <p>Precondition: none.</p>
      * <p>Postcondition: generate a random position.</p>
      *
      * @return a random position.

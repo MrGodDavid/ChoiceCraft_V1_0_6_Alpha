@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 
@@ -50,13 +51,34 @@ public abstract class GameObject {
 
     /**
      * Game objects of ChoiceCraft each provide sprite (graphic) to rendering system
-     * {@link Display ChoiceCraft_V1_0_6_Alpha.display.Display class}
+     * {@link Display Display class}
      * <p>Precondition: game object exists in ChoiceCraft.</p>
      * <p>Postcondition: return the sprite of game object of ChoiceCraft</p>
      *
      * @return the sprite of game object of ChoiceCraft.
      */
     public abstract Image getSprite();
+
+    /**
+     * Game objects of ChoiceCraft each provide collision box to physics detecting methods.
+     * {@link CollisionBox CollisionBox class}
+     * <p>Precondition: game object exists in ChoiceCraft.</p>
+     * <p>Postcondition: return the calculated collision box of game object of ChoiceCraft</p>
+     *
+     * @return the calculated collision box of game object of ChoiceCraft.
+     */
+    public abstract CollisionBox getCollisionBox();
+
+    /**
+     * Wrapper method of {@link ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox#collidesWith(CollisionBox)}.
+     * Check if two game objects collide each other.
+     * <p>Precondition: other game object is not null.</p>
+     * <p>Postcondition: return true based on subclass's implementation of this method.</p>
+     *
+     * @param other that is not null.
+     * @return true based on subclass's implementation of this method, false in opposite conditions.
+     */
+    public abstract boolean collidesWith(GameObject other);
 
     public Position getPosition() {
         return position;

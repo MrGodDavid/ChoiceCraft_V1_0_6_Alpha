@@ -13,6 +13,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
@@ -72,6 +73,7 @@ public abstract class MovingEntity extends GameObject {
             effect.update(state, this);
         }
 
+        handleCollisions(state);
         manageDirection();
         decideAnimation();
 
@@ -79,6 +81,20 @@ public abstract class MovingEntity extends GameObject {
 
         cleanEffects();
     }
+
+    private void handleCollisions(State state) {
+        state.getCollidingGameObjects(this).forEach(this::handleCollision);
+    }
+
+    /**
+     * Handle collisions between different game objects.
+     * <p>Precondition: other game object is not null.</p>
+     * <p>Postcondition: tell ChoiceCraft to handle different collisions based on subclass's custom implementation
+     * of this method.</p>
+     *
+     * @param other game object that is not null.
+     */
+    protected abstract void handleCollision(GameObject other);
 
     private void handleAction(State state) {
         if (action.isPresent()) {
@@ -154,6 +170,33 @@ public abstract class MovingEntity extends GameObject {
         return animationManager.getSprite();
     }
 
+    /**
+     * Game objects of ChoiceCraft each provide collision box to physics detecting methods.
+     * {@link CollisionBox CollisionBox class}
+     * <p>Precondition: game object exists in ChoiceCraft.</p>
+     * <p>Postcondition: return the calculated collision box of game object of ChoiceCraft</p>
+     *
+     * @return the calculated collision box of game object of ChoiceCraft.
+     */
+    @Override
+    public CollisionBox getCollisionBox() {
+        return new CollisionBox(new Rectangle(position.intX(), position.intY(), size.getWidth(), size.getHeight()));
+    }
+
+    /**
+     * Wrapper method of {@link CollisionBox#collidesWith(CollisionBox)}.
+     * Check if two game objects collide each other.
+     * <p>Precondition: other game object is not null.</p>
+     * <p>Postcondition: return true based on subclass's implementation of this method.</p>
+     *
+     * @param other that is not null.
+     * @return true based on subclass's implementation of this method, false in opposite conditions.
+     */
+    @Override
+    public boolean collidesWith(GameObject other) {
+        return this.getCollisionBox().collidesWith(other.getCollisionBox());
+    }
+
     public void perform(Action action) {
         this.action = Optional.of(action);
     }
@@ -164,5 +207,14 @@ public abstract class MovingEntity extends GameObject {
 
     public Controller getController() {
         return controller;
+    }
+
+    /**
+     * Wrapper method of {@link List#clear()}.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: clear all {@link MovingEntity}'s effects.</p>
+     */
+    public void clearEffects() {
+        effects.clear();
     }
 }

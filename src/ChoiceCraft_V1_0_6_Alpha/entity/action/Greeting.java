@@ -17,7 +17,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
  * @author David Liu.
  * @since 3/20/2026
  */
-public class Greeting extends Action {
+public final class Greeting extends Action {
 
     private int liveSpanInSeconds;
 

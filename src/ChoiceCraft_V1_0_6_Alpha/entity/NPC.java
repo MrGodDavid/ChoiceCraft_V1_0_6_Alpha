@@ -11,6 +11,7 @@ import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
+import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -29,7 +30,8 @@ public abstract class NPC extends MovingEntity {
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);
-        this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("enchanter"));
+        this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet",
+                spriteLibrary.getEntitySprite("enchanter"));
         aiManager = new AIManager();
     }
 
@@ -46,6 +48,21 @@ public abstract class NPC extends MovingEntity {
     public void update(State state) {
         super.update(state);
         aiManager.update(state, this);
+    }
+
+    /**
+     * Handle collisions between different game objects.
+     * <p>Precondition: other game object is not null.</p>
+     * <p>Postcondition: tell ChoiceCraft to handle different collisions based on subclass's custom implementation
+     * of this method.</p>
+     *
+     * @param other game object that is not null.
+     */
+    @Override
+    protected void handleCollision(GameObject other) {
+        if (other instanceof Player) {
+            motion.stop();
+        }
     }
 
     @Override

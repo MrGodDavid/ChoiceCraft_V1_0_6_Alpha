@@ -17,8 +17,11 @@ import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Superclass for all states in ChoiceCraft. (i.e. PlayState, DebugState, MenuState, etc.)
@@ -62,14 +65,28 @@ public abstract class State {
     }
 
     /**
-     * Wrapper method of getRandomPosition() in {@link ChoiceCraftMap GameMap}.
+     * Wrapper method of getRandomPosition() in {@link ChoiceCraftMap#getRandomPosition()}.
      * <p>Precondition: see ChoiceCraftMap getRandomPosition()</p>.
      * <p>Postcondition: generate a random position.</p>
      *
      * @return a random position.
      */
     public Position getRandomPosition() {
-       return gameMap.getRandomPosition();
+        return gameMap.getRandomPosition();
+    }
+
+    /**
+     * GameObjects is a list of {@link GameObject}. First create a filter in the stream from {@link Collection#stream()}.
+     * Custom filter is defined as <p> <code>(other -> other.collidesWith(gameObject)) </code> </p>. Finally, use the
+     * {@link java.util.stream.Stream#collect(Collector)} method to convert the collection to a {@link List}.
+     * <p>Precondition: param game object must exist in ChoiceCraft.</p>
+     * <p>Postcondition: return a list of game objects that are colliding with the param game object.</p>
+     *
+     * @param gameObject that is not null.
+     * @return a list of game objects that are colliding with the param game object.
+     */
+    public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
+        return gameObjects.stream().filter(other -> other.collidesWith(gameObject)).collect(Collectors.toList());
     }
 
     public List<GameObject> getGameObjects() {
