@@ -10,15 +10,8 @@ package ChoiceCraft_V1_0_6_Alpha.game;
 import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
-import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
-import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
-import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
-import ChoiceCraft_V1_0_6_Alpha.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * ChoiceCraft game.

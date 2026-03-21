@@ -5,9 +5,10 @@
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity;
+package ChoiceCraft_V1_0_6_Alpha.entity.character.player;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
 /**

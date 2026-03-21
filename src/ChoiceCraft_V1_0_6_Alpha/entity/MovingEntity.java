@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
 import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
+import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;

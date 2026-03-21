@@ -5,7 +5,7 @@
  * Author: David Liu.                                                                                   Date:3/20/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity.npc;
+package ChoiceCraft_V1_0_6_Alpha.entity.character.npc;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;

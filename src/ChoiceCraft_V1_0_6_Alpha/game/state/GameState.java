@@ -9,10 +9,9 @@ package ChoiceCraft_V1_0_6_Alpha.game.state;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
-import ChoiceCraft_V1_0_6_Alpha.entity.Player;
+import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
-import ChoiceCraft_V1_0_6_Alpha.entity.npc.Enchanter;
+import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
