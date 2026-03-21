@@ -48,10 +48,22 @@ public final class Position {
         this.y = y;
     }
 
+    public static Position copyOf(Position position) {
+        return new Position(position.getX(), position.getY());
+    }
+
     public void apply(Motion motion) {
         Vector2d vector = motion.getVector();
         x += vector.getX();
         y += vector.getY();
+    }
+
+    public void applyX(Motion motion) {
+        x += motion.getVector().getX();
+    }
+
+    public void applyY(Motion motion) {
+        y += motion.getVector().getY();
     }
 
     public boolean isInRangeOf(Position position) {

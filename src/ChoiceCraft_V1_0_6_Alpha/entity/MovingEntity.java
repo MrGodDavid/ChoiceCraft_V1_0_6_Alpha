@@ -13,10 +13,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
-import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.*;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -110,7 +107,7 @@ public abstract class MovingEntity extends GameObject {
         if (!action.isPresent()) {
             motion.update(controller);
         } else {
-            motion.stop();
+            motion.stop(true, true);
         }
     }
 
@@ -184,8 +181,15 @@ public abstract class MovingEntity extends GameObject {
      */
     @Override
     public CollisionBox getCollisionBox() {
+        Position positionWithMotion = Position.copyOf(position);
+        positionWithMotion.apply(motion);
         return new CollisionBox(
-                new Rectangle(position.intX(), position.intY(), collisionBoxSize.getWidth(), collisionBoxSize.getHeight())
+                new Rectangle(
+                        positionWithMotion.intX(),
+                        positionWithMotion.intY(),
+                        collisionBoxSize.getWidth(),
+                        collisionBoxSize.getHeight()
+                )
         );
     }
 
@@ -201,6 +205,22 @@ public abstract class MovingEntity extends GameObject {
     @Override
     public boolean collidesWith(GameObject other) {
         return this.getCollisionBox().collidesWith(other.getCollisionBox());
+    }
+
+    public boolean willCollideX(GameObject other) {
+        CollisionBox otherCollisionBox = other.getCollisionBox();
+        Position positionWithXApplied = Position.copyOf(position);
+        positionWithXApplied.applyX(motion);
+
+        return CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherCollisionBox);
+    }
+
+    public boolean willCollideY(GameObject other) {
+        CollisionBox otherCollisionBox = other.getCollisionBox();
+        Position positionWithYApplied = Position.copyOf(position);
+        positionWithYApplied.applyY(motion);
+
+        return CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherCollisionBox);
     }
 
     public void perform(Action action) {

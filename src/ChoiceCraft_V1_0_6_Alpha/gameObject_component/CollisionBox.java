@@ -23,6 +23,10 @@ public final class CollisionBox {
         this.collisionBox = collisionBox;
     }
 
+    public static CollisionBox of(Position position, Size size) {
+        return new CollisionBox(new Rectangle(position.intX(), position.intY(), size.getWidth(), size.getHeight()));
+    }
+
     /**
      * Check if two collision boxes are colliding with each other. This is a wrapper method of
      * {@link java.awt.Rectangle#intersects(Rectangle)}
