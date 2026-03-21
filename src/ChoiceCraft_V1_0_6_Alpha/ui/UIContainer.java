@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.ImageUtils;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
 import java.awt.*;
@@ -28,10 +29,15 @@ import java.util.List;
 public abstract class UIContainer extends UIComponent {
 
     protected final List<UIComponent> children;
+
+    protected Alignment alignment;
+    protected Size windowSize;
     protected Color backgroundColor;
 
-    public UIContainer() {
+    public UIContainer(Size windowSize) {
         super();
+        this.windowSize = windowSize;
+        alignment = new Alignment(Alignment.Position.START, Alignment.Position.START);
         backgroundColor = Color.RED;
         margin = new Spacing(5);
         padding = new Spacing(5);
@@ -69,7 +75,23 @@ public abstract class UIContainer extends UIComponent {
     protected abstract void calculateChildrenPositions();
 
     private void calculatePosition() {
-        position = new Position(margin.getLeft(), margin.getTop());
+        int x = padding.getLeft();
+        if (alignment.getHorizontal().equals(Alignment.Position.CENTER)) {
+            x = (windowSize.getWidth() - size.getWidth()) / 2;
+        }
+        if (alignment.getHorizontal().equals(Alignment.Position.END)) {
+            x = windowSize.getWidth() - size.getWidth() - margin.getRight();
+        }
+
+        int y = padding.getTop();
+        if (alignment.getVertical().equals(Alignment.Position.CENTER)) {
+            y = (windowSize.getHeight() - size.getHeight()) / 2;
+        }
+        if (alignment.getVertical().equals(Alignment.Position.END)) {
+            y = windowSize.getHeight() - size.getHeight() - margin.getBottom();
+        }
+
+        this.position = new Position(x, y);
         calculateChildrenPositions();
     }
 
@@ -123,7 +145,15 @@ public abstract class UIContainer extends UIComponent {
         children.add(child);
     }
 
+    public void addAllUIComponents(UIComponent... children) {
+        this.children.addAll(List.of(children));
+    }
+
     public void setBackground(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
+    }
+
+    public void setAlignment(Alignment alignment) {
+        this.alignment = alignment;
     }
 }

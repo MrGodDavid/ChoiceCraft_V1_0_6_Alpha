@@ -18,6 +18,7 @@ import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
 import java.awt.*;
@@ -34,16 +35,23 @@ public final class GameState extends State {
         super(windowSize, keyboardInput);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
         initializeCharacters();
-        initializeUI();
+        initializeUI(windowSize);
     }
 
-    private void initializeUI() {
-        VerticalContainer container = new VerticalContainer();
+    private void initializeUI(Size windowSize) {
+        VerticalContainer container = new VerticalContainer(windowSize);
         container.setPadding(new Spacing(20));
-        container.setBackground(Color.LIGHT_GRAY);
+        container.setBackground(new Color(0, 0, 0, 0));
         container.addUIComponent(new UIText("I am using my own font in ChoiceCraft!!! :)"));
 
+        VerticalContainer containerEnd = new VerticalContainer(windowSize);
+        containerEnd.setPadding(new Spacing(20));
+        containerEnd.setBackground(new Color(0, 0, 0, 0));
+        containerEnd.addUIComponent(new UIText("Hello World ^v^"));
+        containerEnd.setAlignment(new Alignment(Alignment.Position.END, Alignment.Position.END));
+
         uiContainers.add(container);
+        uiContainers.add(containerEnd);
     }
 
     /**

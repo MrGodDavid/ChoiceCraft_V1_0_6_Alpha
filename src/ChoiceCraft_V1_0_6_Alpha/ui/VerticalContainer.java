@@ -26,6 +26,10 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
  */
 public class VerticalContainer extends UIContainer {
 
+    public VerticalContainer(Size windowSize) {
+        super(windowSize);
+    }
+
     /**
      * Calculate the size of final parent container. Calculation method specified in subclasses' implementation
      * of this method.
