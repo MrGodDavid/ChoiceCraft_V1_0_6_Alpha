@@ -23,7 +23,7 @@ public final class Happy extends Effect{
     private static final double GREETING_RATE = 1d / GameLoop.UPDATES_PER_SECOND / 10d;
 
     public Happy() {
-        super(GameLoop.UPDATES_PER_SECOND * 10);
+        super(Integer.MAX_VALUE);
     }
 
     /**

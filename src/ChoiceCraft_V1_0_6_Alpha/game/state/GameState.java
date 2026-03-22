@@ -11,6 +11,8 @@ import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
+import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
+import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
@@ -60,13 +62,20 @@ public final class GameState extends State {
 
         initializeAllNPCs(100);
         initializeAllEnemies(50);
+
+        makeNumberOfNPCHappy(10);
     }
 
-    private void initializeAllEnemies(int numberOfNpc) {
-        for (int i = 0; i < numberOfNpc; i++) {
+    private void makeNumberOfNPCHappy(int number) {
+        getGameObjectsOfClass(NPC.class).stream()
+                .limit(number)
+                .forEach(npc -> npc.addEffect(new Happy()));
+    }
+
+    private void initializeAllEnemies(int numberOfEnemy) {
+        for (int i = 0; i < numberOfEnemy; i++) {
             Enemy enemy = new Enemy(new EnemyController(), spriteLibrary);
             enemy.setPosition(gameMap.getRandomPosition());
-//            enemy.addEffect(new Happy());
             gameObjects.add(enemy);
         }
     }
@@ -75,7 +84,6 @@ public final class GameState extends State {
         for (int i = 0; i < numberOfNpc; i++) {
             Enchanter enchanter = new Enchanter(new NPCController(), spriteLibrary);
             enchanter.setPosition(gameMap.getRandomPosition());
-            enchanter.addEffect(new Happy());
             gameObjects.add(enchanter);
         }
     }

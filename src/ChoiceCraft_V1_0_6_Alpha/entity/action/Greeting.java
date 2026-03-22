@@ -8,8 +8,15 @@
 package ChoiceCraft_V1_0_6_Alpha.entity.action;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
+import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
+
+import java.util.List;
 
 /**
  * Greeting from ChoiceCraft game object.
@@ -19,11 +26,16 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
  */
 public final class Greeting extends Action {
 
+    public static final double SUCCESSFULLY_SPREADING_RATE = 0.1;
+
     private int liveSpanInSeconds;
+    private Size spreadAreaSize;
 
     public Greeting() {
         liveSpanInSeconds = GameLoop.UPDATES_PER_SECOND;
+        spreadAreaSize = new Size(2 * ChoiceCraft.SPRITE_SIZE, 2 * ChoiceCraft.SPRITE_SIZE);
     }
+
     /**
      * Update ChoiceCraft game object's action.
      * <p>Precondition: none.</p>
@@ -34,7 +46,24 @@ public final class Greeting extends Action {
      */
     @Override
     public void update(State state, MovingEntity entity) {
-        liveSpanInSeconds--;
+        if (--liveSpanInSeconds <= 0) {
+            Position spreadAreaPosition = new Position(
+                    entity.getPosition().getX() - spreadAreaSize.getWidth() / 2d,
+                    entity.getPosition().getY() - spreadAreaSize.getHeight() / 2d
+            );
+
+            CollisionBox spreadArea = CollisionBox.of(spreadAreaPosition, spreadAreaSize);
+
+            List<MovingEntity> movingEntityList = state.getGameObjectsOfClass(MovingEntity.class);
+            for (MovingEntity movingEntity : movingEntityList) {
+                if (movingEntity.getCollisionBox().collidesWith(spreadArea) && !movingEntity.isAffectedBy(Happy.class)) {
+                    double fallOut = Math.random();
+                    if (fallOut < SUCCESSFULLY_SPREADING_RATE) {
+                        movingEntity.addEffect(new Happy());
+                    }
+                }
+            }
+        }
     }
 
     /**

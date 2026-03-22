@@ -78,7 +78,7 @@ public abstract class State {
      *
      * @return a random position.
      */
-    public Position getRandomPosition() {
+    public final Position getRandomPosition() {
         return gameMap.getRandomPosition();
     }
 
@@ -92,27 +92,43 @@ public abstract class State {
      * @param gameObject that is not null.
      * @return a list of game objects that are colliding with the param game object.
      */
-    public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
+    public final List<GameObject> getCollidingGameObjects(GameObject gameObject) {
         return gameObjects.stream().filter(other -> other.collidesWith(gameObject)).collect(Collectors.toList());
     }
 
-    public List<GameObject> getGameObjects() {
+    /**
+     * Select only gameObjects that matched with the filterClass class type from a List of {@code GameObject}.
+     * <p>Precondition: filterClass is not null.</p>
+     * <p>Postcondition: select a list of gameObject of filterClass type.</p>
+     *
+     * @param filterClass that is not null.
+     * @param <T>         subclass type of {@link GameObject}.
+     * @return a list of gameObject of filterClass type.
+     */
+    public final <T extends GameObject> List<T> getGameObjectsOfClass(Class<T> filterClass) {
+        return gameObjects.stream()
+                .filter(filterClass::isInstance)
+                .map(gameObject -> (T) gameObject)
+                .collect(Collectors.toList());
+    }
+
+    public final List<GameObject> getGameObjects() {
         return gameObjects;
     }
 
-    public ChoiceCraftMap getGameMap() {
+    public final ChoiceCraftMap getGameMap() {
         return gameMap;
     }
 
-    public Camera getCamera() {
+    public final Camera getCamera() {
         return camera;
     }
 
-    public Time getTime() {
+    public final Time getTime() {
         return time;
     }
 
-    public List<UIContainer> getUiContainers() {
+    public final List<UIContainer> getUiContainers() {
         return uiContainers;
     }
 }
