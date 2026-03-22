@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.ai;
 import ChoiceCraft_V1_0_6_Alpha.ai.state.AIState;
 import ChoiceCraft_V1_0_6_Alpha.ai.state.Idle;
 import ChoiceCraft_V1_0_6_Alpha.ai.state.Wander;
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -35,7 +36,7 @@ public final class AIManager {
      * @param state            that is not null.
      * @param currentCharacter that is not null.
      */
-    public void update(State state, NPC currentCharacter) {
+    public void update(State state, MovingEntity currentCharacter) {
         currentAIState.update(state, currentCharacter);
 
         if (currentAIState.shouldTransition(state, currentCharacter)) {

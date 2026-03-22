@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.ai;
 
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -30,5 +31,5 @@ public interface AICondition {
      * @param currentCharacter current game object.
      * @return a boolean value that indicates whether the current game object has met certain conditions.
      */
-    boolean isMet(State state, NPC currentCharacter);
+    boolean isMet(State state, MovingEntity currentCharacter);
 }

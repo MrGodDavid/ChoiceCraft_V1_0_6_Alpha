@@ -1,8 +1,8 @@
 /**
  * ========================================================================================================================
- * NPC of ChoiceCraft.
+ * Enemy of ChoiceCraft.
  * <p>
- * Author: David Liu.                                                                                   Date:3/19/2026
+ * Author: David Liu.                                                                                   Date:3/21/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.entity;
@@ -18,16 +18,16 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
  * Superclass for all ChoiceCraft npc.
  *
  * @author David Liu
- * @since 3/19/2026
+ * @since 3/21/2026
  */
-public abstract class NPC extends MovingEntity {
+public class Enemy extends MovingEntity {
 
     private final AIManager aiManager;
 
-    public NPC(Controller controller, SpriteLibrary spriteLibrary) {
+    public Enemy(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);
-        this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet",
-                spriteLibrary.getEntitySprite("enchanter"));
+        this.animationManager = new AnimationManager("zombie_basic_idle_8dir_spritesheet",
+                spriteLibrary.getEntitySprite("zombie_basic"));
         aiManager = new AIManager();
     }
 
@@ -63,6 +63,6 @@ public abstract class NPC extends MovingEntity {
 
     @Override
     public String toString() {
-        return "[NPC]";
+        return "[ENEMY]";
     }
 }

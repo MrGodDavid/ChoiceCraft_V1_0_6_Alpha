@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -42,11 +43,11 @@ public final class Idle extends AIState{
      * @param currentCharacter that is not null.
      */
     @Override
-    public void update(State state, NPC currentCharacter) {
+    public void update(State state, MovingEntity currentCharacter) {
         updatesAlive++;
     }
 
-    private boolean processIsAIConditionMet(State state, NPC currentCharacter) {
+    private boolean processIsAIConditionMet(State state, MovingEntity currentCharacter) {
         return updatesAlive >= state.getTime().getUpdatesFromSeconds(3);
     }
 }

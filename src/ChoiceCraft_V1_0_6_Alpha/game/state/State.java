@@ -56,6 +56,7 @@ public abstract class State {
      * <p>Postcondition: update State once.</p>
      */
     public void update() {
+        time.update();
         sortObjectsByPosition();
         for (GameObject gameObject : gameObjects) {
             gameObject.update(this);

@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.display.Display;
 import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
+import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.*;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
@@ -243,5 +244,9 @@ public abstract class MovingEntity extends GameObject {
      */
     public void clearEffects() {
         effects.clear();
+    }
+
+    public boolean isAffectedBy(Class<? extends Effect> effectClass) {
+        return effects.stream().anyMatch(effect -> effectClass.isInstance(effect));
     }
 }

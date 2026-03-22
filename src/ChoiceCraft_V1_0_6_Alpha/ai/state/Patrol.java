@@ -1,36 +1,30 @@
 /**
  * ========================================================================================================================
- * AI Wander States.
+ * Enemy patrolling state of ChoiceCraft.
  * <p>
- * Author: David Liu.                                                                                   Date:3/20/2026
+ * Author: David Liu.                                                                                   Date:3/21/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
-import ChoiceCraft_V1_0_6_Alpha.ai.AICondition;
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
-import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
+import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
+import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * AI Wander state.
+ * Enemy patrolling state of ChoiceCraft.
  *
- * @author David Liu.
- * @since 3/20/2026
+ * @author David Liu
+ * @since 3/21/2026
  */
-public final class Wander extends AIState {
+public class Patrol extends AIState{
 
-    private final List<Position> targets;
-
-    public Wander() {
+    public Patrol() {
         super();
-        targets = new ArrayList<>();
     }
 
     /**
@@ -55,17 +49,12 @@ public final class Wander extends AIState {
      */
     @Override
     public void update(State state, MovingEntity currentCharacter) {
-        if (targets.isEmpty()) {
-            targets.add(state.getRandomPosition());
-        }
-
-        if (currentCharacter instanceof NPC) {
-            NPCController controller = (NPCController) currentCharacter.getController();
-            controller.moveToTarget(targets.get(0), currentCharacter.getPosition());
-
-            if (arrived(currentCharacter)) {
-                controller.stop();
-            }
+        if (currentCharacter instanceof Enemy) {
+            EnemyController controller = (EnemyController) currentCharacter.getController();
+            controller.moveToPlayer(new Position(
+                    2 * ChoiceCraft.SPRITE_SIZE,
+                    2 * ChoiceCraft.SPRITE_SIZE
+            ), currentCharacter.getPosition());
         }
     }
 
@@ -74,6 +63,9 @@ public final class Wander extends AIState {
     }
 
     private boolean arrived(MovingEntity currentCharacter) {
-        return currentCharacter.getPosition().isInRangeOf(targets.get(0));
+        return currentCharacter.getPosition().isInRangeOf(new Position(
+                2 * ChoiceCraft.SPRITE_SIZE,
+                2 * ChoiceCraft.SPRITE_SIZE
+        ));
     }
 }

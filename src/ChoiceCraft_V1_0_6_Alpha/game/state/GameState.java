@@ -7,11 +7,15 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game.state;
 
+import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
+import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
+import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
+import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
@@ -39,19 +43,8 @@ public final class GameState extends State {
     }
 
     private void initializeUI(Size windowSize) {
-        VerticalContainer container = new VerticalContainer(windowSize);
-        container.setPadding(new Spacing(20));
-        container.setBackground(new Color(0, 0, 0, 0));
-        container.addUIComponent(new UIText("I am using my own font in ChoiceCraft!!! :)"));
-
-        VerticalContainer containerEnd = new VerticalContainer(windowSize);
-        containerEnd.setPadding(new Spacing(20));
-        containerEnd.setBackground(new Color(0, 0, 0, 0));
-        containerEnd.addUIComponent(new UIText("Hello World ^v^"));
-        containerEnd.setAlignment(new Alignment(Alignment.Position.END, Alignment.Position.END));
-
-        uiContainers.add(container);
-        uiContainers.add(containerEnd);
+        uiContainers.add(new UIGameTime(windowSize));
+        uiContainers.add(new UIHappinessStats(windowSize));
     }
 
     /**
@@ -66,6 +59,16 @@ public final class GameState extends State {
         camera.focusOn(player);
 
         initializeAllNPCs(100);
+        initializeAllEnemies(50);
+    }
+
+    private void initializeAllEnemies(int numberOfNpc) {
+        for (int i = 0; i < numberOfNpc; i++) {
+            Enemy enemy = new Enemy(new EnemyController(), spriteLibrary);
+            enemy.setPosition(gameMap.getRandomPosition());
+//            enemy.addEffect(new Happy());
+            gameObjects.add(enemy);
+        }
     }
 
     private void initializeAllNPCs(int numberOfNpc) {

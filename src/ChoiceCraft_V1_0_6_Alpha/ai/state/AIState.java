@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -42,10 +43,10 @@ public abstract class AIState {
      * @param state            that is not null.
      * @param currentCharacter that is not null.
      */
-    public abstract void update(State state, NPC currentCharacter);
+    public abstract void update(State state, MovingEntity currentCharacter);
 
     /**
-     * Wrapper method of {@link AITransition#shouldTransition(State, NPC)}.
+     * Wrapper method of {@link AITransition#shouldTransition(State, MovingEntity)}.
      * <p>Precondition: state and currentCharacter are not null.</p>
      * <p>Postcondition: return a boolean that indicates whether the game object should transit to other AIState.</p>
      *
@@ -53,7 +54,7 @@ public abstract class AIState {
      * @param currentCharacter current game object that is not null.
      * @return true if current game object should transit to its next AIState.
      */
-    public boolean shouldTransition(State state, NPC currentCharacter) {
+    public boolean shouldTransition(State state, MovingEntity currentCharacter) {
         return transition.shouldTransition(state, currentCharacter);
     }
 
