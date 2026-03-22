@@ -13,6 +13,7 @@ import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
+import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
@@ -56,9 +57,12 @@ public final class GameState extends State {
      */
     private void initializeCharacters() {
         Player player = new Player(new PlayerController(keyboardInput), spriteLibrary);
-
         gameObjects.add(player);
         camera.focusOn(player);
+
+        SelectionCircle circle = new SelectionCircle();
+        circle.setParent(player);
+        gameObjects.add(circle);
 
         initializeAllNPCs(100);
         initializeAllEnemies(50);

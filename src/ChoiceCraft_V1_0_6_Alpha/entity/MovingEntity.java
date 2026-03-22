@@ -50,6 +50,10 @@ public abstract class MovingEntity extends GameObject {
         this.effects = new ArrayList<>();
         this.action = Optional.empty();
         this.collisionBoxSize = new Size(14, 34);
+        this.renderOffset = new Position(
+                size.getWidth() / 2,
+                size.getHeight() / 2 + 12
+        );
     }
 
     /**
@@ -182,30 +186,16 @@ public abstract class MovingEntity extends GameObject {
      */
     @Override
     public CollisionBox getCollisionBox() {
-        Position positionWithMotion = Position.copyOf(position);
+        Position positionWithMotion = Position.copyOf(getPosition());
         positionWithMotion.apply(motion);
         return new CollisionBox(
                 new Rectangle(
-                        positionWithMotion.intX(),
-                        positionWithMotion.intY(),
+                        positionWithMotion.intX() - collisionBoxSize.getWidth() / 2,
+                        positionWithMotion.intY() - collisionBoxSize.getHeight() / 2,
                         collisionBoxSize.getWidth(),
                         collisionBoxSize.getHeight()
                 )
         );
-    }
-
-    /**
-     * Wrapper method of {@link CollisionBox#collidesWith(CollisionBox)}.
-     * Check if two game objects collide each other.
-     * <p>Precondition: other game object is not null.</p>
-     * <p>Postcondition: return true based on subclass's implementation of this method.</p>
-     *
-     * @param other that is not null.
-     * @return true based on subclass's implementation of this method, false in opposite conditions.
-     */
-    @Override
-    public boolean collidesWith(GameObject other) {
-        return this.getCollisionBox().collidesWith(other.getCollisionBox());
     }
 
     public boolean willCollideX(GameObject other) {

@@ -52,6 +52,11 @@ public final class Position {
         return new Position(position.getX(), position.getY());
     }
 
+    public void add(Position position) {
+        this.x += position.getX();
+        this.y += position.getY();
+    }
+
     public void apply(Motion motion) {
         Vector2d vector = motion.getVector();
         x += vector.getX();
