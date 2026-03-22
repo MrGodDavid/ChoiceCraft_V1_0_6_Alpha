@@ -13,10 +13,11 @@ package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
  * @author David Liu
  * @since 3/15/2026
  */
+@SuppressWarnings("all")
 public final class Size {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     /**
      * Construct a size component for game objects in ChoiceCraft.

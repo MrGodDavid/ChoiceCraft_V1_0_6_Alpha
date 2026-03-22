@@ -25,7 +25,7 @@ public final class ChoiceCraftMap {
 
     private static final int SAFETY_SPACE = 2;
 
-    private Tile[][] tiles;
+    private final Tile[][] tiles;
 
     public ChoiceCraftMap(Size size, SpriteLibrary spriteLibrary) {
         tiles = new Tile[size.getWidth()][size.getHeight()];

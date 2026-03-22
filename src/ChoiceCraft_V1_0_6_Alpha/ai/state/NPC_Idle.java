@@ -9,7 +9,6 @@ package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
@@ -18,7 +17,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
  * @author David Liu.
  * @since 3/19/2026
  */
-public final class Idle extends AIState{
+public final class NPC_Idle extends AIState{
 
     private int updatesAlive;
 

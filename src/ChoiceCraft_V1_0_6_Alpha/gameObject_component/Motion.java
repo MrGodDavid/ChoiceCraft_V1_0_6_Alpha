@@ -71,4 +71,10 @@ public final class Motion {
     public boolean isMoving() {
         return vector.length() > 0;
     }
+
+    public Vector2d getDirection() {
+        Vector2d direction = Vector2d.copyOf(vector);
+        direction.normalize();
+        return direction;
+    }
 }

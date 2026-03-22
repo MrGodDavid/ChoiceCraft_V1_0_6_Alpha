@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
  * @author David Liu
  * @since 3/17/2026
  */
+@SuppressWarnings("all")
 public final class AnimationManager {
 
     private SpriteSet spriteSet;

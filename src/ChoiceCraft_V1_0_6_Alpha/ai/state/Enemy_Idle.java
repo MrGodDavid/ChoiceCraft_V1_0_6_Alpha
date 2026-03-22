@@ -1,30 +1,29 @@
 /**
  * ========================================================================================================================
- * Enemy patrolling state of ChoiceCraft.
+ * Idle state. (Stand state).
  * <p>
- * Author: David Liu.                                                                                   Date:3/21/2026
+ * Author: David Liu.                                                                                   Date:3/22/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
-import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 
 /**
- * Enemy patrolling state of ChoiceCraft.
+ * Idle state. (Stand state).
  *
- * @author David Liu
- * @since 3/21/2026
+ * @author David Liu.
+ * @since 3/22/2026
  */
-public final class Patrol extends AIState {
+public final class Enemy_Idle extends AIState{
 
-    public Patrol() {
-        super();
-    }
+    private double distanceToPlayer;
 
     /**
      * Initialize AI transition in subclasses of all AI states.
@@ -35,7 +34,7 @@ public final class Patrol extends AIState {
      */
     @Override
     protected AITransition initializeTransition() {
-        return new AITransition("wander", this::processNewAICondition);
+        return new AITransition("patrol", this::processIsAIConditionMet);
     }
 
     /**
@@ -47,18 +46,15 @@ public final class Patrol extends AIState {
      * @param currentCharacter that is not null.
      */
     @Override
-    @SuppressWarnings("all")
     public void update(State state, MovingEntity currentCharacter) {
-        if (currentCharacter instanceof Enemy) {
-            Player player = state.getGameObjectsOfClass(Player.class).get(0);
-            EnemyController controller = (EnemyController) currentCharacter.getController();
-            controller.moveToPlayer(player.getPosition(), currentCharacter.getPosition());
+        Player player = state.getGameObjectsOfClass(Player.class).get(0);
+        if (currentCharacter instanceof Enemy enemy) {
+            Position enemyPosition = enemy.getPosition();
+            distanceToPlayer = enemyPosition.distanceTo(player.getPosition());
         }
     }
 
-    @SuppressWarnings("all")
-    private boolean processNewAICondition(State state, MovingEntity currentCharacter) {
-        Player player = state.getGameObjectsOfClass(Player.class).get(0);
-        return currentCharacter.collidesWith(player);
+    private boolean processIsAIConditionMet(State state, MovingEntity currentCharacter) {
+        return distanceToPlayer <= 2 * ChoiceCraft.SPRITE_SIZE;
     }
 }

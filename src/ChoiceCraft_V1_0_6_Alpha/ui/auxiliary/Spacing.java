@@ -19,9 +19,10 @@ package ChoiceCraft_V1_0_6_Alpha.ui.auxiliary;
  * @author David Liu
  * @since 3/21/2026
  */
+@SuppressWarnings("all")
 public final class Spacing {
 
-    private int top, right, bottom, left;
+    private final int top, right, bottom, left;
 
     public Spacing(int spacing) {
         this(spacing, spacing);

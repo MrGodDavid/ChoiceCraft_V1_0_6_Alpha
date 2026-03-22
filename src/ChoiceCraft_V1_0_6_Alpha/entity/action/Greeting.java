@@ -30,7 +30,7 @@ public final class Greeting extends Action {
     public static final double SUCCESSFULLY_SPREADING_RATE = 0.1;
 
     private int liveSpanInSeconds;
-    private Size spreadAreaSize;
+    private final Size spreadAreaSize;
     private CollisionBox spreadingCollisionBox;
 
     public Greeting() {

@@ -8,7 +8,6 @@
 package ChoiceCraft_V1_0_6_Alpha.ai;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**

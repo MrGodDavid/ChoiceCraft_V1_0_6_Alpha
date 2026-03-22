@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.math.vector;
 
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 
 /**
  * Vector 2d class.
@@ -56,6 +57,20 @@ public class Vector2d {
         if (x > 0d && y == 0d) return Direction.EAST;
         if (x > 0d && y > 0d) return Direction.SOUTH_EAST;
         return Direction.SOUTH;
+    }
+
+    public static Vector2d copyOf(Vector2d vector) {
+        return new Vector2d(vector.getX(), vector.getY());
+    }
+
+    public static Vector2d directionBetweenTwoPositions(Position start, Position end) {
+        Vector2d direction = new Vector2d(start.getX() - end.getX(),  start.getY() - end.getY());
+        direction.normalize();
+        return direction;
+    }
+
+    public static double dotProduct(Vector2d v1, Vector2d v2) {
+        return v1.getX() * v2.getX() + v1.getY() * v2.getY();
     }
 
     public double getX() {

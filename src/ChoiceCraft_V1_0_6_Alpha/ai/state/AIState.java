@@ -68,4 +68,16 @@ public abstract class AIState {
     public String getNextState() {
         return transition.getNextState();
     }
+
+    /**
+     * Wrapper method of {@link AITransition#setNextState(String)}
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: set a new state for current AI State.</p>
+     *
+     * @param nextState that is not null.
+     */
+    @Deprecated
+    public void setNextState(String nextState) {
+        transition.setNextState(nextState);
+    }
 }

@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public final class SpriteSet {
 
-    private Map<String, Image> animationSheets;
+    private final Map<String, Image> animationSheets;
 
     public SpriteSet() {
         this.animationSheets = new HashMap<>();

@@ -21,7 +21,7 @@ import java.awt.event.KeyEvent;
  */
 public class GameController {
 
-    private KeyboardInput keyInput;
+    private final KeyboardInput keyInput;
 
     public GameController(KeyboardInput keyInput) {
         this.keyInput = keyInput;

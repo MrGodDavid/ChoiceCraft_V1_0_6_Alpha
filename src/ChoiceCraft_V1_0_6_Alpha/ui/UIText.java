@@ -24,16 +24,16 @@ import java.awt.image.BufferedImage;
 public class UIText extends UIComponent{
 
     private String text;
-    private int fontSize;
-    private int fontStyle;
-    private String fontFamily;
-    private Color color;
+    private final int fontSize;
+    private final int fontStyle;
+    private final String fontFamily;
+    private final Color color;
 
-    private boolean dropShadow;
-    private int dropShadowOffset;
-    private Color shadowColor;
+    private final boolean dropShadow;
+    private final int dropShadowOffset;
+    private final Color shadowColor;
 
-    private Font font;
+    private final Font font;
 
     public UIText(String text) {
         this.text = text;

@@ -28,7 +28,7 @@ public class Enemy extends MovingEntity {
         super(entityController, spriteLibrary);
         this.animationManager = new AnimationManager("zombie_basic_idle_8dir_spritesheet",
                 spriteLibrary.getEntitySprite("zombie_basic"));
-        aiManager = new AIManager();
+        aiManager = new AIManager("enemy_idle");
     }
 
     /**

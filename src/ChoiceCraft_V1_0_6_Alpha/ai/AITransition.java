@@ -8,7 +8,6 @@
 package ChoiceCraft_V1_0_6_Alpha.ai;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
@@ -19,7 +18,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
  */
 public final class AITransition {
 
-    private final String nextState;
+    private String nextState;
     private final AICondition condition;
 
     public AITransition(String nextState, AICondition condition) {
@@ -49,5 +48,16 @@ public final class AITransition {
      */
     public String getNextState() {
         return nextState;
+    }
+
+    /**
+     * Set a new state for current AI State. Use this method when point to multiple state.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: set a new state for current AI State.</p>
+     *
+     * @param nextState that is not null.
+     */
+    public void setNextState(String nextState) {
+        this.nextState = nextState;
     }
 }

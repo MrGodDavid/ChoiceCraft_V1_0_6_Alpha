@@ -7,10 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.gfx;
 
-import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;

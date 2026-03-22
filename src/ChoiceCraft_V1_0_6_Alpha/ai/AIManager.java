@@ -7,12 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.ai;
 
-import ChoiceCraft_V1_0_6_Alpha.ai.state.AIState;
-import ChoiceCraft_V1_0_6_Alpha.ai.state.Idle;
-import ChoiceCraft_V1_0_6_Alpha.ai.state.Patrol;
-import ChoiceCraft_V1_0_6_Alpha.ai.state.Wander;
+import ChoiceCraft_V1_0_6_Alpha.ai.state.*;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
@@ -25,8 +21,8 @@ public final class AIManager {
 
     private AIState currentAIState;
 
-    public AIManager() {
-        transitionTo("idle");
+    public AIManager(String initialState) {
+        transitionTo(initialState);
     }
 
     /**
@@ -45,12 +41,14 @@ public final class AIManager {
         }
     }
 
+    @SuppressWarnings("all")
     private void transitionTo(String nextState) {
-//        System.out.println("Transitioning to " + nextState);
         switch (nextState) {
             case "wander" -> currentAIState = new Wander();
             case "patrol" -> currentAIState = new Patrol();
-            default -> currentAIState = new Idle();
+            case "npc_idle" -> currentAIState = new NPC_Idle();
+            case "enemy_idle" -> currentAIState = new Enemy_Idle();
+            default -> currentAIState = new NPC_Idle();
         }
     }
 }

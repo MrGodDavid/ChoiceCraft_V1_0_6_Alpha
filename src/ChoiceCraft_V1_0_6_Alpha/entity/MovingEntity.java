@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.*;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
+import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public abstract class MovingEntity extends GameObject {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
+    protected Vector2d directionVector;
+
     protected Size collisionBoxSize;
 
     public MovingEntity(EntityController entityController, SpriteLibrary spriteLibrary) {
@@ -50,10 +53,9 @@ public abstract class MovingEntity extends GameObject {
         this.effects = new ArrayList<>();
         this.action = Optional.empty();
         this.collisionBoxSize = new Size(14, 34);
-        this.renderOffset = new Position(
-                size.getWidth() / 2,
-                size.getHeight() / 2 + 12
-        );
+        this.renderOffset = new Position(size.getWidth() / 2, size.getHeight() / 2 + 12);
+        this.collisionBoxOffset = new Position(collisionBoxSize.getWidth() / 2, collisionBoxSize.getHeight());
+        this.directionVector = new Vector2d(0, 0);
     }
 
     /**
@@ -66,6 +68,7 @@ public abstract class MovingEntity extends GameObject {
      * @param state current state that is not null.
      */
     @Override
+    @SuppressWarnings("all")
     public void update(State state) {
         handleAction(state);
         handleMotion();
@@ -101,12 +104,14 @@ public abstract class MovingEntity extends GameObject {
      */
     protected abstract void handleCollision(GameObject other);
 
+    @SuppressWarnings("all")
     private void handleAction(State state) {
         if (action.isPresent()) {
             action.get().update(state, this);
         }
     }
 
+    @SuppressWarnings("all")
     private void handleMotion() {
         if (!action.isPresent()) {
             motion.update(entityController);
@@ -115,6 +120,7 @@ public abstract class MovingEntity extends GameObject {
         }
     }
 
+    @SuppressWarnings("all")
     private void cleanEffects() {
         // CLEAN UP EFFECTS
         Iterator<Effect> iterator = effects.iterator();
@@ -134,6 +140,7 @@ public abstract class MovingEntity extends GameObject {
      * When adding a new NPC or MovingEntity that overrides the AnimationManager in its constructor, must also handle
      * this case as well.
      */
+    @SuppressWarnings("all")
     private void decideAnimation() {
         if (this instanceof Player) {
             if (motion.isMoving()) {
@@ -149,17 +156,20 @@ public abstract class MovingEntity extends GameObject {
             } else {
                 animationManager.playAnimation("enchanter_idle_8dir_spritesheet");
             }
+        } else if (this instanceof Enemy) {
+            if (motion.isMoving()) {
+                animationManager.playAnimation("zombie_basic_walking_8dir_spritesheet");
+            } else {
+                animationManager.playAnimation("zombie_basic_idle_8dir_spritesheet");
+            }
         }
     }
 
     private void manageDirection() {
         if (motion.isMoving()) {
             this.direction = Direction.fromMotion(motion);
+            this.directionVector = motion.getDirection();
         }
-    }
-
-    public void multiplySpeed(double speedMultiplier) {
-        motion.multiply(speedMultiplier);
     }
 
     /**
@@ -202,7 +212,7 @@ public abstract class MovingEntity extends GameObject {
         CollisionBox otherCollisionBox = other.getCollisionBox();
         Position positionWithXApplied = Position.copyOf(position);
         positionWithXApplied.applyX(motion);
-
+        positionWithXApplied.subtract(collisionBoxOffset);
         return CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherCollisionBox);
     }
 
@@ -210,8 +220,14 @@ public abstract class MovingEntity extends GameObject {
         CollisionBox otherCollisionBox = other.getCollisionBox();
         Position positionWithYApplied = Position.copyOf(position);
         positionWithYApplied.applyY(motion);
-
+        positionWithYApplied.subtract(collisionBoxOffset);
         return CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherCollisionBox);
+    }
+
+    public boolean isFacing(Position other) {
+        Vector2d direction = Vector2d.directionBetweenTwoPositions(other, getPosition());
+        double dotProduct = Vector2d.dotProduct(direction, directionVector);
+        return dotProduct > 0;
     }
 
     public void perform(Action action) {

@@ -56,12 +56,11 @@ public final class GameState extends State {
      * <p>Postcondition: initializes all ChoiceCraft characters. Player, NPC, Enemy, etc.</p>
      */
     private void initializeCharacters() {
-        Player player = new Player(new PlayerController(keyboardInput), spriteLibrary);
+        SelectionCircle circle = new SelectionCircle();
+        Player player = new Player(new PlayerController(keyboardInput), spriteLibrary, circle);
         gameObjects.add(player);
         camera.focusOn(player);
 
-        SelectionCircle circle = new SelectionCircle();
-        circle.setParent(player);
         gameObjects.add(circle);
 
         initializeAllNPCs(100);
@@ -70,12 +69,14 @@ public final class GameState extends State {
         makeNumberOfNPCHappy(10);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void makeNumberOfNPCHappy(int number) {
         getGameObjectsOfClass(NPC.class).stream()
                 .limit(number)
                 .forEach(npc -> npc.addEffect(new Happy()));
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void initializeAllEnemies(int numberOfEnemy) {
         for (int i = 0; i < numberOfEnemy; i++) {
             Enemy enemy = new Enemy(new EnemyController(), spriteLibrary);
@@ -84,6 +85,7 @@ public final class GameState extends State {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void initializeAllNPCs(int numberOfNpc) {
         for (int i = 0; i < numberOfNpc; i++) {
             Enchanter enchanter = new Enchanter(new NPCController(), spriteLibrary);

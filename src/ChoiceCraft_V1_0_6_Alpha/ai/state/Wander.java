@@ -7,7 +7,6 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
-import ChoiceCraft_V1_0_6_Alpha.ai.AICondition;
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
@@ -42,7 +41,7 @@ public final class Wander extends AIState {
      */
     @Override
     protected AITransition initializeTransition() {
-        return new AITransition("idle", this::processNewAICondition);
+        return new AITransition("npc_idle", this::processNewAICondition);
     }
 
     /**
@@ -54,6 +53,7 @@ public final class Wander extends AIState {
      * @param currentCharacter that is not null.
      */
     @Override
+    @SuppressWarnings("all")
     public void update(State state, MovingEntity currentCharacter) {
         if (targets.isEmpty()) {
             targets.add(state.getRandomPosition());
@@ -73,6 +73,7 @@ public final class Wander extends AIState {
         return arrived(currentCharacter);
     }
 
+    @SuppressWarnings("all")
     private boolean arrived(MovingEntity currentCharacter) {
         return currentCharacter.getPosition().isInRangeOf(targets.get(0));
     }

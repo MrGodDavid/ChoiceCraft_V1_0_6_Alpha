@@ -18,7 +18,7 @@ package ChoiceCraft_V1_0_6_Alpha.ui.auxiliary;
  * @author David Liu
  * @since 3/21/2026
  */
-
+@SuppressWarnings("all")
 public final class Alignment {
 
     public enum Position {

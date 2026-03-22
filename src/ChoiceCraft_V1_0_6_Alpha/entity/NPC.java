@@ -28,7 +28,7 @@ public abstract class NPC extends MovingEntity {
         super(entityController, spriteLibrary);
         this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet",
                 spriteLibrary.getEntitySprite("enchanter"));
-        aiManager = new AIManager();
+        aiManager = new AIManager("npc_idle");
     }
 
     /**

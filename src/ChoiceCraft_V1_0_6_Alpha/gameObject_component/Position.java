@@ -57,6 +57,11 @@ public final class Position {
         this.y += position.getY();
     }
 
+    public void subtract(Position position) {
+        this.x -= position.getX();
+        this.y -= position.getY();
+    }
+
     public void apply(Motion motion) {
         Vector2d vector = motion.getVector();
         x += vector.getX();
@@ -75,6 +80,12 @@ public final class Position {
         boolean inRangeX = Math.abs(x - position.getX()) < PROXIMITY_RANGE;
         boolean inRangeY = Math.abs(y - position.getY()) < PROXIMITY_RANGE;
         return inRangeX && inRangeY;
+    }
+
+    public double distanceTo(Position other) {
+        double dx = x - other.getX();
+        double dy = y - other.getY();
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     public int intX() {
