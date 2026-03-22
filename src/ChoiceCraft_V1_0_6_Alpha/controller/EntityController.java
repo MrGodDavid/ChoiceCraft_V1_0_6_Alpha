@@ -13,7 +13,7 @@ package ChoiceCraft_V1_0_6_Alpha.controller;
  * @author David Liu
  * @since 3/15/2026
  */
-public interface Controller {
+public interface EntityController {
 
     /**
      * Check if the user is requesting up command in ChoiceCraft.

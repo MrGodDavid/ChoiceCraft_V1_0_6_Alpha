@@ -7,12 +7,11 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.entity;
 
-import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
 import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.effect.Effect;
-import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.*;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
@@ -32,7 +31,7 @@ import java.util.Optional;
  */
 public abstract class MovingEntity extends GameObject {
 
-    protected Controller controller;
+    protected EntityController entityController;
     protected AnimationManager animationManager;
 
     protected Motion motion;
@@ -42,9 +41,9 @@ public abstract class MovingEntity extends GameObject {
 
     protected Size collisionBoxSize;
 
-    public MovingEntity(Controller controller, SpriteLibrary spriteLibrary) {
+    public MovingEntity(EntityController entityController, SpriteLibrary spriteLibrary) {
         super();
-        this.controller = controller;
+        this.entityController = entityController;
         this.motion = new Motion(1);
         this.direction = Direction.SOUTH;
         this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getEntitySprite("player"));
@@ -106,7 +105,7 @@ public abstract class MovingEntity extends GameObject {
 
     private void handleMotion() {
         if (!action.isPresent()) {
-            motion.update(controller);
+            motion.update(entityController);
         } else {
             motion.stop(true, true);
         }
@@ -233,8 +232,8 @@ public abstract class MovingEntity extends GameObject {
         effects.add(effect);
     }
 
-    public Controller getController() {
-        return controller;
+    public EntityController getController() {
+        return entityController;
     }
 
     /**
@@ -248,5 +247,9 @@ public abstract class MovingEntity extends GameObject {
 
     public boolean isAffectedBy(Class<? extends Effect> effectClass) {
         return effects.stream().anyMatch(effect -> effectClass.isInstance(effect));
+    }
+
+    public Optional<Action> getCurrentAction() {
+        return action;
     }
 }

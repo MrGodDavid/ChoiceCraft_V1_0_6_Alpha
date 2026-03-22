@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * Collision box component of game objects of ChoiceCraft.
@@ -42,5 +43,10 @@ public final class CollisionBox {
 
     public Rectangle getBound() {
         return collisionBox;
+    }
+
+    @Override
+    public String toString() {
+        return "CollisionBox{" + "collisionBox=" + collisionBox + '}';
     }
 }

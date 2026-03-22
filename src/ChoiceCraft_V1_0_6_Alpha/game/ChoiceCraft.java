@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game;
 
+import ChoiceCraft_V1_0_6_Alpha.controller.GameController;
 import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
 import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
@@ -27,6 +28,7 @@ public final class ChoiceCraft {
     private final Display display;
     private final KeyboardInput keyboardInput;
     private final ChoiceCraftSettings settings;
+    private final GameController gameController;
     private State state;
 
     /**
@@ -41,6 +43,7 @@ public final class ChoiceCraft {
         this.keyboardInput = new KeyboardInput();
         this.display = new Display(width, height, keyboardInput);
         this.settings = new ChoiceCraftSettings(false);
+        this.gameController = new GameController(keyboardInput);
         this.state = new GameState(new Size(width, height), this.keyboardInput);
     }
 
@@ -51,6 +54,7 @@ public final class ChoiceCraft {
      */
     public void update() {
         state.update();
+        gameController.update(this);
     }
 
     /**
@@ -61,5 +65,9 @@ public final class ChoiceCraft {
      */
     public void render() {
         display.render(state, settings.isDebugMode());
+    }
+
+    public ChoiceCraftSettings getSettings() {
+        return settings;
     }
 }

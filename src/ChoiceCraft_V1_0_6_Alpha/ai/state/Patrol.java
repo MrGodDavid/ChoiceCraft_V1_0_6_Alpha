@@ -21,7 +21,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
  * @author David Liu
  * @since 3/21/2026
  */
-public class Patrol extends AIState{
+public final class Patrol extends AIState{
 
     public Patrol() {
         super();

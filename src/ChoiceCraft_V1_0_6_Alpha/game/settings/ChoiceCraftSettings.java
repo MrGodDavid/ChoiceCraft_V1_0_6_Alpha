@@ -16,12 +16,30 @@ package ChoiceCraft_V1_0_6_Alpha.game.settings;
 public final class ChoiceCraftSettings {
 
     private boolean debugMode;
+    private double gameSpeedMultiplier;
 
     public ChoiceCraftSettings(boolean debugMode) {
         this.debugMode = debugMode;
+        this.gameSpeedMultiplier = 1.0;
     }
 
     public boolean isDebugMode() {
         return debugMode;
+    }
+
+    public void toggleDebugMode() {
+        debugMode = !debugMode;
+    }
+
+    public void increaseGameSpeedMultiplier() {
+        gameSpeedMultiplier += 0.25;
+    }
+
+    public void decreaseGameSpeedMultiplier() {
+        gameSpeedMultiplier -= 0.25;
+    }
+
+    public double getGameSpeedMultiplier() {
+        return gameSpeedMultiplier;
     }
 }

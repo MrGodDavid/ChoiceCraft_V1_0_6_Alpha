@@ -7,10 +7,15 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.display;
 
+import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
+import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
+import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
+import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 
 import java.awt.*;
+import java.util.Optional;
 
 /**
  * ChoiceCraft debugger renderer.
@@ -30,14 +35,34 @@ public final class DebugRenderer {
      */
     public void render(State state, Graphics g) {
         Camera camera = state.getCamera();
-        state.getGameObjects().stream()
-                .filter(gameObject -> camera.isInView(gameObject))
-                .map(gameObject -> gameObject.getCollisionBox())
-                .forEach(collisionBox -> drawCollisionBox(collisionBox, g, camera));
+        for (GameObject gameObject : state.getGameObjects()) {
+            if (camera.isInView(gameObject)) {
+                CollisionBox collisionBox = gameObject.getCollisionBox();
+                drawCollisionBox(collisionBox, g, camera);
+
+                if (gameObject instanceof MovingEntity movingEntity) {
+                    Optional<Action> action = movingEntity.getCurrentAction();
+                    if (action.isPresent() && action.get() instanceof Greeting greeting) {
+                        CollisionBox spreadingCollisionBox = greeting.getSpreadingCollisionBox(movingEntity);
+                        drawSpreadingArea(spreadingCollisionBox, g, camera);
+                    }
+                }
+            }
+        }
     }
 
     private void drawCollisionBox(CollisionBox collisionBox, Graphics g, Camera camera) {
         g.setColor(Color.RED);
+        g.drawRect(
+                (int) collisionBox.getBound().getX() - camera.getPosition().intX(),
+                (int) collisionBox.getBound().getY() - camera.getPosition().intY(),
+                (int) collisionBox.getBound().getWidth(),
+                (int) collisionBox.getBound().getHeight()
+        );
+    }
+
+    private void drawSpreadingArea(CollisionBox collisionBox, Graphics g, Camera camera) {
+        g.setColor(Color.BLUE);
         g.drawRect(
                 (int) collisionBox.getBound().getX() - camera.getPosition().intX(),
                 (int) collisionBox.getBound().getY() - camera.getPosition().intY(),

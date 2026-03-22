@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
  * @author David Liu
  * @since 3/15/2026
  */
-public final class PlayerController implements Controller {
+public final class PlayerController implements EntityController {
 
     private KeyboardInput input;
 
@@ -34,7 +34,7 @@ public final class PlayerController implements Controller {
      */
     @Override
     public boolean isRequestingUp() {
-        return input.isPressed(KeyEvent.VK_W) || input.isPressed(KeyEvent.VK_UP);
+        return input.isCurrentlyPressed(KeyEvent.VK_W) || input.isCurrentlyPressed(KeyEvent.VK_UP);
     }
 
     /**
@@ -46,7 +46,7 @@ public final class PlayerController implements Controller {
      */
     @Override
     public boolean isRequestingDown() {
-        return input.isPressed(KeyEvent.VK_S) || input.isPressed(KeyEvent.VK_DOWN);
+        return input.isCurrentlyPressed(KeyEvent.VK_S) || input.isCurrentlyPressed(KeyEvent.VK_DOWN);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class PlayerController implements Controller {
      */
     @Override
     public boolean isRequestingLeft() {
-        return input.isPressed(KeyEvent.VK_A) || input.isPressed(KeyEvent.VK_LEFT);
+        return input.isCurrentlyPressed(KeyEvent.VK_A) || input.isCurrentlyPressed(KeyEvent.VK_LEFT);
     }
 
     /**
@@ -70,6 +70,6 @@ public final class PlayerController implements Controller {
      */
     @Override
     public boolean isRequestingRight() {
-        return input.isPressed(KeyEvent.VK_D) || input.isPressed(KeyEvent.VK_RIGHT);
+        return input.isCurrentlyPressed(KeyEvent.VK_D) || input.isCurrentlyPressed(KeyEvent.VK_RIGHT);
     }
 }

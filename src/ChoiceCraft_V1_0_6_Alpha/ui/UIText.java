@@ -42,6 +42,8 @@ public class UIText extends UIComponent{
         this.fontFamily = "ChoiceCraftFont";
         this.color = Color.WHITE;
 
+        font = new Font(fontFamily, fontStyle, fontSize);
+
         this.dropShadow = true;
         this.dropShadowOffset = 2;
         this.shadowColor = new Color(73, 73, 73,255);
@@ -81,7 +83,7 @@ public class UIText extends UIComponent{
      */
     @Override
     public void update(State state) {
-        createFont();
+//        createFont();
         calculateSize();
     }
 
@@ -94,7 +96,7 @@ public class UIText extends UIComponent{
     }
 
     private void createFont() {
-        font = new Font(fontFamily, fontStyle, fontSize);
+//        font = new Font(fontFamily, fontStyle, fontSize);
     }
 
     public void setText(String text) {

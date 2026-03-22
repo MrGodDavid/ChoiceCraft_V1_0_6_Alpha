@@ -15,7 +15,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
  * @author David Liu
  * @since 3/19/2026
  */
-public final class NPCController implements Controller {
+public final class NPCController implements EntityController {
 
     private boolean up, left, down, right;
 

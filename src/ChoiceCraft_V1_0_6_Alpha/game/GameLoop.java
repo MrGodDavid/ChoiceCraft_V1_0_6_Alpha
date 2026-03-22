@@ -44,7 +44,7 @@ public final class GameLoop implements Runnable {
         while (running) {
             currentTime = System.currentTimeMillis();
             double lastRenderTimeInSeconds = (currentTime - lastUpdate) / 1000d;
-            accumulator += lastRenderTimeInSeconds;
+            accumulator += lastRenderTimeInSeconds * choiceCraft.getSettings().getGameSpeedMultiplier();
             lastUpdate = currentTime;
 
             if (accumulator >= updateRate) {

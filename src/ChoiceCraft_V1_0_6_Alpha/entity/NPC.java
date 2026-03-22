@@ -8,7 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
-import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
@@ -24,8 +24,8 @@ public abstract class NPC extends MovingEntity {
 
     private final AIManager aiManager;
 
-    public NPC(Controller controller, SpriteLibrary spriteLibrary) {
-        super(controller, spriteLibrary);
+    public NPC(EntityController entityController, SpriteLibrary spriteLibrary) {
+        super(entityController, spriteLibrary);
         this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet",
                 spriteLibrary.getEntitySprite("enchanter"));
         aiManager = new AIManager();

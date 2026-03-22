@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -30,10 +31,12 @@ public final class Greeting extends Action {
 
     private int liveSpanInSeconds;
     private Size spreadAreaSize;
+    private CollisionBox spreadingCollisionBox;
 
     public Greeting() {
         liveSpanInSeconds = GameLoop.UPDATES_PER_SECOND;
         spreadAreaSize = new Size(2 * ChoiceCraft.SPRITE_SIZE, 2 * ChoiceCraft.SPRITE_SIZE);
+        spreadingCollisionBox = new CollisionBox(new Rectangle());
     }
 
     /**
@@ -52,11 +55,11 @@ public final class Greeting extends Action {
                     entity.getPosition().getY() - spreadAreaSize.getHeight() / 2d
             );
 
-            CollisionBox spreadArea = CollisionBox.of(spreadAreaPosition, spreadAreaSize);
+            spreadingCollisionBox = CollisionBox.of(spreadAreaPosition, spreadAreaSize);
 
             List<MovingEntity> movingEntityList = state.getGameObjectsOfClass(MovingEntity.class);
             for (MovingEntity movingEntity : movingEntityList) {
-                if (movingEntity.getCollisionBox().collidesWith(spreadArea) && !movingEntity.isAffectedBy(Happy.class)) {
+                if (movingEntity.getCollisionBox().collidesWith(spreadingCollisionBox) && !movingEntity.isAffectedBy(Happy.class)) {
                     double fallOut = Math.random();
                     if (fallOut < SUCCESSFULLY_SPREADING_RATE) {
                         movingEntity.addEffect(new Happy());
@@ -88,5 +91,14 @@ public final class Greeting extends Action {
     @Override
     public String getAnimationName() {
         return "enchanter_greeting_8dir_spritesheet";
+    }
+
+    public CollisionBox getSpreadingCollisionBox(MovingEntity entity) {
+        Position spreadAreaPosition = new Position(
+                entity.getPosition().getX() - spreadAreaSize.getWidth() / 2d,
+                entity.getPosition().getY() - spreadAreaSize.getHeight() / 2d
+        );
+
+        return CollisionBox.of(spreadAreaPosition, spreadAreaSize);
     }
 }

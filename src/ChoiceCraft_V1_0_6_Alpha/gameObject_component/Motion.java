@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.gameObject_component;
 
-import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
 
 /**
@@ -35,18 +35,18 @@ public final class Motion {
      * <p>Precondition: input controller is not null.</p>
      * <p>Postcondition: game loop update movement component of game object.</p>
      *
-     * @param controller that is not null.
+     * @param entityController that is not null.
      */
-    public void update(Controller controller) {
+    public void update(EntityController entityController) {
         int deltaX = 0;
         int deltaY = 0;
-        if (controller.isRequestingUp())
+        if (entityController.isRequestingUp())
             deltaY--;
-        if (controller.isRequestingDown())
+        if (entityController.isRequestingDown())
             deltaY++;
-        if (controller.isRequestingLeft())
+        if (entityController.isRequestingLeft())
             deltaX--;
-        if (controller.isRequestingRight())
+        if (entityController.isRequestingRight())
             deltaX++;
         vector = new Vector2d(deltaX, deltaY);
         vector.normalize();

@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.entity.character.npc;
 
-import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -19,7 +19,7 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
  */
 public final class Enchanter extends NPC {
 
-    public Enchanter(Controller controller, SpriteLibrary spriteLibrary) {
-        super(controller, spriteLibrary);
+    public Enchanter(EntityController entityController, SpriteLibrary spriteLibrary) {
+        super(entityController, spriteLibrary);
     }
 }

@@ -16,7 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
  * @since 3/19/2026
  */
 
-public final class EnemyController implements Controller {
+public final class EnemyController implements EntityController {
 
     private boolean up, left, right, down;
     /**

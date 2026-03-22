@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.entity.character.player;
 
-import ChoiceCraft_V1_0_6_Alpha.controller.Controller;
+import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
@@ -21,8 +21,8 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
  */
 public final class Player extends MovingEntity {
 
-    public Player(Controller controller, SpriteLibrary spriteLibrary) {
-        super(controller, spriteLibrary);
+    public Player(EntityController entityController, SpriteLibrary spriteLibrary) {
+        super(entityController, spriteLibrary);
     }
 
     /**
