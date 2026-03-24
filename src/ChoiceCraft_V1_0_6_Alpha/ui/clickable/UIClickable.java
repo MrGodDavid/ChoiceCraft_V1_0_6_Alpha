@@ -30,8 +30,10 @@ public abstract class UIClickable extends UIComponent {
      * <p>Precondition: none.</p>
      * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onClick() that is
      * specified by user.</p>
+     *
+     * @param state that is not null.
      */
-    protected abstract void onClick();
+    protected abstract void onClick(State state);
 
     /**
      * Update the UIComponents in ChoiceCraft.
@@ -48,7 +50,7 @@ public abstract class UIClickable extends UIComponent {
         isPressed = hasFocus && state.getInput().isMousePressed();
 
         if (hasFocus && state.getInput().isMouseClicked()) {
-            onClick();
+            onClick(state);
         }
     }
 

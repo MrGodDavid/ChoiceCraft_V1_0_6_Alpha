@@ -9,6 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.state;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.Time;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
@@ -37,12 +38,16 @@ public abstract class State {
     protected ChoiceCraftMap gameMap;
     protected Camera camera;
     protected Time time;
+    protected Size windowSize;
+
+    private State nextState;
 
     public State(Size windowSize, Input input) {
         this.gameObjects = new ArrayList<>();
         this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.input = input;
+        this.windowSize = windowSize;
         this.camera = new Camera(windowSize);
         this.time = new Time();
     }
@@ -51,16 +56,20 @@ public abstract class State {
      * Update ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft multiple times per frame. (UPS)
      * <p>Precondition: none</p>
      * <p>Postcondition: update State once.</p>
+     *
+     * @param game ChoiceCraft game reference.
      */
-    public void update() {
+    public void update(ChoiceCraft game) {
         time.update();
         sortObjectsByPosition();
         updateGameObjects();
-        for (UIContainer uiContainer : uiContainers) {
-            uiContainer.update(this);
-        }
+        List.copyOf(uiContainers).forEach(uiContainer -> uiContainer.update(this));
         camera.update(this);
         handleMouseInputs();
+
+        if (nextState != null) {
+            game.enterState(nextState);
+        }
     }
 
     private void handleMouseInputs() {
@@ -151,5 +160,9 @@ public abstract class State {
 
     public Input getInput() {
         return input;
+    }
+
+    public void setNextState(State nextState) {
+        this.nextState = nextState;
     }
 }

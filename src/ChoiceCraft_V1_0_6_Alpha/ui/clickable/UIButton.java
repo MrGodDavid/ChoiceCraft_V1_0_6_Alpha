@@ -28,15 +28,15 @@ public class UIButton extends UIClickable {
     private UIContainer container;
     private UIText label;
 
-    private Runnable clickEvent;
+    private ClickAction clickAction;
 
-    public UIButton(String label, Runnable clickEvent) {
-        this.clickEvent = clickEvent;
+    public UIButton(String label, ClickAction clickAction) {
+        this.clickAction = clickAction;
         this.label = new UIText(label);
 
         container = new VerticalContainer(new Size(0, 0));
         container.addUIComponent(this.label);
-        container.setFixedSize(new Size(150, 36));
+        container.setFixedSize(new Size(240, 36));
     }
 
     /**
@@ -64,10 +64,12 @@ public class UIButton extends UIClickable {
      * <p>Precondition: none.</p>
      * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onClick() that is
      * specified by user.</p>
+     *
+     * @param state that is not null.
      */
     @Override
-    protected void onClick() {
-        clickEvent.run();
+    protected void onClick(State state) {
+        clickAction.execute(state);
     }
 
     /**

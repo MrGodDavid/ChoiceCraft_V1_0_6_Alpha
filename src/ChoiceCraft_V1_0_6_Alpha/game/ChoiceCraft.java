@@ -14,6 +14,7 @@ import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
+import ChoiceCraft_V1_0_6_Alpha.state.menu.MenuState;
 
 /**
  * ChoiceCraft game.
@@ -44,7 +45,7 @@ public final class ChoiceCraft {
         this.display = new Display(width, height, input);
         this.settings = new ChoiceCraftSettings(false);
         this.gameController = new GameController(input);
-        this.state = new GameState(new Size(width, height), this.input);
+        this.state = new MenuState(new Size(width, height), this.input);
     }
 
     /**
@@ -53,7 +54,7 @@ public final class ChoiceCraft {
      * <p>Postcondition: update ChoiceCraft game once.</p>
      */
     public void update() {
-        state.update();
+        state.update(this);
         gameController.update(this);
     }
 
@@ -69,5 +70,9 @@ public final class ChoiceCraft {
 
     public ChoiceCraftSettings getSettings() {
         return settings;
+    }
+
+    public void enterState(State nextState) {
+        state = nextState;
     }
 }

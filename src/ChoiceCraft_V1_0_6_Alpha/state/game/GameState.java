@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * Game ChoiceCraft_V1_0_6_Alpha.state class.
+ * Game state class.
  * <p>
  * Author: David Liu.                                                                                   Date:3/18/2026
  * ========================================================================================================================
@@ -18,6 +18,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
+import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
@@ -25,6 +26,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.menu.MenuState;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
@@ -34,7 +36,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Playing ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft. This ChoiceCraft_V1_0_6_Alpha.state indicates that player is playing ChoiceCraft.
+ * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
  *
  * @author David Liu.
  * @since 3/18/2026
@@ -88,11 +90,12 @@ public final class GameState extends State {
      * Update ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft multiple times per frame. (UPS)
      * <p>Precondition: none</p>
      * <p>Postcondition: update State once.</p>
+     *
+     * @param game ChoiceCraft game reference.
      */
     @Override
-    public void update() {
-        super.update();
-
+    public void update(ChoiceCraft game) {
+        super.update(game);
         if (playing) {
             if (victoryConditions.stream().allMatch(Condition::isMet)) {
                 win();
@@ -106,19 +109,19 @@ public final class GameState extends State {
     private void win() {
         playing = false;
         VerticalContainer winContainer = new VerticalContainer(camera.getSize());
-        winContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        winContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         winContainer.setBackground(Color.DARK_GRAY);
         winContainer.addUIComponent(new UIText("VICTORY!"));
-        winContainer.addUIComponent(new UIButton("MENU", () -> System.out.println("BUTTON 1 PRESSED!")));
-        winContainer.addUIComponent(new UIButton("OPTIONS", () -> System.out.println("BUTTON 2 PRESSED!")));
-        winContainer.addUIComponent(new UIButton("EXIT", () -> System.exit(0)));
+        winContainer.addUIComponent(new UIButton("MENU", (state) -> state.setNextState(new MenuState(windowSize, input))));
+        winContainer.addUIComponent(new UIButton("OPTIONS", (state) -> System.out.println("BUTTON 2 PRESSED!")));
+        winContainer.addUIComponent(new UIButton("EXIT", (state) -> System.exit(0)));
         uiContainers.add(winContainer);
     }
 
     private void lose() {
         playing = false;
         VerticalContainer loseContainer = new VerticalContainer(camera.getSize());
-        loseContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        loseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         loseContainer.addUIComponent(new UIText("DEFEAT..."));
         uiContainers.add(loseContainer);
     }
