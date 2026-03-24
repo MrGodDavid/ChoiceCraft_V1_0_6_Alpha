@@ -68,6 +68,18 @@ public final class EnemyController implements EntityController {
     }
 
     /**
+     * Check if the game object is requesting an action.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: true if the game object is requesting an action.</p>
+     *
+     * @return true if the game object is requesting an action and false otherwise.
+     */
+    @Override
+    public boolean isRequestingAction() {
+        return false;
+    }
+
+    /**
      * Move the NPC from current position to its target position.
      * <p>Precondition: none.</p>
      * <p>Postcondition: npc moves from its current position to its target position.</p>

@@ -19,7 +19,6 @@ import java.awt.image.BufferedImage;
  * @author David Liu
  * @since 3/17/2026
  */
-@SuppressWarnings("all")
 public final class AnimationManager {
 
     private SpriteSet spriteSet;
@@ -29,14 +28,20 @@ public final class AnimationManager {
     private int updatesPerFrame;
     private int frameIndex;
     private int directionIndex;
+    private boolean looping;
 
     public AnimationManager(String name, SpriteSet spriteSet) {
+        this(name, spriteSet, true);
+    }
+
+    public AnimationManager(String name, SpriteSet spriteSet, boolean looping) {
         this.spriteSet = spriteSet;
         this.updatesPerFrame = 5;
         this.frameIndex = 0;
         this.currentFrameTime = 0;
         this.directionIndex = 0;
         this.currentAnimationName = "";
+        this.looping = looping;
 
         playAnimation(name);
     }
@@ -71,8 +76,9 @@ public final class AnimationManager {
             currentFrameTime = 0;
             frameIndex++;
 
-            if (frameIndex >= currentAnimationSheet.getWidth() / ChoiceCraft.SPRITE_SIZE) {
-                frameIndex = 0;
+            int animationSize = currentAnimationSheet.getWidth() / ChoiceCraft.SPRITE_SIZE;
+            if (frameIndex >= animationSize) {
+                frameIndex = looping ? 0 : animationSize - 1;
             }
         }
     }
@@ -86,7 +92,7 @@ public final class AnimationManager {
      */
     public void playAnimation(String name) {
         if (!name.equals(currentAnimationName)) {
-            this.currentAnimationSheet = (BufferedImage) spriteSet.getAnimationSheet(name);
+            this.currentAnimationSheet = (BufferedImage) spriteSet.getOrGetDefault(name);
             this.currentAnimationName = name;
             frameIndex = 0;
         }

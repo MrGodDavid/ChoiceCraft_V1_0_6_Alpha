@@ -1,8 +1,8 @@
 /**
  * ========================================================================================================================
- * ChoiceCraft game entity action class.
+ * Scaring npc.
  * <p>
- * Author: David Liu.                                                                                   Date:3/20/2026
+ * Author: David Liu.                                                                                   Date:3/23/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
@@ -11,17 +11,16 @@ import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
- * Superclass for all ChoiceCraft game entity actions.
+ * Scaring npc.
  *
  * @author David Liu.
- * @since 3/20/2026
+ * @since 3/23/2026
  */
-public abstract class Action {
+public class JumpScared extends Action{
 
-    protected boolean interruptable;
-
-    public Action() {
-        interruptable = true;
+    public JumpScared() {
+        super();
+        interruptable = false;
     }
 
     /**
@@ -29,10 +28,13 @@ public abstract class Action {
      * <p>Precondition: none.</p>
      * <p>Postcondition: update ChoiceCraft game object's action.</p>
      *
-     * @param state  that is not null.
+     * @param state    that is not null.
      * @param humanoid that is not null.
      */
-    public abstract void update(State state, Humanoid humanoid);
+    @Override
+    public void update(State state, Humanoid humanoid) {
+
+    }
 
     /**
      * Check if a ChoiceCraft's game object's action is done.
@@ -41,7 +43,10 @@ public abstract class Action {
      *
      * @return true if an action is done. False otherwise.
      */
-    public abstract boolean isDone();
+    @Override
+    public boolean isDone() {
+        return false;
+    }
 
     /**
      * Get the key of entity's animation name.
@@ -50,9 +55,8 @@ public abstract class Action {
      *
      * @return the key of entity's animation name.
      */
-    public abstract String getAnimationName();
-
-    public boolean isInterruptable() {
-        return interruptable;
+    @Override
+    public String getAnimationName() {
+        return "enchanter_scared_8dir_spritesheet";
     }
 }

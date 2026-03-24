@@ -39,6 +39,7 @@ public abstract class MovingEntity extends GameObject {
         this.direction = Direction.SOUTH;
         this.animationManager = new AnimationManager("player_idle_8dir_spritesheet", spriteLibrary.getSpriteSet("player"));
         this.directionVector = new Vector2d(0, 0);
+        this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
     }
 
     /**

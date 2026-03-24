@@ -72,4 +72,16 @@ public final class PlayerController implements EntityController {
     public boolean isRequestingRight() {
         return keyInput.isCurrentlyPressed(KeyEvent.VK_D) || keyInput.isCurrentlyPressed(KeyEvent.VK_RIGHT);
     }
+
+    /**
+     * Check if the game object is requesting an action.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: true if the game object is requesting an action.</p>
+     *
+     * @return true if the game object is requesting an action and false otherwise.
+     */
+    @Override
+    public boolean isRequestingAction() {
+        return keyInput.isCurrentlyPressed(KeyEvent.VK_F);
+    }
 }

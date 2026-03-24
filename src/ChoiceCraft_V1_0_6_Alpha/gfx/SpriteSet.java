@@ -25,6 +25,11 @@ public final class SpriteSet {
         this.animationSheets = new HashMap<>();
     }
 
+    public SpriteSet(Image image) {
+        this.animationSheets = new HashMap<>();
+        addSheet("default", image);
+    }
+
     /**
      * Add a new animation sheet to animation sheets of ChoiceCraft.
      * <p>Precondition: name is not null, animation sheet is not null.</p>
@@ -44,8 +49,12 @@ public final class SpriteSet {
      *
      * @param name that is not null, and it indicates the name of animation sheet.
      */
-    public Image getAnimationSheet(String name) {
-        return this.animationSheets.get(name);
+    public Image getOrGetDefault(String name) {
+        if (this.animationSheets.containsKey(name)) {
+            return this.animationSheets.get(name);
+        } else {
+            return this.animationSheets.get("default");
+        }
     }
 
     @Override

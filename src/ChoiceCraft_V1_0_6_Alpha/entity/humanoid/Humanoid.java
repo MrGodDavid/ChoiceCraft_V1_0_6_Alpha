@@ -114,7 +114,7 @@ public class Humanoid extends MovingEntity {
             if (motion.isMoving()) {
                 return "player_walking_8dir_spritesheet";
             } else {
-                return"player_idle_8dir_spritesheet";
+                return "player_idle_8dir_spritesheet";
             }
         } else if (this instanceof NPC) {
             if (action.isPresent()) {
@@ -151,6 +151,7 @@ public class Humanoid extends MovingEntity {
     }
 
     public void perform(Action action) {
+        if (this.action.isPresent() && !this.action.get().isInterruptable()) return;
         this.action = Optional.of(action);
     }
 

@@ -50,4 +50,13 @@ public interface EntityController {
      * @return true if user is requesting right command.
      */
     boolean isRequestingRight();
+
+    /**
+     * Check if the game object is requesting an action.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: true if the game object is requesting an action.</p>
+     *
+     * @return true if the game object is requesting an action and false otherwise.
+     */
+    boolean isRequestingAction();
 }

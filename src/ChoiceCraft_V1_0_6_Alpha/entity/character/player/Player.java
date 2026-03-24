@@ -9,10 +9,10 @@ package ChoiceCraft_V1_0_6_Alpha.entity.character.player;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.PunchNPC;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Untargetable;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -28,7 +28,7 @@ import java.util.Optional;
  */
 public final class Player extends Humanoid {
 
-    private MovingEntity target;
+    private Humanoid target;
     private double targetRange;
     private SelectionCircle selectionCircle;
 
@@ -62,16 +62,25 @@ public final class Player extends Humanoid {
     public void update(State state) {
         super.update(state);
         handleTarget(state);
+        handleInput(state);
+    }
+
+    private void handleInput(State state) {
+        if (entityController.isRequestingAction()) {
+            if (target != null) {
+                perform(new PunchNPC(target));
+            }
+        }
     }
 
     private void handleTarget(State state) {
-        Optional<MovingEntity> closetMovingEntity = findClosetMovingEntity(state);
+        Optional<Humanoid> closetHumanoid = findClosetMovingEntity(state);
 
-        if (closetMovingEntity.isPresent()) {
-            MovingEntity movingEntity = closetMovingEntity.get();
-            if (!movingEntity.equals(target)) {
-                selectionCircle.setParent(movingEntity);
-                target = movingEntity;
+        if (closetHumanoid.isPresent()) {
+            Humanoid humanoid = closetHumanoid.get();
+            if (!humanoid.equals(target)) {
+                selectionCircle.parent(humanoid);
+                target = humanoid;
             }
         } else {
             selectionCircle.clearParent();
@@ -79,11 +88,12 @@ public final class Player extends Humanoid {
         }
     }
 
-    private Optional<MovingEntity> findClosetMovingEntity(State state) {
-        return state.getGameObjectsOfClass(MovingEntity.class).stream()
-                .filter(movingEntity -> getPosition().distanceTo(movingEntity.getPosition()) < targetRange)
-                .filter(movingEntity -> isFacing(movingEntity.getPosition()))
-                .min(Comparator.comparingDouble(movingEntity -> position.distanceTo(movingEntity.getPosition())));
+    private Optional<Humanoid> findClosetMovingEntity(State state) {
+        return state.getGameObjectsOfClass(Humanoid.class).stream()
+                .filter(humanoid -> getPosition().distanceTo(humanoid.getPosition()) < targetRange)
+                .filter(humanoid -> isFacing(humanoid.getPosition()))
+                .filter(humanoid -> !humanoid.isAffectedBy(Untargetable.class))
+                .min(Comparator.comparingDouble(humanoid -> position.distanceTo(humanoid.getPosition())));
     }
 
     @Override

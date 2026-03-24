@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.game.state;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
+import ChoiceCraft_V1_0_6_Alpha.entity.Angry_Particle;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.Time;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
@@ -17,10 +18,7 @@ import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -58,13 +56,17 @@ public abstract class State {
     public void update() {
         time.update();
         sortObjectsByPosition();
-        for (GameObject gameObject : gameObjects) {
-            gameObject.update(this);
-        }
+        updateGameObjects();
         for (UIContainer uiContainer : uiContainers) {
             uiContainer.update(this);
         }
         camera.update(this);
+    }
+
+    private void updateGameObjects() {
+        for (int i = 0; i < gameObjects.size(); i++) {
+            gameObjects.get(i).update(this);
+        }
     }
 
     private void sortObjectsByPosition() {
@@ -112,6 +114,10 @@ public abstract class State {
                 .collect(Collectors.toList());
     }
 
+    public final void spawn(GameObject gameObject) {
+        this.gameObjects.add(gameObject);
+    }
+
     public final List<GameObject> getGameObjects() {
         return gameObjects;
     }
@@ -130,5 +136,9 @@ public abstract class State {
 
     public final List<UIContainer> getUiContainers() {
         return uiContainers;
+    }
+
+    public SpriteLibrary getSpriteLibrary() {
+        return spriteLibrary;
     }
 }
