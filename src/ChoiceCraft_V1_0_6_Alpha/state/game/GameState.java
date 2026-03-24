@@ -5,7 +5,7 @@
  * Author: David Liu.                                                                                   Date:3/18/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.state;
+package ChoiceCraft_V1_0_6_Alpha.state.game;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
@@ -18,12 +18,13 @@ import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
-import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
-import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
+import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIGameTime;
+import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;

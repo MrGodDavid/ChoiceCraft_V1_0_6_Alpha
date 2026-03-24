@@ -5,7 +5,7 @@
  * Author: David Liu.                                                                                   Date:3/21/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.game.ui;
+package ChoiceCraft_V1_0_6_Alpha.state.game.ui;
 
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
