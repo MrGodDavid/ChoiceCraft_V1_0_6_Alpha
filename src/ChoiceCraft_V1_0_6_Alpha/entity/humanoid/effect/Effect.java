@@ -5,9 +5,9 @@
  * Author: David Liu.                                                                                   Date:3/20/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity.effect;
+package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect;
 
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
@@ -25,14 +25,14 @@ public abstract class Effect {
     }
 
     /**
-     * Update moving entity's effect.
+     * Update moving humanoid's effect.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: update moving entity's effect..</p>
+     * <p>Postcondition: update moving humanoid's effect.</p>
      *
      * @param state  that is not null.
-     * @param entity that is not null.
+     * @param humanoid that is not null.
      */
-    public void update(State state, MovingEntity entity) {
+    public void update(State state, Humanoid humanoid) {
         lifeSpanInUpdates--;
     }
 

@@ -5,9 +5,9 @@
  * Author: David Liu.                                                                                   Date:3/20/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity.action;
+package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
 
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
 /**
@@ -24,9 +24,9 @@ public abstract class Action {
      * <p>Postcondition: update ChoiceCraft game object's action.</p>
      *
      * @param state  that is not null.
-     * @param entity that is not null.
+     * @param humanoid that is not null.
      */
-    public abstract void update(State state, MovingEntity entity);
+    public abstract void update(State state, Humanoid humanoid);
 
     /**
      * Check if a ChoiceCraft's game object's action is done.

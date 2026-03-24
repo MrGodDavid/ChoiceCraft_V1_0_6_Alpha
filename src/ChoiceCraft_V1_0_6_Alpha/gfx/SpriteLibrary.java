@@ -21,8 +21,8 @@ import java.util.Map;
  */
 public final class SpriteLibrary {
 
-    private final Map<String, SpriteSet> gameEntities;
-    private final Map<String, Image> tiles;
+    private final Map<String, SpriteSet> spriteSets;
+    private final Map<String, Image> images;
 
     /**
      * No-arg constructor of this class.
@@ -31,8 +31,8 @@ public final class SpriteLibrary {
      * Map.</p>
      */
     public SpriteLibrary() {
-        this.gameEntities = new HashMap<String, SpriteSet>();
-        this.tiles = new HashMap<>();
+        this.spriteSets = new HashMap<String, SpriteSet>();
+        this.images = new HashMap<>();
 
         loadSpritesFromDisk();
     }
@@ -45,8 +45,9 @@ public final class SpriteLibrary {
      * <p>Postcondition: create the sprite Map with image resources from resource folder.</p>
      */
     private void loadSpritesFromDisk() {
-        loadGameEntities("/sprites/entity");
-        loadTiles("/sprites/tiles_resized");
+        loadSpriteSets("/sprites/entity");
+        loadImages("/sprites/tiles_resized");
+        loadImages("/sprites/effect");
     }
 
     /**
@@ -58,7 +59,7 @@ public final class SpriteLibrary {
      *
      * @param path that indicates the path of sprites.
      */
-    private void loadGameEntities(String path) {
+    private void loadSpriteSets(String path) {
         String[] folderNames = getFolderNames(path);
 
         for (String folderName : folderNames) {
@@ -72,7 +73,7 @@ public final class SpriteLibrary {
                         ImageUtils.loadImage(pathToFolder + "/" + sheetName)
                 );
             }
-            gameEntities.put(folderName, spriteSet);
+            spriteSets.put(folderName, spriteSet);
         }
     }
 
@@ -85,10 +86,10 @@ public final class SpriteLibrary {
      *
      * @param path that indicates the path of sprites.
      */
-    private void loadTiles(String path) {
+    private void loadImages(String path) {
         String[] imagesInFolder = getImagesInFolder(path);
         for (String fileName : imagesInFolder) {
-            tiles.put(
+            images.put(
                     fileName.substring(0, fileName.length() - 4),
                     ImageUtils.loadImage(path + "/" + fileName)
             );
@@ -126,14 +127,14 @@ public final class SpriteLibrary {
 
     @Override
     public String toString() {
-        return "GameEntities: \n" + gameEntities + "\nTiles: \n" + tiles;
+        return "GameEntities: \n" + spriteSets + "\nTiles: \n" + images;
     }
 
-    public SpriteSet getEntitySprite(String name) {
-        return gameEntities.get(name);
+    public SpriteSet getSpriteSet(String name) {
+        return spriteSets.get(name);
     }
 
-    public Image getTile(String name) {
-        return tiles.get(name);
+    public Image getImage(String name) {
+        return images.get(name);
     }
 }

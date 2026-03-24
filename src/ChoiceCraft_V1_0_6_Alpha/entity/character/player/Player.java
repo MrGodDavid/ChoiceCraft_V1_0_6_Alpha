@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -25,7 +26,7 @@ import java.util.Optional;
  * @author David Liu
  * @since 3/15/2026
  */
-public final class Player extends MovingEntity {
+public final class Player extends Humanoid {
 
     private MovingEntity target;
     private double targetRange;
@@ -46,11 +47,7 @@ public final class Player extends MovingEntity {
      * @param other game object that is not null.
      */
     @Override
-    protected void handleCollision(GameObject other) {
-        if (other instanceof NPC npc) {
-            npc.clearEffects();
-        }
-    }
+    protected void handleCollision(GameObject other) {}
 
     /**
      * Update game object of ChoiceCraft every frame.

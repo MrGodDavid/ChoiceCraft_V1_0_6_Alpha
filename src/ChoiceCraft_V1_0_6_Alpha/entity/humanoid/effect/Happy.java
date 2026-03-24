@@ -5,10 +5,10 @@
  * Author: David Liu.                                                                                   Date:3/18/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity.effect;
+package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect;
 
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -32,14 +32,14 @@ public final class Happy extends Effect{
      * <p>Postcondition: update moving entity's effect..</p>
      *
      * @param state  that is not null.
-     * @param entity that is not null.
+     * @param humanoid that is not null.
      */
     @Override
-    public void update(State state, MovingEntity entity) {
-        super.update(state, entity);
+    public void update(State state, Humanoid humanoid) {
+        super.update(state, humanoid);
 
         if (Math.random() < GREETING_RATE) {
-            entity.perform(new Greeting());
+            humanoid.perform(new Greeting());
         }
     }
 }

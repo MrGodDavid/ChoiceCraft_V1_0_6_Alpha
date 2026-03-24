@@ -9,8 +9,9 @@ package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.action.Action;
-import ChoiceCraft_V1_0_6_Alpha.entity.action.Greeting;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Action;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 
@@ -40,10 +41,10 @@ public final class DebugRenderer {
                 CollisionBox collisionBox = gameObject.getCollisionBox();
                 drawCollisionBox(collisionBox, g, camera);
 
-                if (gameObject instanceof MovingEntity movingEntity) {
-                    Optional<Action> action = movingEntity.getCurrentAction();
+                if (gameObject instanceof Humanoid humanoid) {
+                    Optional<Action> action = humanoid.getCurrentAction();
                     if (action.isPresent() && action.get() instanceof Greeting greeting) {
-                        CollisionBox spreadingCollisionBox = greeting.getSpreadingCollisionBox(movingEntity);
+                        CollisionBox spreadingCollisionBox = greeting.getSpreadingCollisionBox(humanoid);
                         drawSpreadingArea(spreadingCollisionBox, g, camera);
                     }
                 }

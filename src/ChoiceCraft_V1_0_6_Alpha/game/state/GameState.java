@@ -11,24 +11,16 @@ import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.controller.PlayerController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
-import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
-import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
-import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
-import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
-import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
-import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
-import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
-
-import java.awt.*;
 
 /**
  * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.

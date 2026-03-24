@@ -5,10 +5,11 @@
  * Author: David Liu.                                                                                   Date:3/20/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.entity.action;
+package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.effect.Happy;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
@@ -45,24 +46,24 @@ public final class Greeting extends Action {
      * <p>Postcondition: update ChoiceCraft game object's action.</p>
      *
      * @param state  that is not null.
-     * @param entity that is not null.
+     * @param performer that is not null.
      */
     @Override
-    public void update(State state, MovingEntity entity) {
+    public void update(State state, Humanoid performer) {
         if (--liveSpanInSeconds <= 0) {
             Position spreadAreaPosition = new Position(
-                    entity.getPosition().getX() - spreadAreaSize.getWidth() / 2d,
-                    entity.getPosition().getY() - spreadAreaSize.getHeight() / 2d
+                    performer.getPosition().getX() - spreadAreaSize.getWidth() / 2d,
+                    performer.getPosition().getY() - spreadAreaSize.getHeight() / 2d
             );
 
             spreadingCollisionBox = CollisionBox.of(spreadAreaPosition, spreadAreaSize);
 
-            List<MovingEntity> movingEntityList = state.getGameObjectsOfClass(MovingEntity.class);
-            for (MovingEntity movingEntity : movingEntityList) {
-                if (movingEntity.getCollisionBox().collidesWith(spreadingCollisionBox) && !movingEntity.isAffectedBy(Happy.class)) {
+            List<Humanoid> humanoidList = state.getGameObjectsOfClass(Humanoid.class);
+            for (Humanoid humanoid : humanoidList) {
+                if (humanoid.getCollisionBox().collidesWith(spreadingCollisionBox) && !humanoid.isAffectedBy(Happy.class)) {
                     double fallOut = Math.random();
                     if (fallOut < SUCCESSFULLY_SPREADING_RATE) {
-                        movingEntity.addEffect(new Happy());
+                        humanoid.addEffect(new Happy());
                     }
                 }
             }

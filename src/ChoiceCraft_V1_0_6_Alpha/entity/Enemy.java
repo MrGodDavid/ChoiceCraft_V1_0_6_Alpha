@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
 import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -20,14 +21,14 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
  * @author David Liu
  * @since 3/21/2026
  */
-public class Enemy extends MovingEntity {
+public class Enemy extends Humanoid {
 
     private final AIManager aiManager;
 
     public Enemy(EntityController entityController, SpriteLibrary spriteLibrary) {
         super(entityController, spriteLibrary);
         this.animationManager = new AnimationManager("zombie_basic_idle_8dir_spritesheet",
-                spriteLibrary.getEntitySprite("zombie_basic"));
+                spriteLibrary.getSpriteSet("zombie_basic"));
         aiManager = new AIManager("enemy_idle");
     }
 

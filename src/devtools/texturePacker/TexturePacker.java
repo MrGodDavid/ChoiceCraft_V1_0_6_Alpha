@@ -27,12 +27,16 @@ public class TexturePacker {
 
     private File[] files;
 
-    public TexturePacker(String directory, ENTITY_NAME entityName, ANIMATION_STATE animationState) {
+    private int numCol, numRow;
+
+    public TexturePacker(String directory, ENTITY_NAME entityName, ANIMATION_STATE animationState, int numCol, int numRow) {
         this.directory = directory;
         this.name = entityName;
         this.state = animationState;
         sprites = new ArrayList<>();
         files = null;
+        this.numCol = numCol;
+        this.numRow = numRow;
     }
 
     public void pack() {
@@ -65,7 +69,7 @@ public class TexturePacker {
         window.setLayout(new GridLayout(2, 1));
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(8, 12));
+        panel.setLayout(new GridLayout(numRow, numCol));
         panel.setBackground(Color.BLACK);
 
         JLabel[] labels = new JLabel[sprites.size()];
@@ -103,9 +107,9 @@ public class TexturePacker {
 
         int index = 0;
         int x = 0, y = 0;
-        for (int row = 0; row < 8; row++) {
+        for (int row = 0; row < numRow; row++) {
             x = 0;
-            for (int col = 0; col < 12; col++) {
+            for (int col = 0; col < numCol; col++) {
                 g2d.drawImage(sprites.get(index), x, y, null);
                 x += width;
                 index++;
@@ -144,7 +148,8 @@ public class TexturePacker {
     public enum ENTITY_NAME {
         PLAYER,
         ZOMBIE_BASIC,
-        ENCHANTER;
+        ENCHANTER,
+        ANGRY_PARTICLE;
 
         private final String key;
 
@@ -165,7 +170,8 @@ public class TexturePacker {
         ATTACKING_FIST,
         ATTACKING_SHORT_IRON_SWORD,
         GREETING,
-        HURTING;
+        HURTING,
+        DEFAULT;
 
         private final String key;
 
@@ -180,7 +186,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.GREETING);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ANGRY_PARTICLE, ANIMATION_STATE.DEFAULT, 5, 1);
         texturePacker.pack();
     }
 }
