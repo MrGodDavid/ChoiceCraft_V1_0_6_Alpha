@@ -14,9 +14,11 @@ import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 
 import java.awt.*;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * ChoiceCraft debugger renderer.
@@ -48,8 +50,26 @@ public final class DebugRenderer {
                         drawSpreadingArea(spreadingCollisionBox, g, camera);
                     }
                 }
+//                drawEffectLabel(state, g);
             }
         }
+    }
+
+    private void drawEffectLabel(State state, Graphics g) {
+        Camera camera = state.getCamera();
+        state.getGameObjectsOfClass(Humanoid.class)
+                .forEach(humanoid -> {
+                    UIText label = new UIText(humanoid.getEffects().stream()
+                            .map(effect -> effect.getClass().getSimpleName())
+                            .collect(Collectors.joining(",")));
+                    label.update(state);
+                    g.drawImage(
+                            label.getSprite(),
+                            humanoid.getPosition().intX() - camera.getPosition().intX(),
+                            humanoid.getPosition().intY() - camera.getPosition().intY(),
+                            null
+                    );
+                });
     }
 
     private void drawCollisionBox(CollisionBox collisionBox, Graphics g, Camera camera) {

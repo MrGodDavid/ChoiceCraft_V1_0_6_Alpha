@@ -10,7 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Angry_Particle;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
-import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Untargetable;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 
@@ -58,6 +58,8 @@ public class PunchNPC extends Action {
         lifeSpanInUpdates--;
         if (particle == null) {
             emitParticles(state);
+        } else {
+            particle.halt();
         }
         if (isDone()) {
             target.setRenderOrder(6);
@@ -67,7 +69,7 @@ public class PunchNPC extends Action {
 
     private void emitParticles(State state) {
         target.perform(new JumpScared());
-        target.addEffect(new Untargetable());
+        target.addEffect(new Scared());
         particle = new Angry_Particle(new NPCController(), state.getSpriteLibrary());
         particle.setEmitter(target);
         state.spawn(particle);

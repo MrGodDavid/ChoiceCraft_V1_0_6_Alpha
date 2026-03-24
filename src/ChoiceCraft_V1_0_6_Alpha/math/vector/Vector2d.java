@@ -31,6 +31,11 @@ public class Vector2d {
         this.y = y;
     }
 
+    public void add(Vector2d vector2d) {
+        this.x += vector2d.getX();
+        this.y += vector2d.getY();
+    }
+
     public void multiply(double speed) {
         this.x *= speed;
         this.y *= speed;

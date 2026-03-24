@@ -60,6 +60,10 @@ public final class Motion {
         );
     }
 
+    public void add(Vector2d vector2d) {
+        this.vector.add(vector2d);
+    }
+
     public void multiply(double speedMultiplier) {
         vector.multiply(speedMultiplier);
     }

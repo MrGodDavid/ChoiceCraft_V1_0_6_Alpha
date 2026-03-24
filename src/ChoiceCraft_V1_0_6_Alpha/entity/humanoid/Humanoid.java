@@ -19,6 +19,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ import java.util.Optional;
  * @author David Liu
  * @since 3/23/2026
  */
-public class Humanoid extends MovingEntity {
+public abstract class Humanoid extends MovingEntity {
 
     protected List<Effect> effects;
     protected Optional<Action> action;
@@ -174,5 +175,9 @@ public class Humanoid extends MovingEntity {
 
     public Optional<Action> getCurrentAction() {
         return action;
+    }
+
+    public List<Effect> getEffects() {
+        return effects;
     }
 }

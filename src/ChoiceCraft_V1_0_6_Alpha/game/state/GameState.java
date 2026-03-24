@@ -14,8 +14,11 @@ import ChoiceCraft_V1_0_6_Alpha.entity.Enemy;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.JumpScared;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
@@ -84,5 +87,23 @@ public final class GameState extends State {
             enchanter.setPosition(gameMap.getRandomPosition());
             gameObjects.add(enchanter);
         }
+    }
+
+    public long getNumberOfHappy() {
+        return getGameObjectsOfClass(Humanoid.class).stream()
+                .filter(humanoid -> humanoid.isAffectedBy(Happy.class))
+                .count();
+    }
+
+    public long getNumberOfNonchalant() {
+        return getGameObjectsOfClass(Humanoid.class).stream()
+                .filter(humanoid -> !humanoid.isAffectedBy(Happy.class))
+                .count();
+    }
+
+    public long getNumberOfScared() {
+        return getGameObjectsOfClass(Humanoid.class).stream()
+                .filter(humanoid -> humanoid.isAffectedBy(Happy.class) && humanoid.isAffectedBy(Scared.class))
+                .count();
     }
 }

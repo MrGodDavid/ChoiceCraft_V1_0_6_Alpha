@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.game.ui;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
+import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
@@ -58,15 +59,9 @@ public final class UIHappinessStats extends HorizontalContainer {
     @Override
     public void update(State state) {
         super.update(state);
-        long happyCount = state.getGameObjectsOfClass(Humanoid.class).stream()
-                .filter(humanoid -> humanoid.isAffectedBy(Happy.class))
-                .count();
-
-        long nonchalantCount = state.getGameObjectsOfClass(Humanoid.class).stream()
-                .filter(humanoid -> !humanoid.isAffectedBy(Happy.class))
-                .count();
-
-        numberOfHappy.setText(String.valueOf(happyCount));
-        numberOfNonchalant.setText(String.valueOf(nonchalantCount));
+        if (state instanceof GameState gameState) {
+            numberOfHappy.setText(String.format("%d [%d]", gameState.getNumberOfHappy(), gameState.getNumberOfScared()));
+            numberOfNonchalant.setText(String.valueOf(gameState.getNumberOfNonchalant()));
+        }
     }
 }

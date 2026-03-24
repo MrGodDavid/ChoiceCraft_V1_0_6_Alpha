@@ -13,9 +13,9 @@ package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect;
  * @author David Liu.
  * @since 3/23/2026
  */
-public class Untargetable extends Effect {
+public class Scared extends Effect {
 
-    public Untargetable() {
+    public Scared() {
         super(Integer.MAX_VALUE);
     }
 }

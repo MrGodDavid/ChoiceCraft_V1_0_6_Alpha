@@ -8,9 +8,11 @@
 package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Direction;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteSet;
+import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
 
 /**
  * Angry particles of Enchanters.
@@ -20,12 +22,10 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteSet;
  */
 public class Angry_Particle extends MovingEntity{
 
-    private NPCController controller;
+    private boolean halted;
 
     public Angry_Particle(NPCController npcController, SpriteLibrary spriteLibrary) {
         super(npcController, spriteLibrary);
-        this.controller = npcController;
-
         this.animationManager = new AnimationManager("angry_particle_default_spritesheet",
                 new SpriteSet(spriteLibrary.getImage("angry_particle_default_spritesheet")), false);
     }
@@ -51,7 +51,11 @@ public class Angry_Particle extends MovingEntity{
      */
     @Override
     protected void handleMotion() {
-        motion.update(controller);
+        if (!halted) {
+            motion.add(new Vector2d(0, -0.5));
+        }
+        halted = false;
+        direction = Direction.SOUTH;
     }
 
     /**
@@ -61,6 +65,10 @@ public class Angry_Particle extends MovingEntity{
     @Override
     protected String decideAnimation() {
         return "angry_particle_default_spritesheet";
+    }
+
+    public void halt() {
+        halted = true;
     }
 
     public void setEmitter(GameObject emitter) {

@@ -12,7 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.PunchNPC;
-import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Untargetable;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -92,7 +92,7 @@ public final class Player extends Humanoid {
         return state.getGameObjectsOfClass(Humanoid.class).stream()
                 .filter(humanoid -> getPosition().distanceTo(humanoid.getPosition()) < targetRange)
                 .filter(humanoid -> isFacing(humanoid.getPosition()))
-                .filter(humanoid -> !humanoid.isAffectedBy(Untargetable.class))
+                .filter(humanoid -> !humanoid.isAffectedBy(Scared.class))
                 .min(Comparator.comparingDouble(humanoid -> position.distanceTo(humanoid.getPosition())));
     }
 
