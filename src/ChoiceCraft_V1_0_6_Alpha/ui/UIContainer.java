@@ -34,11 +34,12 @@ public abstract class UIContainer extends UIComponent {
     protected Size windowSize;
     protected Color backgroundColor;
 
+    protected Size fixedSize;
+
     public UIContainer(Size windowSize) {
         super();
         this.windowSize = windowSize;
         alignment = new Alignment(Alignment.Position.START, Alignment.Position.START);
-//        backgroundColor = Color.RED;
         backgroundColor = new Color(0, 0, 0, 0);
         margin = new Spacing(5);
         padding = new Spacing(5);
@@ -61,7 +62,9 @@ public abstract class UIContainer extends UIComponent {
 
     private void calculateSize() {
         calculateContentSize();
-        size = new Size(
+        size = (fixedSize != null)
+                ? fixedSize
+                : new Size(
                 padding.getHorizontal() + calculateContentSize().getWidth(),
                 padding.getVertical() + calculateContentSize().getHeight()
         );
@@ -92,7 +95,8 @@ public abstract class UIContainer extends UIComponent {
             y = windowSize.getHeight() - size.getHeight() - margin.getBottom();
         }
 
-        this.position = new Position(x, y);
+        this.relativePosition = new Position(x, y);
+        this.absolutePosition = new Position(x, y);
         calculateChildrenPositions();
     }
 
@@ -116,8 +120,8 @@ public abstract class UIContainer extends UIComponent {
         for (UIComponent child : children) {
             g2d.drawImage(
                     child.getSprite(),
-                    child.getPosition().intX(),
-                    child.getPosition().intY(),
+                    child.getRelativePosition().intX(),
+                    child.getRelativePosition().intY(),
                     null
             );
         }
@@ -156,5 +160,9 @@ public abstract class UIContainer extends UIComponent {
 
     public void setAlignment(Alignment alignment) {
         this.alignment = alignment;
+    }
+
+    public void setFixedSize(Size fixedSize) {
+        this.fixedSize = fixedSize;
     }
 }

@@ -42,8 +42,8 @@ public final class Renderer {
         for (UIContainer uiContainer : state.getUiContainers()) {
             g.drawImage(
                     uiContainer.getSprite(),
-                    uiContainer.getPosition().intX(),
-                    uiContainer.getPosition().intY(),
+                    uiContainer.getRelativePosition().intX(),
+                    uiContainer.getRelativePosition().intY(),
                     null
             );
         }

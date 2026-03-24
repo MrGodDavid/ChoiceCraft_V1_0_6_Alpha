@@ -27,7 +27,9 @@ import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
+import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UIButton;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -78,7 +80,7 @@ public final class GameState extends State {
         initializeAllNPCs(100);
         initializeAllEnemies(50);
 
-        makeNumberOfNPCHappy(50);
+        makeNumberOfNPCHappy(0);
     }
 
     /**
@@ -102,18 +104,22 @@ public final class GameState extends State {
 
     private void win() {
         playing = false;
-        VerticalContainer winLabelContainer = new VerticalContainer(camera.getSize());
-        winLabelContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
-        winLabelContainer.addUIComponent(new UIText("VICTORY!"));
-        uiContainers.add(winLabelContainer);
+        VerticalContainer winContainer = new VerticalContainer(camera.getSize());
+        winContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        winContainer.setBackground(Color.DARK_GRAY);
+        winContainer.addUIComponent(new UIText("VICTORY!"));
+        winContainer.addUIComponent(new UIButton("MENU", () -> System.out.println("BUTTON 1 PRESSED!")));
+        winContainer.addUIComponent(new UIButton("OPTIONS", () -> System.out.println("BUTTON 2 PRESSED!")));
+        winContainer.addUIComponent(new UIButton("EXIT", () -> System.exit(0)));
+        uiContainers.add(winContainer);
     }
 
     private void lose() {
         playing = false;
-        VerticalContainer loseLabelContainer = new VerticalContainer(camera.getSize());
-        loseLabelContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
-        loseLabelContainer.addUIComponent(new UIText("DEFEAT..."));
-        uiContainers.add(loseLabelContainer);
+        VerticalContainer loseContainer = new VerticalContainer(camera.getSize());
+        loseContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        loseContainer.addUIComponent(new UIText("DEFEAT..."));
+        uiContainers.add(loseContainer);
     }
 
     @SuppressWarnings("SameParameterValue")

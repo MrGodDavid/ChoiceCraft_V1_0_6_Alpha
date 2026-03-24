@@ -25,7 +25,8 @@ import java.awt.*;
  */
 public abstract class UIComponent {
 
-    protected Position position;
+    protected Position relativePosition;
+    protected Position absolutePosition;
     protected Size size;
     protected Spacing margin;
     protected Spacing padding;
@@ -42,7 +43,8 @@ public abstract class UIComponent {
      * <p>For margin and padding, see {@link Spacing}</p>
      */
     public UIComponent() {
-        position = new Position(0, 0);
+        relativePosition = new Position(0, 0);
+        absolutePosition = new Position(0, 0);
         size = new Size(1, 1);
         margin = new Spacing(0);
         padding = new Spacing(0);
@@ -84,12 +86,20 @@ public abstract class UIComponent {
         this.padding = padding;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getRelativePosition() {
+        return relativePosition;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setRelativePosition(Position relativePosition) {
+        this.relativePosition = relativePosition;
+    }
+
+    public Position getAbsolutePosition() {
+        return absolutePosition;
+    }
+
+    public void setAbsolutePosition(Position absolutePosition) {
+        this.absolutePosition = absolutePosition;
     }
 
     public Size getSize() {

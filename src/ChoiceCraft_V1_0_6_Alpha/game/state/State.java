@@ -148,4 +148,8 @@ public abstract class State {
     public SpriteLibrary getSpriteLibrary() {
         return spriteLibrary;
     }
+
+    public Input getInput() {
+        return input;
+    }
 }
