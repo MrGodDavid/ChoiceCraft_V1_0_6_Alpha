@@ -10,7 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Greeting;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
  * Happy effect of NPC. NPC has discount buff when having this effect.

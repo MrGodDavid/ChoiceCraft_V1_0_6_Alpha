@@ -11,14 +11,14 @@ import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AI Wander state.
+ * AI Wander ChoiceCraft_V1_0_6_Alpha.state.
  *
  * @author David Liu.
  * @since 3/20/2026
@@ -45,9 +45,9 @@ public final class Wander extends AIState {
     }
 
     /**
-     * Update ChoiceCraft game object ai state.
+     * Update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: update ChoiceCraft game object ai state.</p>
+     * <p>Postcondition: update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.</p>
      *
      * @param state            that is not null.
      * @param currentCharacter that is not null.

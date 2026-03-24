@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.ui;
 
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
@@ -66,7 +66,7 @@ public abstract class UIComponent {
      * <p>Precondition: none.</p>
      * <p>Postcondition: UIComponent subclasses each behaves the way defined by the implementation of this method.</p>
      *
-     * @param state that is the current game state.
+     * @param state that is the current game ChoiceCraft_V1_0_6_Alpha.state.
      */
     public abstract void update(State state);
 

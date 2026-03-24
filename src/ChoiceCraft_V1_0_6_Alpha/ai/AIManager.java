@@ -9,7 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.ai;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.state.*;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
  * Manages ChoiceCraft's game objects (npc and enemy)'s behaviors.
@@ -28,7 +28,7 @@ public final class AIManager {
     /**
      * Update ChoiceCraft game object's ai states.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: update ChoiceCraft game object ai state.</p>
+     * <p>Postcondition: update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.</p>
      *
      * @param state            that is not null.
      * @param currentCharacter that is not null.

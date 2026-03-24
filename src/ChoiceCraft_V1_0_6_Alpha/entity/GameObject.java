@@ -9,7 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
@@ -55,7 +55,7 @@ public abstract class GameObject {
      * <p>Postcondition: game loop update all game objects that has own update() implementation
      * every frame ups times</p>
      *
-     * @param state current state that is not null.
+     * @param state current ChoiceCraft_V1_0_6_Alpha.state that is not null.
      */
     public abstract void update(State state);
 

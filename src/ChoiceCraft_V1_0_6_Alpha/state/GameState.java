@@ -1,11 +1,11 @@
 /**
  * ========================================================================================================================
- * Game state class.
+ * Game ChoiceCraft_V1_0_6_Alpha.state class.
  * <p>
  * Author: David Liu.                                                                                   Date:3/18/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.game.state;
+package ChoiceCraft_V1_0_6_Alpha.state;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.EnemyController;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
@@ -33,7 +33,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
+ * Playing ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft. This ChoiceCraft_V1_0_6_Alpha.state indicates that player is playing ChoiceCraft.
  *
  * @author David Liu.
  * @since 3/18/2026
@@ -84,7 +84,7 @@ public final class GameState extends State {
     }
 
     /**
-     * Update state in ChoiceCraft multiple times per frame. (UPS)
+     * Update ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft multiple times per frame. (UPS)
      * <p>Precondition: none</p>
      * <p>Postcondition: update State once.</p>
      */

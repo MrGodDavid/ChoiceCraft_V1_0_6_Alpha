@@ -9,8 +9,8 @@ package ChoiceCraft_V1_0_6_Alpha.game;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.GameController;
 import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
-import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.GameState;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;

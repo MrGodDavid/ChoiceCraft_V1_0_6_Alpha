@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * Idle state. (Stand state).
+ * Idle ChoiceCraft_V1_0_6_Alpha.state. (Stand ChoiceCraft_V1_0_6_Alpha.state).
  * <p>
  * Author: David Liu.                                                                                   Date:3/19/2026
  * ========================================================================================================================
@@ -9,10 +9,10 @@ package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
- * Idle state. (Stand state).
+ * Idle ChoiceCraft_V1_0_6_Alpha.state. (Stand ChoiceCraft_V1_0_6_Alpha.state).
  *
  * @author David Liu.
  * @since 3/19/2026
@@ -34,9 +34,9 @@ public final class NPC_Idle extends AIState{
     }
 
     /**
-     * Update ChoiceCraft game object ai state.
+     * Update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: update ChoiceCraft game object ai state.</p>
+     * <p>Postcondition: update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.</p>
      *
      * @param state            that is not null.
      * @param currentCharacter that is not null.

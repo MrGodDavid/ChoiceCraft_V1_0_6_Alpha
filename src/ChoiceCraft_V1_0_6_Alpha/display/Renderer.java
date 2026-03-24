@@ -9,7 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
@@ -63,8 +63,8 @@ public final class Renderer {
     }
 
     /**
-     * Render the game map of ChoiceCraft. This method uses game state and rendering pipeline (kind of).
-     * <p>Precondition: game state is not null, and rendering pipeline is not null.</p>
+     * Render the game map of ChoiceCraft. This method uses game ChoiceCraft_V1_0_6_Alpha.state and rendering pipeline (kind of).
+     * <p>Precondition: game ChoiceCraft_V1_0_6_Alpha.state is not null, and rendering pipeline is not null.</p>
      * <p>Postcondition: render the game map of ChoiceCraft.</p>
      *
      * @param state that is not null.

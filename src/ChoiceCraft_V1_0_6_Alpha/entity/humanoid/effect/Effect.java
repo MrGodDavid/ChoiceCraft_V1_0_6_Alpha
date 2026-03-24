@@ -8,7 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
  * Superclass for all ChoiceCraft game entity effects.

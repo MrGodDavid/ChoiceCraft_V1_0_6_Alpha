@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.display;
 
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 
 import javax.swing.*;
@@ -63,8 +63,8 @@ public final class Display extends JFrame {
 
     /**
      * Render ChoiceCraft in Display class.
-     * <p>Precondition: input ChoiceCraft's current state is not null.</p>
-     * <p>Postcondition: renders state of ChoiceCraft.</p>
+     * <p>Precondition: input ChoiceCraft's current ChoiceCraft_V1_0_6_Alpha.state is not null.</p>
+     * <p>Postcondition: renders ChoiceCraft_V1_0_6_Alpha.state of ChoiceCraft.</p>
      *
      * @param state that is not null.
      */

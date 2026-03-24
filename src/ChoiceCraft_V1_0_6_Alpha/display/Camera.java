@@ -9,7 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 
@@ -60,11 +60,11 @@ public final class Camera {
     }
 
     /**
-     * Update ChoiceCraft camera based on current game state.
-     * <p>Precondition: current state is not null.</p>
-     * <p>Postcondition: update ChoiceCraft camera based on current game state.</p>
+     * Update ChoiceCraft camera based on current game ChoiceCraft_V1_0_6_Alpha.state.
+     * <p>Precondition: current ChoiceCraft_V1_0_6_Alpha.state is not null.</p>
+     * <p>Postcondition: update ChoiceCraft camera based on current game ChoiceCraft_V1_0_6_Alpha.state.</p>
      *
-     * @param state current ChoiceCraft game state that is not null.
+     * @param state current ChoiceCraft game ChoiceCraft_V1_0_6_Alpha.state that is not null.
      */
     public void update(State state) {
         if (objectWithFocus.isPresent()) {

@@ -5,7 +5,7 @@
  * Author: David Liu.                                                                                   Date:3/18/2026
  * ========================================================================================================================
  */
-package ChoiceCraft_V1_0_6_Alpha.game.state;
+package ChoiceCraft_V1_0_6_Alpha.state;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
@@ -48,7 +48,7 @@ public abstract class State {
     }
 
     /**
-     * Update state in ChoiceCraft multiple times per frame. (UPS)
+     * Update ChoiceCraft_V1_0_6_Alpha.state in ChoiceCraft multiple times per frame. (UPS)
      * <p>Precondition: none</p>
      * <p>Postcondition: update State once.</p>
      */

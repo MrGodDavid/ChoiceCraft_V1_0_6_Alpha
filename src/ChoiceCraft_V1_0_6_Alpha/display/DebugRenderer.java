@@ -8,11 +8,10 @@
 package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Greeting;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.CollisionBox;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 
@@ -50,7 +49,7 @@ public final class DebugRenderer {
                         drawSpreadingArea(spreadingCollisionBox, g, camera);
                     }
                 }
-//                drawEffectLabel(state, g);
+//                drawEffectLabel(ChoiceCraft_V1_0_6_Alpha.state, g);
             }
         }
     }

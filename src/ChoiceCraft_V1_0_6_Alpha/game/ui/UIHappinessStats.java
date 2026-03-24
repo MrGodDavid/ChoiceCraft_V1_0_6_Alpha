@@ -7,11 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.game.ui;
 
-import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
-import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
-import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.GameState;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.ui.HorizontalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
@@ -54,7 +51,7 @@ public final class UIHappinessStats extends HorizontalContainer {
      * <p>Precondition: none.</p>
      * <p>Postcondition: UIComponent subclasses each behaves the way defined by the implementation of this method.</p>
      *
-     * @param state that is the current game state.
+     * @param state that is the current game ChoiceCraft_V1_0_6_Alpha.state.
      */
     @Override
     public void update(State state) {

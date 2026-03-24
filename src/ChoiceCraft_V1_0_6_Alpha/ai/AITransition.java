@@ -8,7 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.ai;
 
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
  * Transition between different AI behaviors of game object of ChoiceCraft.
@@ -28,10 +28,10 @@ public final class AITransition {
 
     /**
      * Wrapper method of {@link AICondition#isMet(State, MovingEntity)}.
-     * <p>Precondition: state and currentCharacter are not null.</p>
+     * <p>Precondition: ChoiceCraft_V1_0_6_Alpha.state and currentCharacter are not null.</p>
      * <p>Postcondition: return a boolean that indicates whether the game object should transit to other AIState.</p>
      *
-     * @param state            current game state that is not null.
+     * @param state            current game ChoiceCraft_V1_0_6_Alpha.state that is not null.
      * @param currentCharacter current game object that is not null.
      * @return true if current game object should transit to its next AIState.
      */
@@ -40,20 +40,20 @@ public final class AITransition {
     }
 
     /**
-     * Get the name key that indicates the next state of game object.
+     * Get the name key that indicates the next ChoiceCraft_V1_0_6_Alpha.state of game object.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: return the name key that indicates the next state of game object.</p>
+     * <p>Postcondition: return the name key that indicates the next ChoiceCraft_V1_0_6_Alpha.state of game object.</p>
      *
-     * @return the name key that indicates the next state of game object.
+     * @return the name key that indicates the next ChoiceCraft_V1_0_6_Alpha.state of game object.
      */
     public String getNextState() {
         return nextState;
     }
 
     /**
-     * Set a new state for current AI State. Use this method when point to multiple state.
+     * Set a new ChoiceCraft_V1_0_6_Alpha.state for current AI State. Use this method when point to multiple ChoiceCraft_V1_0_6_Alpha.state.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: set a new state for current AI State.</p>
+     * <p>Postcondition: set a new ChoiceCraft_V1_0_6_Alpha.state for current AI State.</p>
      *
      * @param nextState that is not null.
      */

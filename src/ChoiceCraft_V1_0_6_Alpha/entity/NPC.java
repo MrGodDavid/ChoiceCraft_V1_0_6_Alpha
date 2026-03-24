@@ -11,7 +11,7 @@ import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
 import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -39,7 +39,7 @@ public abstract class NPC extends Humanoid {
      * <p>Postcondition: game loop update all game objects that has own update() implementation
      * every frame ups times</p>
      *
-     * @param state current state that is not null.
+     * @param state current ChoiceCraft_V1_0_6_Alpha.state that is not null.
      */
     @Override
     public void update(State state) {

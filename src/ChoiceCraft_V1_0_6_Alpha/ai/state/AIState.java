@@ -9,8 +9,7 @@ package ChoiceCraft_V1_0_6_Alpha.ai.state;
 
 import ChoiceCraft_V1_0_6_Alpha.ai.AITransition;
 import ChoiceCraft_V1_0_6_Alpha.entity.MovingEntity;
-import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
-import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
  * AI States.
@@ -36,9 +35,9 @@ public abstract class AIState {
     protected abstract AITransition initializeTransition();
 
     /**
-     * Update ChoiceCraft game object ai state.
+     * Update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.
      * <p>Precondition: none.</p>
-     * <p>Postcondition: update ChoiceCraft game object ai state.</p>
+     * <p>Postcondition: update ChoiceCraft game object ai ChoiceCraft_V1_0_6_Alpha.state.</p>
      *
      * @param state            that is not null.
      * @param currentCharacter that is not null.
@@ -47,10 +46,10 @@ public abstract class AIState {
 
     /**
      * Wrapper method of {@link AITransition#shouldTransition(State, MovingEntity)}.
-     * <p>Precondition: state and currentCharacter are not null.</p>
+     * <p>Precondition: ChoiceCraft_V1_0_6_Alpha.state and currentCharacter are not null.</p>
      * <p>Postcondition: return a boolean that indicates whether the game object should transit to other AIState.</p>
      *
-     * @param state            current game state that is not null.
+     * @param state            current game ChoiceCraft_V1_0_6_Alpha.state that is not null.
      * @param currentCharacter current game object that is not null.
      * @return true if current game object should transit to its next AIState.
      */
@@ -61,9 +60,9 @@ public abstract class AIState {
     /**
      * Wrapper method of {@link AITransition#getNextState()}
      * <p>Precondition: none.</p>
-     * <p>Postcondition: return the name key that indicates the next state of game object.</p>
+     * <p>Postcondition: return the name key that indicates the next ChoiceCraft_V1_0_6_Alpha.state of game object.</p>
      *
-     * @return the name key that indicates the next state of game object.
+     * @return the name key that indicates the next ChoiceCraft_V1_0_6_Alpha.state of game object.
      */
     public String getNextState() {
         return transition.getNextState();
@@ -72,7 +71,7 @@ public abstract class AIState {
     /**
      * Wrapper method of {@link AITransition#setNextState(String)}
      * <p>Precondition: none.</p>
-     * <p>Postcondition: set a new state for current AI State.</p>
+     * <p>Postcondition: set a new ChoiceCraft_V1_0_6_Alpha.state for current AI State.</p>
      *
      * @param nextState that is not null.
      */
