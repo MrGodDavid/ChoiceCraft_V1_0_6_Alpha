@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -29,6 +30,7 @@ public class Enemy extends Humanoid {
         super(entityController, spriteLibrary);
         this.animationManager = new AnimationManager("zombie_basic_idle_8dir_spritesheet",
                 spriteLibrary.getSpriteSet("zombie_basic"));
+        motion = new Motion(0.5);
         aiManager = new AIManager("enemy_idle");
     }
 

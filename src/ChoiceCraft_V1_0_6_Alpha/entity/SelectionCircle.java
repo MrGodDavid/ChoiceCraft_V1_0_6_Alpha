@@ -22,14 +22,14 @@ import java.awt.image.BufferedImage;
  * @author David Liu
  * @since 3/22/2026
  */
-public class SelectionCircle extends GameObject{
+public final class SelectionCircle extends GameObject{
 
     private Color color;
     private BufferedImage sprite;
 
     public SelectionCircle() {
-        color = Color.ORANGE;
-        size = new Size(32, 16);
+        color = new Color(0, 255, 255);
+        size = new Size(24, 16);
         renderOffset = new Position(size.getWidth() / 2, -6);
         renderOrder = 4;
         collisionBoxOffset = renderOffset;
@@ -41,7 +41,8 @@ public class SelectionCircle extends GameObject{
         Graphics2D g2d = sprite.createGraphics();
 
         g2d.setColor(color);
-        g2d.fillOval(0, 0, size.getWidth(), size.getHeight());
+        g2d.setStroke(new BasicStroke(2f));
+        g2d.drawOval(0, 0, size.getWidth(), size.getHeight());
         g2d.dispose();
     }
 
