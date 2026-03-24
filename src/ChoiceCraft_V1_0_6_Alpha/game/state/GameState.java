@@ -21,9 +21,16 @@ import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
+import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Playing state in ChoiceCraft. This state indicates that player is playing ChoiceCraft.
@@ -33,11 +40,23 @@ import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
  */
 public final class GameState extends State {
 
+    private List<Condition> victoryConditions;
+    private List<Condition> defeatConditions;
+    private boolean playing;
+
     public GameState(Size windowSize, KeyboardInput keyboardInput) {
         super(windowSize, keyboardInput);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
+        playing = true;
         initializeCharacters();
         initializeUI(windowSize);
+        initializeConditions();
+    }
+
+    private void initializeConditions() {
+        victoryConditions = List.of(() -> getNumberOfHappy() == 0);
+        defeatConditions = List.of(() -> (double) getNumberOfHappy() / getNumberOfNPCs() > 0.25);
+
     }
 
     private void initializeUI(Size windowSize) {
@@ -61,7 +80,42 @@ public final class GameState extends State {
         initializeAllNPCs(100);
         initializeAllEnemies(50);
 
-        makeNumberOfNPCHappy(10);
+        makeNumberOfNPCHappy(50);
+    }
+
+    /**
+     * Update state in ChoiceCraft multiple times per frame. (UPS)
+     * <p>Precondition: none</p>
+     * <p>Postcondition: update State once.</p>
+     */
+    @Override
+    public void update() {
+        super.update();
+
+        if (playing) {
+            if (victoryConditions.stream().allMatch(Condition::isMet)) {
+                win();
+            }
+            if (defeatConditions.stream().allMatch(Condition::isMet)) {
+                lose();
+            }
+        }
+    }
+
+    private void win() {
+        playing = false;
+        VerticalContainer winLabelContainer = new VerticalContainer(camera.getSize());
+        winLabelContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        winLabelContainer.addUIComponent(new UIText("VICTORY!"));
+        uiContainers.add(winLabelContainer);
+    }
+
+    private void lose() {
+        playing = false;
+        VerticalContainer loseLabelContainer = new VerticalContainer(camera.getSize());
+        loseLabelContainer.setAlignment(new Alignment(Alignment.Position.CENTER,  Alignment.Position.CENTER));
+        loseLabelContainer.addUIComponent(new UIText("DEFEAT..."));
+        uiContainers.add(loseLabelContainer);
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -104,6 +158,12 @@ public final class GameState extends State {
     public long getNumberOfScared() {
         return getGameObjectsOfClass(Humanoid.class).stream()
                 .filter(humanoid -> humanoid.isAffectedBy(Happy.class) && humanoid.isAffectedBy(Scared.class))
+                .count();
+    }
+
+    public long getNumberOfNPCs() {
+        return getGameObjectsOfClass(Humanoid.class).stream()
+                .filter(humanoid -> humanoid.isAffectedBy(Happy.class))
                 .count();
     }
 }
