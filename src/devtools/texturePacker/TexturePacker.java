@@ -171,6 +171,7 @@ public class TexturePacker {
         ATTACKING_SHORT_IRON_SWORD,
         GREETING,
         HURTING,
+        SCARED,
         DEFAULT;
 
         private final String key;
@@ -186,7 +187,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ANGRY_PARTICLE, ANIMATION_STATE.DEFAULT, 5, 1);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.SCARED, 12, 8);
         texturePacker.pack();
     }
 }
