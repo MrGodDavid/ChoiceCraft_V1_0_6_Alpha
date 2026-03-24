@@ -16,7 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.state.State;
  * @author David Liu.
  * @since 3/23/2026
  */
-public class JumpScared extends Action{
+public final class JumpScared extends Action{
 
     public JumpScared() {
         super();

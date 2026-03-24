@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.controller;
 
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 
 import java.awt.event.KeyEvent;
 
@@ -19,9 +19,9 @@ import java.awt.event.KeyEvent;
  */
 public final class PlayerController implements EntityController {
 
-    private final KeyboardInput keyInput;
+    private final Input keyInput;
 
-    public PlayerController(KeyboardInput keyInput) {
+    public PlayerController(Input keyInput) {
         this.keyInput = keyInput;
     }
 

@@ -8,13 +8,12 @@
 package ChoiceCraft_V1_0_6_Alpha.game.state;
 
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
-import ChoiceCraft_V1_0_6_Alpha.entity.Angry_Particle;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.Time;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
@@ -33,17 +32,17 @@ public abstract class State {
     protected final List<GameObject> gameObjects;
     protected final List<UIContainer> uiContainers;
     protected final SpriteLibrary spriteLibrary;
-    protected final KeyboardInput keyboardInput;
+    protected final Input input;
 
     protected ChoiceCraftMap gameMap;
     protected Camera camera;
     protected Time time;
 
-    public State(Size windowSize, KeyboardInput keyboardInput) {
+    public State(Size windowSize, Input input) {
         this.gameObjects = new ArrayList<>();
         this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
-        this.keyboardInput = keyboardInput;
+        this.input = input;
         this.camera = new Camera(windowSize);
         this.time = new Time();
     }
@@ -61,6 +60,14 @@ public abstract class State {
             uiContainer.update(this);
         }
         camera.update(this);
+        handleMouseInputs();
+    }
+
+    private void handleMouseInputs() {
+        if (input.isMouseClicked()) {
+            System.out.println("Mouse clicked at position: " + input.getCursorPosition());
+        }
+        input.clearMouseClick();
     }
 
     private void updateGameObjects() {

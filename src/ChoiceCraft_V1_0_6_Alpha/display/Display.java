@@ -8,7 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.display;
 
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,15 +30,15 @@ public final class Display extends JFrame {
      * Initializes ChoiceCraft game window. Creates a JFrame as game window. Sets the title, dimension, closing operation,
      * resizeable, opening location, and visibility of game window.
      * <p>Construct a canva as paint component of game.ChoiceCraft game.</p>
-     * <p>Add {@link KeyboardInput keyboardInput} to keyListener to game window.</p>
+     * <p>Add {@link Input keyboardInput} to keyListener to game window.</p>
      * <p>Precondition: window width and height are positive numbers. The KeyboardInput is not null.</p>
      * <p>Postcondition: creates ChoiceCraft game window with root paint component.</p>
      *
      * @param width         that is a positive integer.
      * @param height        that is a positive integer.
-     * @param keyboardInput that is not null.
+     * @param input that is not null.
      */
-    public Display(int width, int height, KeyboardInput keyboardInput) {
+    public Display(int width, int height, Input input) {
         super.setTitle("ChoiceCraft V1.0.6 Alpha");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setResizable(false);
@@ -49,12 +49,14 @@ public final class Display extends JFrame {
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setFocusable(false);
+        canvas.addMouseListener(input);
+        canvas.addMouseMotionListener(input);
+
         super.add(canvas);
-        super.addKeyListener(keyboardInput);
+        super.addKeyListener(input);
         super.pack();
 
         canvas.createBufferStrategy(3);
-
         super.setLocationRelativeTo(null);
         super.setVisible(true);
     }

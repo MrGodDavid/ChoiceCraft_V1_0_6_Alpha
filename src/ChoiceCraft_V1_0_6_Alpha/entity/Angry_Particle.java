@@ -20,7 +20,7 @@ import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
  * @author David Liu
  * @since 3/23/2026
  */
-public class Angry_Particle extends MovingEntity{
+public final class Angry_Particle extends MovingEntity{
 
     private boolean halted;
 

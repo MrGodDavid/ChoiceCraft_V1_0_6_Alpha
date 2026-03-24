@@ -8,7 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.controller;
 
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 
 import java.awt.event.KeyEvent;
 
@@ -21,9 +21,9 @@ import java.awt.event.KeyEvent;
  */
 public class GameController {
 
-    private final KeyboardInput keyInput;
+    private final Input keyInput;
 
-    public GameController(KeyboardInput keyInput) {
+    public GameController(Input keyInput) {
         this.keyInput = keyInput;
     }
 

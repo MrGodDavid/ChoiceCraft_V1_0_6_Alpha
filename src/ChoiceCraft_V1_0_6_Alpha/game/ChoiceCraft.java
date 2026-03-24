@@ -12,7 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
 import ChoiceCraft_V1_0_6_Alpha.game.state.GameState;
 import ChoiceCraft_V1_0_6_Alpha.game.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.display.Display;
 
 /**
@@ -26,7 +26,7 @@ public final class ChoiceCraft {
     public static final int SPRITE_SIZE = 64;
 
     private final Display display;
-    private final KeyboardInput keyboardInput;
+    private final Input input;
     private final ChoiceCraftSettings settings;
     private final GameController gameController;
     private State state;
@@ -40,11 +40,11 @@ public final class ChoiceCraft {
      * @param height that is a positive integer.
      */
     public ChoiceCraft(int width, int height) {
-        this.keyboardInput = new KeyboardInput();
-        this.display = new Display(width, height, keyboardInput);
+        this.input = new Input();
+        this.display = new Display(width, height, input);
         this.settings = new ChoiceCraftSettings(false);
-        this.gameController = new GameController(keyboardInput);
-        this.state = new GameState(new Size(width, height), this.keyboardInput);
+        this.gameController = new GameController(input);
+        this.state = new GameState(new Size(width, height), this.input);
     }
 
     /**

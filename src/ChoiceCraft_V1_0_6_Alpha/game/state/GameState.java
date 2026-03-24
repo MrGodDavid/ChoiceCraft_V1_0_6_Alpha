@@ -15,7 +15,6 @@ import ChoiceCraft_V1_0_6_Alpha.entity.NPC;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
-import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.JumpScared;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
@@ -23,13 +22,12 @@ import ChoiceCraft_V1_0_6_Alpha.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
-import ChoiceCraft_V1_0_6_Alpha.input.KeyboardInput;
+import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,8 +42,8 @@ public final class GameState extends State {
     private List<Condition> defeatConditions;
     private boolean playing;
 
-    public GameState(Size windowSize, KeyboardInput keyboardInput) {
-        super(windowSize, keyboardInput);
+    public GameState(Size windowSize, Input input) {
+        super(windowSize, input);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
         playing = true;
         initializeCharacters();
@@ -71,7 +69,7 @@ public final class GameState extends State {
      */
     private void initializeCharacters() {
         SelectionCircle circle = new SelectionCircle();
-        Player player = new Player(new PlayerController(keyboardInput), spriteLibrary, circle);
+        Player player = new Player(new PlayerController(input), spriteLibrary, circle);
         gameObjects.add(player);
         camera.focusOn(player);
 
