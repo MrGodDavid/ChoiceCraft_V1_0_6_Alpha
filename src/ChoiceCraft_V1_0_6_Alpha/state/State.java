@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.state;
 
+import ChoiceCraft_V1_0_6_Alpha.audio.AudioPlayer;
 import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
@@ -35,6 +36,7 @@ public abstract class State {
     protected final SpriteLibrary spriteLibrary;
     protected final Input input;
 
+    protected AudioPlayer audioPlayer;
     protected ChoiceCraftMap gameMap;
     protected Camera camera;
     protected Time time;
@@ -47,6 +49,7 @@ public abstract class State {
         this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.input = input;
+        this.audioPlayer = new AudioPlayer();
         this.windowSize = windowSize;
         this.camera = new Camera(windowSize);
         this.time = new Time();

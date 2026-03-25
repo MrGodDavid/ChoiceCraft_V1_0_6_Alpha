@@ -17,10 +17,14 @@ public final class ChoiceCraftSettings {
 
     private boolean debugMode;
     private double gameSpeedMultiplier;
+    private float musicVolume;
+    private float soundVolume;
 
     public ChoiceCraftSettings(boolean debugMode) {
         this.debugMode = debugMode;
         this.gameSpeedMultiplier = 1.0;
+        musicVolume = 0f;
+        soundVolume = 0f;
     }
 
     public boolean isDebugMode() {
@@ -41,5 +45,21 @@ public final class ChoiceCraftSettings {
 
     public double getGameSpeedMultiplier() {
         return gameSpeedMultiplier;
+    }
+
+    public float getMusicVolume() {
+        return musicVolume;
+    }
+
+    public void setMusicVolume(float musicVolume) {
+        this.musicVolume = musicVolume;
+    }
+
+    public float getSoundVolume() {
+        return soundVolume;
+    }
+
+    public void setSoundVolume(float soundVolume) {
+        this.soundVolume = soundVolume;
     }
 }

@@ -20,7 +20,7 @@ import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UIButton;
  * @author David Liu.
  * @since 3/24/2026
  */
-public class UIOptionMenu extends VerticalContainer {
+public final class UIOptionMenu extends VerticalContainer {
 
     public UIOptionMenu(Size windowSize) {
         super(windowSize);
