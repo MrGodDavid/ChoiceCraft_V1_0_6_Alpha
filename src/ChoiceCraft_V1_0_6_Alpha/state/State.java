@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.display.Camera;
 import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.Time;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -35,6 +36,7 @@ public abstract class State {
     protected final List<UIContainer> uiContainers;
     protected final SpriteLibrary spriteLibrary;
     protected final Input input;
+    protected final GameSettings gameSettings;
 
     protected AudioPlayer audioPlayer;
     protected ChoiceCraftMap gameMap;
@@ -44,12 +46,13 @@ public abstract class State {
 
     private State nextState;
 
-    public State(Size windowSize, Input input) {
+    public State(Size windowSize, Input input, GameSettings gameSettings) {
         this.gameObjects = new ArrayList<>();
         this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.input = input;
-        this.audioPlayer = new AudioPlayer();
+        this.gameSettings = gameSettings;
+        this.audioPlayer = new AudioPlayer(this.gameSettings.getAudioSettings());
         this.windowSize = windowSize;
         this.camera = new Camera(windowSize);
         this.time = new Time();
@@ -63,6 +66,7 @@ public abstract class State {
      * @param game ChoiceCraft game reference.
      */
     public void update(ChoiceCraft game) {
+        audioPlayer.update();
         time.update();
         sortObjectsByPosition();
         updateGameObjects();
@@ -167,5 +171,9 @@ public abstract class State {
 
     public void setNextState(State nextState) {
         this.nextState = nextState;
+    }
+
+    public GameSettings getGameSettings() {
+        return gameSettings;
     }
 }

@@ -96,7 +96,9 @@ public abstract class UIContainer extends UIComponent {
         }
 
         this.relativePosition = new Position(x, y);
-        this.absolutePosition = new Position(x, y);
+        if (parent == null) {
+            this.absolutePosition = new Position(x, y);
+        }
         calculateChildrenPositions();
     }
 
@@ -148,10 +150,7 @@ public abstract class UIContainer extends UIComponent {
 
     public void addUIComponent(UIComponent child) {
         children.add(child);
-    }
-
-    public void addAllUIComponents(UIComponent... children) {
-        this.children.addAll(List.of(children));
+        child.setParent(this);
     }
 
     public void setBackground(Color backgroundColor) {

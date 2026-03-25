@@ -19,6 +19,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
@@ -47,8 +48,8 @@ public final class GameState extends State {
     private List<Condition> defeatConditions;
     private boolean playing;
 
-    public GameState(Size windowSize, Input input) {
-        super(windowSize, input);
+    public GameState(Size windowSize, Input input, GameSettings gameSettings) {
+        super(windowSize, input,  gameSettings);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
         playing = true;
         initializeCharacters();
@@ -112,7 +113,7 @@ public final class GameState extends State {
         winContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         winContainer.setBackground(Color.DARK_GRAY);
         winContainer.addUIComponent(new UIText("VICTORY!"));
-        winContainer.addUIComponent(new UIButton("MENU", (state) -> state.setNextState(new MenuState(windowSize, input))));
+        winContainer.addUIComponent(new UIButton("MENU", (state) -> state.setNextState(new MenuState(windowSize, input, gameSettings))));
         winContainer.addUIComponent(new UIButton("OPTIONS", (state) -> System.out.println("BUTTON 2 PRESSED!")));
         winContainer.addUIComponent(new UIButton("EXIT", (state) -> System.exit(0)));
         uiContainers.add(winContainer);

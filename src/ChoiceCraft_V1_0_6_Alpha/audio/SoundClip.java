@@ -7,7 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.audio;
 
-import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.AudioSettings;
 
 import javax.sound.sampled.Clip;
 
@@ -24,15 +24,15 @@ public final class SoundClip extends AudioClip{
     }
 
     /**
-     * Get the volume of an Audio clip. Wrapper method of {@link ChoiceCraftSettings#getSoundVolume()} ()}.
+     * Get the volume of an Audio clip. Wrapper method of {@link ChoiceCraft_V1_0_6_Alpha.game.settings.AudioSettings#getSoundVolume()} ()}.
      * <p>Precondition: none.</p>
      * <p>Postcondition: get the volume of an Audio clip. </p>
      *
-     * @param settings ChoiceCraft game settings.
+     * @param audioSettings ChoiceCraft game settings.
      * @return the volume of an Audio clip.
      */
     @Override
-    protected float getVolume(ChoiceCraftSettings settings) {
-        return settings.getSoundVolume();
+    protected float getVolume(AudioSettings audioSettings) {
+        return audioSettings.getSoundVolume();
     }
 }

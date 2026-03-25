@@ -7,7 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.audio;
 
-import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.AudioSettings;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
@@ -27,9 +28,15 @@ public abstract class AudioClip {
         clip.start();
     }
 
-    public void update(ChoiceCraftSettings settings) {
+    public void update(AudioSettings audioSettings) {
+        setVolume(audioSettings);
+    }
+
+    public void setVolume(AudioSettings audioSettings) {
         final FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        control.setValue(getVolume(settings));
+        float range = control.getMaximum() - control.getMinimum();
+        float gain = (range * getVolume(audioSettings)) + control.getMinimum();
+        control.setValue(gain);
     }
 
     /**
@@ -37,10 +44,10 @@ public abstract class AudioClip {
      * <p>Precondition: none.</p>
      * <p>Postcondition: get the volume of an Audio clip. </p>
      *
-     * @param settings ChoiceCraft game settings.
+     * @param audioSettings ChoiceCraft game settings.
      * @return the volume of an Audio clip.
      */
-    protected abstract float getVolume(ChoiceCraftSettings settings);
+    protected abstract float getVolume(AudioSettings audioSettings);
 
     public boolean hasFinishedPlaying() {
         return !clip.isRunning();

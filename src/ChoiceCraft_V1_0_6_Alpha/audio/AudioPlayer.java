@@ -7,7 +7,8 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.audio;
 
-import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.AudioSettings;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
@@ -24,17 +25,19 @@ import java.util.List;
  */
 public final class AudioPlayer {
 
+    private AudioSettings audioSettings;
     private List<AudioClip> audioClips;
 
-    public AudioPlayer() {
+    public AudioPlayer(AudioSettings audioSettings) {
+        this.audioSettings = audioSettings;
         audioClips = new ArrayList<>();
     }
 
-    public void update(ChoiceCraftSettings settings) {
+    public void update() {
         Iterator<AudioClip> iterator = audioClips.iterator();
         while (iterator.hasNext()) {
             AudioClip audioClip = iterator.next();
-            audioClip.update(settings);
+            audioClip.update(audioSettings);
             if (audioClip.hasFinishedPlaying()) {
                 audioClip.cleanUp();
                 iterator.remove();
@@ -44,12 +47,16 @@ public final class AudioPlayer {
 
     public void playMusic(String fileName) {
         final Clip clip = getClip(fileName);
-        audioClips.add(new MusicClip(clip));
+        final MusicClip musicClip = new MusicClip(clip);
+        musicClip.setVolume(audioSettings);
+        audioClips.add(musicClip);
     }
 
     public void playSound(String fileName) {
         final Clip clip = getClip(fileName);
-        audioClips.add(new SoundClip(clip));
+        SoundClip soundClip = new SoundClip(clip);
+        soundClip.setVolume(audioSettings);
+        audioClips.add(soundClip);
     }
 
     private Clip getClip(String fileName) {

@@ -13,18 +13,17 @@ package ChoiceCraft_V1_0_6_Alpha.game.settings;
  * @author David Liu
  * @since 3/21/2026
  */
-public final class ChoiceCraftSettings {
+public final class GameSettings {
+
+    private final AudioSettings audioSettings;
 
     private boolean debugMode;
     private double gameSpeedMultiplier;
-    private float musicVolume;
-    private float soundVolume;
 
-    public ChoiceCraftSettings(boolean debugMode) {
+    public GameSettings(boolean debugMode) {
+        this.audioSettings = new AudioSettings();
         this.debugMode = debugMode;
         this.gameSpeedMultiplier = 1.0;
-        musicVolume = 0f;
-        soundVolume = 0f;
     }
 
     public boolean isDebugMode() {
@@ -47,19 +46,7 @@ public final class ChoiceCraftSettings {
         return gameSpeedMultiplier;
     }
 
-    public float getMusicVolume() {
-        return musicVolume;
-    }
-
-    public void setMusicVolume(float musicVolume) {
-        this.musicVolume = musicVolume;
-    }
-
-    public float getSoundVolume() {
-        return soundVolume;
-    }
-
-    public void setSoundVolume(float soundVolume) {
-        this.soundVolume = soundVolume;
+    public AudioSettings getAudioSettings() {
+        return audioSettings;
     }
 }

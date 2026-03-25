@@ -31,6 +31,8 @@ public abstract class UIComponent {
     protected Spacing margin;
     protected Spacing padding;
 
+    protected UIContainer parent;
+
     /**
      * Default no-arg constructor.
      * <p>
@@ -108,5 +110,9 @@ public abstract class UIComponent {
 
     public void setSize(Size size) {
         this.size = size;
+    }
+
+    public void setParent(UIContainer parent) {
+        this.parent = parent;
     }
 }

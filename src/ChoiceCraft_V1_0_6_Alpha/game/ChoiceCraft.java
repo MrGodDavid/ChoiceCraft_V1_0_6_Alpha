@@ -8,8 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.game;
 
 import ChoiceCraft_V1_0_6_Alpha.controller.GameController;
-import ChoiceCraft_V1_0_6_Alpha.game.settings.ChoiceCraftSettings;
-import ChoiceCraft_V1_0_6_Alpha.state.game.GameState;
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
@@ -28,7 +27,7 @@ public final class ChoiceCraft {
 
     private final Display display;
     private final Input input;
-    private final ChoiceCraftSettings settings;
+    private final GameSettings settings;
     private final GameController gameController;
     private State state;
 
@@ -43,9 +42,9 @@ public final class ChoiceCraft {
     public ChoiceCraft(int width, int height) {
         this.input = new Input();
         this.display = new Display(width, height, input);
-        this.settings = new ChoiceCraftSettings(false);
+        this.settings = new GameSettings(false);
         this.gameController = new GameController(input);
-        this.state = new MenuState(new Size(width, height), this.input);
+        this.state = new MenuState(new Size(width, height), this.input, settings);
     }
 
     /**
@@ -68,7 +67,7 @@ public final class ChoiceCraft {
         display.render(state, settings.isDebugMode());
     }
 
-    public ChoiceCraftSettings getSettings() {
+    public GameSettings getSettings() {
         return settings;
     }
 
