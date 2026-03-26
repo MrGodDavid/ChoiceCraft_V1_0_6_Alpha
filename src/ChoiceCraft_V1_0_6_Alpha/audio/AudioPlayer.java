@@ -63,6 +63,9 @@ public final class AudioPlayer {
     public void playMusic(String fileName) {
         final Clip clip = getClip(fileName);
         final MusicClip musicClip = new MusicClip(clip);
+        if (clip != null) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
         musicClip.setVolume(audioSettings);
         audioClips.add(musicClip);
     }
