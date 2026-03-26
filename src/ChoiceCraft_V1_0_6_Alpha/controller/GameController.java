@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
  * @author David Liu
  * @since 3/22/2026
  */
-public class GameController {
+public final class GameController {
 
     private final Input keyInput;
 

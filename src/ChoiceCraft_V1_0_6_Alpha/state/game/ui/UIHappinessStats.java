@@ -24,8 +24,8 @@ import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
  */
 public final class UIHappinessStats extends HorizontalContainer {
 
-    private UIText numberOfHappy;
-    private UIText numberOfNonchalant;
+    private final UIText numberOfHappy;
+    private final UIText numberOfNonchalant;
 
     public UIHappinessStats(Size windowSize) {
         super(windowSize);

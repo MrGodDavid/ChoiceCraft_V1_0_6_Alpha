@@ -13,7 +13,7 @@ package ChoiceCraft_V1_0_6_Alpha.game.settings;
  * @author David Liu
  * @since 3/24/2026
  */
-public class AudioSettings {
+public final class AudioSettings {
 
     private float musicVolume;
     private float soundVolume;

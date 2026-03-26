@@ -8,7 +8,6 @@
 package ChoiceCraft_V1_0_6_Alpha.audio;
 
 import ChoiceCraft_V1_0_6_Alpha.game.settings.AudioSettings;
-import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
@@ -25,14 +24,21 @@ import java.util.List;
  */
 public final class AudioPlayer {
 
-    private AudioSettings audioSettings;
-    private List<AudioClip> audioClips;
+    private final AudioSettings audioSettings;
+    private final List<AudioClip> audioClips;
 
     public AudioPlayer(AudioSettings audioSettings) {
         this.audioSettings = audioSettings;
         audioClips = new ArrayList<>();
     }
 
+    /**
+     * Update all {@link AudioClip} in the {@code audioClips} list. Remove any audio clip if the clip is finished
+     * playing. First use the method {@link AudioClip#cleanUp()} to free the memory that stored the audio clip. Second,
+     * remove the audio clip from the {@code audioClips} list.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: remove all audio clips from the list if the clip finished playing in ChoiceCraft.</p>
+     */
     public void update() {
         Iterator<AudioClip> iterator = audioClips.iterator();
         while (iterator.hasNext()) {
@@ -45,6 +51,15 @@ public final class AudioPlayer {
         }
     }
 
+    /**
+     * Play a specific music clip with the name specified in the {@code fileName}. Note: use the
+     * {@link MusicClip#setVolume(AudioSettings)} to set the volume of music clip. Second, add the audio clip into the
+     * {@code audioClips} list.
+     * <p>Precondition: fileName is not null.</p>
+     * <p>Postcondition: set the volume of the clip and add the clip into the {@code audioClips} list.</p>
+     *
+     * @param fileName that is not null.
+     */
     public void playMusic(String fileName) {
         final Clip clip = getClip(fileName);
         final MusicClip musicClip = new MusicClip(clip);
@@ -52,6 +67,15 @@ public final class AudioPlayer {
         audioClips.add(musicClip);
     }
 
+    /**
+     * Play a specific music clip with the name specified in the {@code fileName}. Note: use the
+     * {@link SoundClip#setVolume(AudioSettings)} to set the volume of music clip. Second, add the audio clip into the
+     * {@code audioClips} list.
+     * <p>Precondition: fileName is not null.</p>
+     * <p>Postcondition: set the volume of the clip and add the clip into the {@code audioClips} list.</p>
+     *
+     * @param fileName that is not null.
+     */
     public void playSound(String fileName) {
         final Clip clip = getClip(fileName);
         SoundClip soundClip = new SoundClip(clip);
