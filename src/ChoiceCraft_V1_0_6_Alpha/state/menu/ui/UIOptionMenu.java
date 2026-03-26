@@ -7,14 +7,20 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.state.menu.ui;
 
+import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.state.menu.MenuState;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIComponent;
+import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UIButton;
 import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UISlider;
+
+import java.awt.*;
 
 /**
  * Option menu of ChoiceCraft.
@@ -24,20 +30,42 @@ import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UISlider;
  */
 public final class UIOptionMenu extends VerticalContainer {
 
-    private UISlider musicVolumeSlider;
-    private UIText musicVolumeLabel;
+    private final UISlider musicVolumeSlider;
+    private final UIText musicVolumeLabel;
 
-    public UIOptionMenu(Size windowSize) {
+    private final UISlider soundVolumeSlider;
+    private final UIText soundVolumeLabel;
+
+    public UIOptionMenu(Size windowSize, GameSettings gameSettings) {
         super(windowSize);
         alignment = new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER);
 
         musicVolumeSlider = new UISlider(0, 1);
+        musicVolumeSlider.setValue(gameSettings.getAudioSettings().getMusicVolume());
         musicVolumeLabel = new UIText("");
 
-        addUIComponent(new UIText("OPTIONS"));
-        addUIComponent(musicVolumeSlider);
-        addUIComponent(musicVolumeLabel);
-        addUIComponent(new UIButton("BACK", (state) -> ((MenuState) state).enterMenu(new UIMainMenu(windowSize))));
+        soundVolumeSlider = new UISlider(0, 1);
+        soundVolumeSlider.setValue(gameSettings.getAudioSettings().getSoundVolume());
+        soundVolumeLabel = new UIText("");
+
+        UIContainer labelContainer = new VerticalContainer(windowSize);
+        labelContainer.setMargin(UIComponent.ZERO_MARGIN);
+        labelContainer.setBackground(Color.DARK_GRAY);
+        labelContainer.addUIComponent(new UIText("OPTIONS"));
+
+        UIContainer contentContainer = new VerticalContainer(windowSize);
+        contentContainer.setMargin(UIComponent.ZERO_MARGIN);
+        contentContainer.setPadding(new Spacing(10));
+        contentContainer.setBackground(Color.DARK_GRAY);
+        contentContainer.addUIComponent(musicVolumeLabel);
+        contentContainer.addUIComponent(musicVolumeSlider);
+        contentContainer.addUIComponent(soundVolumeLabel);
+        contentContainer.addUIComponent(soundVolumeSlider);
+        contentContainer.addUIComponent(new UIButton("BACK",
+                (state) -> ((MenuState) state).enterMenu(new UIMainMenu(windowSize))));
+
+        addUIComponent(labelContainer);
+        addUIComponent(contentContainer);
     }
 
     /**
@@ -55,6 +83,9 @@ public final class UIOptionMenu extends VerticalContainer {
 
     private void handleVolume(State state) {
         state.getGameSettings().getAudioSettings().setMusicVolume((float) musicVolumeSlider.getValue());
-        musicVolumeLabel.setText(String.format("VOLUME: %d", Math.round(musicVolumeSlider.getValue() * 100)));
+        musicVolumeLabel.setText(String.format("MUSIC VOL: %d", Math.round(musicVolumeSlider.getValue() * 100)));
+
+        state.getGameSettings().getAudioSettings().setSoundVolume((float) soundVolumeSlider.getValue());
+        soundVolumeLabel.setText(String.format("SOUND VOL: %d", Math.round(soundVolumeSlider.getValue() * 100)));
     }
 }

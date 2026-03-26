@@ -73,6 +73,32 @@ public class UIButton extends UIClickable {
     }
 
     /**
+     * Define the drag function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onDrag() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    @Override
+    protected void onDrag(State state) {
+
+    }
+
+    /**
+     * Define the focusing function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onFocus() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    @Override
+    protected void onFocus(State state) {
+        state.getAudioPlayer().playSound("Button_OnFocus.wav");
+    }
+
+    /**
      * Get the sprite from UIComponents. {@link Renderer} will render the sprites via
      * {@link Renderer#render(State, Graphics)}
      * <p>Precondition: none.</p>

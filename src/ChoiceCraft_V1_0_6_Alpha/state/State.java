@@ -130,6 +130,7 @@ public abstract class State {
      * @param <T>         subclass type of {@link GameObject}.
      * @return a list of gameObject of filterClass type.
      */
+    @SuppressWarnings("unchecked")
     public final <T extends GameObject> List<T> getGameObjectsOfClass(Class<T> filterClass) {
         return gameObjects.stream()
                 .filter(filterClass::isInstance)
@@ -140,6 +141,12 @@ public abstract class State {
     public final void spawn(GameObject gameObject) {
         this.gameObjects.add(gameObject);
     }
+
+    public void cleanUp() {
+        audioPlayer.clear();
+    }
+
+    // =============================================== [GETTERS & SETTERS] ===============================================
 
     public final List<GameObject> getGameObjects() {
         return gameObjects;
@@ -175,5 +182,9 @@ public abstract class State {
 
     public GameSettings getGameSettings() {
         return gameSettings;
+    }
+
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
     }
 }

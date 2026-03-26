@@ -98,4 +98,11 @@ public final class AudioPlayer {
         }
         return null;
     }
+
+    public void clear() {
+        for (AudioClip audioClip : audioClips) {
+            audioClip.cleanUp();
+        }
+        audioClips.clear();
+    }
 }

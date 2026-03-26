@@ -19,8 +19,8 @@ public final class AudioSettings {
     private float soundVolume;
 
     public AudioSettings() {
-        musicVolume = 1.0f;
-        soundVolume = 1.0f;
+        musicVolume = 0.7f;
+        soundVolume = 0.8f;
     }
 
     public float getMusicVolume() {

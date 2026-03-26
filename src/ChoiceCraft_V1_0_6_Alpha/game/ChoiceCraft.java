@@ -72,6 +72,7 @@ public final class ChoiceCraft {
     }
 
     public void enterState(State nextState) {
+        state.cleanUp();
         state = nextState;
     }
 }

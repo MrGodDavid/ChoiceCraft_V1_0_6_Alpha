@@ -25,6 +25,9 @@ import java.awt.*;
  */
 public abstract class UIComponent {
 
+    public static final Spacing ZERO_PADDING = new Spacing(0, 0);
+    public static final Spacing ZERO_MARGIN = new Spacing(0, 0);
+
     protected Position relativePosition;
     protected Position absolutePosition;
     protected Size size;

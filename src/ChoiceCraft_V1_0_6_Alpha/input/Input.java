@@ -34,7 +34,7 @@ public final class Input implements KeyListener, MouseListener, MouseMotionListe
     public Input() {
         currentlyPressed = new boolean[255];
         pressed = new boolean[256];
-        cursorPosition = new Position(0, 0);
+        cursorPosition = new Position(-1, -1);
     }
 
     public boolean isCurrentlyPressed(int keyCode) {

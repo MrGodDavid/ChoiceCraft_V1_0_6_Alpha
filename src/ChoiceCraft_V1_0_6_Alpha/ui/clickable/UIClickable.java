@@ -36,6 +36,26 @@ public abstract class UIClickable extends UIComponent {
     protected abstract void onClick(State state);
 
     /**
+     * Define the drag function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onDrag() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    protected abstract void onDrag(State state);
+
+    /**
+     * Define the focusing function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onFocus() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    protected abstract void onFocus(State state);
+
+    /**
      * Update the UIComponents in ChoiceCraft.
      * <p>Precondition: none.</p>
      * <p>Postcondition: UIComponent subclasses each behaves the way defined by the implementation of this method.</p>
@@ -45,12 +65,19 @@ public abstract class UIClickable extends UIComponent {
     @Override
     public void update(State state) {
         Position cursorPosition = state.getInput().getCursorPosition();
+        boolean previousFocus = hasFocus;
 
         hasFocus = getBounds().contains(cursorPosition.intX(), cursorPosition.intY());
         isPressed = hasFocus && state.getInput().isMousePressed();
 
         if (hasFocus && state.getInput().isMouseClicked()) {
             onClick(state);
+        }
+        if (hasFocus && state.getInput().isMousePressed()) {
+            onDrag(state);
+        }
+        if (!previousFocus && hasFocus) {
+            onFocus(state);
         }
     }
 

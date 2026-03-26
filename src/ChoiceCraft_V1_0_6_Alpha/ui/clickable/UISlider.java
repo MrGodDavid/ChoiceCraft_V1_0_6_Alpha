@@ -11,6 +11,7 @@ import ChoiceCraft_V1_0_6_Alpha.display.Renderer;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.ImageUtils;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,6 +33,7 @@ public class UISlider extends UIClickable {
         this.max = max;
         this.value = max;
         this.size = new Size(360, 10);
+        this.margin = new Spacing(0, 0, 15, 0);
     }
 
     /**
@@ -44,7 +46,31 @@ public class UISlider extends UIClickable {
      */
     @Override
     protected void onClick(State state) {
+    }
+
+    /**
+     * Define the drag function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onDrag() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    @Override
+    protected void onDrag(State state) {
         this.value = getValueAt(state.getInput().getCursorPosition().getX());
+    }
+
+    /**
+     * Define the focusing function of clickable ui component of ChoiceCraft.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onFocus() that is
+     * specified by user.</p>
+     *
+     * @param state that is not null.
+     */
+    @Override
+    protected void onFocus(State state) {
     }
 
     /**
