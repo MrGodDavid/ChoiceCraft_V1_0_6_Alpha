@@ -31,8 +31,8 @@ public abstract class NPC extends Humanoid {
     public NPC(EntityController entityController, SpriteLibrary spriteLibrary) {
         super(entityController, spriteLibrary);
         HumanoidID randomID = getRandomNPMHumanoid();
-        this.animationManager = new AnimationManager("enchanter_2",
-                spriteLibrary.getSpriteSet("enchanter_2_idle_8dir_spritesheet"));
+        this.animationManager = new AnimationManager("enchanter_2_idle_8dir_spritesheet",
+                spriteLibrary.getSpriteSet("enchanter_2"));
         aiManager = new AIManager("npc_idle");
     }
 
