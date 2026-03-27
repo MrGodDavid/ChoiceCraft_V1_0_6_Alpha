@@ -59,4 +59,16 @@ public final class JumpScared extends Action{
     public String getAnimationName() {
         return "enchanter_scared_8dir_spritesheet";
     }
+
+    /**
+     * Get the key of sound's name.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return the key of sound's name.</p>
+     *
+     * @return the key of sound's name.
+     */
+    @Override
+    public String getSoundName() {
+        return null;
+    }
 }

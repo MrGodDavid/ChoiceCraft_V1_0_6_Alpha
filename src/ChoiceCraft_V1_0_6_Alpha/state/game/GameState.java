@@ -55,11 +55,12 @@ public final class GameState extends State {
         initializeCharacters();
         initializeUI(windowSize);
         initializeConditions();
+        audioPlayer.playMusic("ChoiceCraft_MainTheme.wav");
     }
 
     private void initializeConditions() {
         victoryConditions = List.of(() -> getNumberOfHappy() == 0);
-        defeatConditions = List.of(() -> (double) getNumberOfHappy() / getNumberOfNPCs() > 0.25);
+        defeatConditions = List.of(() -> (float) getNumberOfHappy() / getNumberOfNPCs() > 0.25);
 
     }
 
@@ -82,9 +83,9 @@ public final class GameState extends State {
         gameObjects.add(circle);
 
         initializeAllNPCs(100);
-        initializeAllEnemies(50);
+        initializeAllEnemies(20);
 
-        makeNumberOfNPCHappy(0);
+        makeNumberOfNPCHappy(5);
     }
 
     /**
@@ -102,6 +103,7 @@ public final class GameState extends State {
                 win();
             }
             if (defeatConditions.stream().allMatch(Condition::isMet)) {
+                System.out.println("here");
                 lose();
             }
         }
@@ -171,8 +173,6 @@ public final class GameState extends State {
     }
 
     public long getNumberOfNPCs() {
-        return getGameObjectsOfClass(Humanoid.class).stream()
-                .filter(humanoid -> humanoid.isAffectedBy(Happy.class))
-                .count();
+        return getGameObjectsOfClass(NPC.class).size();
     }
 }

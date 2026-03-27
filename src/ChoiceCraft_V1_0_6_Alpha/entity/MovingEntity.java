@@ -59,10 +59,8 @@ public abstract class MovingEntity extends GameObject {
         animationManager.update(direction);
 
         handleCollisions(state);
-        manageDirection();
         animationManager.playAnimation(this.decideAnimation());
-
-        position.apply(motion);
+        apply(motion);
     }
 
     private void handleCollisions(State state) {
@@ -95,11 +93,26 @@ public abstract class MovingEntity extends GameObject {
      */
     protected abstract String decideAnimation();
 
-    private void manageDirection() {
+    private void manageDirection(Motion motion) {
         if (motion.isMoving()) {
             this.direction = Direction.fromMotion(motion);
             this.directionVector = motion.getDirection();
         }
+    }
+
+    /**
+     * Apply a new {@link Motion} to {@link MovingEntity}. This method first use {@link MovingEntity#manageDirection(Motion)}
+     * to covert the get the direction from {@link Motion}, then convert directional vector from {@link Direction} via
+     * {@link Motion#getDirection()}.
+     * <p>Secondly, this method apply the motion to its position via {@link Position#apply(Motion)}.</p>
+     * <p>Precondition: motion is not null.</p>
+     * <p>Postcondition: apply the motion to current {@link MovingEntity}.</p>
+     *
+     * @param motion that is not null.
+     */
+    public void apply(Motion motion) {
+        manageDirection(motion);
+        position.apply(motion);
     }
 
     /**

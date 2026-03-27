@@ -94,6 +94,18 @@ public final class Greeting extends Action {
         return "enchanter_greeting_8dir_spritesheet";
     }
 
+    /**
+     * Get the key of sound's name.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return the key of sound's name.</p>
+     *
+     * @return the key of sound's name.
+     */
+    @Override
+    public String getSoundName() {
+        return null;
+    }
+
     public CollisionBox getSpreadingCollisionBox(MovingEntity entity) {
         Position spreadAreaPosition = new Position(
                 entity.getPosition().getX() - spreadAreaSize.getWidth() / 2d,

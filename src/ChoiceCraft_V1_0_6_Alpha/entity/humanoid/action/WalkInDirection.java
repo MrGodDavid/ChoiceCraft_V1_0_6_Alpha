@@ -1,29 +1,33 @@
 /**
  * ========================================================================================================================
- * ChoiceCraft game entity action class.
+ * Player's walk in direction when starting ChoiceCraft.
  * <p>
- * Author: David Liu.                                                                                   Date:3/20/2026
+ * Author: David Liu.                                                                                   Date:3/27/2026
  * ========================================================================================================================
  */
 package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
 
-import ChoiceCraft_V1_0_6_Alpha.audio.AudioPlayer;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
+import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 
 /**
- * Superclass for all ChoiceCraft game entity actions.
+ * Player's walk in direction when starting ChoiceCraft.
  *
  * @author David Liu.
- * @since 3/20/2026
+ * @since 3/27/2026
  */
-public abstract class Action {
+public class WalkInDirection extends Action {
 
-    protected boolean interruptable;
-    protected boolean soundPlaying;
+    private int walkTime;
+    private Motion motion;
 
-    public Action() {
-        interruptable = true;
+    public WalkInDirection(Vector2d direction) {
+        walkTime = 3 * GameLoop.UPDATES_PER_SECOND;
+        motion = new Motion(1);
+        motion.add(direction);
     }
 
     /**
@@ -31,10 +35,15 @@ public abstract class Action {
      * <p>Precondition: none.</p>
      * <p>Postcondition: update ChoiceCraft game object's action.</p>
      *
-     * @param state  that is not null.
+     * @param state    that is not null.
      * @param humanoid that is not null.
      */
-    public abstract void update(State state, Humanoid humanoid);
+    @Override
+    public void update(State state, Humanoid humanoid) {
+        walkTime--;
+//        System.out.println(motion);
+        humanoid.apply(motion);
+    }
 
     /**
      * Check if a ChoiceCraft's game object's action is done.
@@ -43,7 +52,10 @@ public abstract class Action {
      *
      * @return true if an action is done. False otherwise.
      */
-    public abstract boolean isDone();
+    @Override
+    public boolean isDone() {
+        return walkTime <= 0;
+    }
 
     /**
      * Get the key of entity's animation name.
@@ -52,7 +64,10 @@ public abstract class Action {
      *
      * @return the key of entity's animation name.
      */
-    public abstract String getAnimationName();
+    @Override
+    public String getAnimationName() {
+        return "player_walking_8dir_spritesheet";
+    }
 
     /**
      * Get the key of sound's name.
@@ -61,21 +76,8 @@ public abstract class Action {
      *
      * @return the key of sound's name.
      */
-    public abstract String getSoundName();
-
-    /**
-     * Play sound via {@link AudioPlayer}.
-     * <p>Precondition: none.</p>
-     * <p>Postcondition: Play sound via {@link AudioPlayer}.</p>
-     */
-    public void playSound(AudioPlayer audioPlayer) {
-        if (!soundPlaying && getSoundName() != null) {
-            audioPlayer.playSound(getSoundName());
-            soundPlaying = true;
-        }
-    }
-
-    public boolean isInterruptable() {
-        return interruptable;
+    @Override
+    public String getSoundName() {
+        return null;
     }
 }

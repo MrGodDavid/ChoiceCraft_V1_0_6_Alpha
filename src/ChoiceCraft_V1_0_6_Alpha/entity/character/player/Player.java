@@ -12,8 +12,11 @@ import ChoiceCraft_V1_0_6_Alpha.entity.GameObject;
 import ChoiceCraft_V1_0_6_Alpha.entity.SelectionCircle;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.PunchNPC;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.WalkInDirection;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
+import ChoiceCraft_V1_0_6_Alpha.math.vector.Vector2d;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
@@ -36,6 +39,9 @@ public final class Player extends Humanoid {
         super(entityController, spriteLibrary);
         this.selectionCircle = selectionCircle;
         this.targetRange = ChoiceCraft.SPRITE_SIZE;
+
+        setPosition(new Position(ChoiceCraft.SPRITE_SIZE * 5, 0));
+        perform(new WalkInDirection(new Vector2d(0, 1)));
     }
 
     /**

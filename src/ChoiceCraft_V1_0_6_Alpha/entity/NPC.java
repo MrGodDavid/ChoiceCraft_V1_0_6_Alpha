@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.HumanoidID;
+import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Motion;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
@@ -31,9 +32,10 @@ public abstract class NPC extends Humanoid {
     public NPC(EntityController entityController, SpriteLibrary spriteLibrary) {
         super(entityController, spriteLibrary);
         HumanoidID randomID = getRandomNPMHumanoid();
-        this.animationManager = new AnimationManager("enchanter_2_idle_8dir_spritesheet",
-                spriteLibrary.getSpriteSet("enchanter_2"));
+        this.animationManager = new AnimationManager(randomID.defaultHumanoidSpritesheetName(),
+                spriteLibrary.getSpriteSet(randomID.humanoidName()));
         aiManager = new AIManager("npc_idle");
+        motion = new Motion((Math.random() + 1) * 0.5);
     }
 
     private HumanoidID getRandomNPMHumanoid() {

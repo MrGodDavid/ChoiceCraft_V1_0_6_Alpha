@@ -46,6 +46,18 @@ public final class PunchNPC extends Action {
     }
 
     /**
+     * Get the key of sound's name.
+     * <p>Precondition: none.</p>
+     * <p>Postcondition: return the key of sound's name.</p>
+     *
+     * @return the key of sound's name.
+     */
+    @Override
+    public String getSoundName() {
+        return null;
+    }
+
+    /**
      * Update ChoiceCraft game object's action.
      * <p>Precondition: none.</p>
      * <p>Postcondition: update ChoiceCraft game object's action.</p>

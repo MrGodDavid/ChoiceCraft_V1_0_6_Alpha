@@ -36,7 +36,7 @@ public abstract class Humanoid extends MovingEntity {
 
     protected final List<HumanoidID> humanoidAssetsIds = new ArrayList<>(List.of(
             new HumanoidID("enchanter", "enchanter_idle_8dir_spritesheet"),
-            new HumanoidID("enchanter_2", "enchanter_2_idle_8dir_spritesheet")
+            new HumanoidID("enchanter_2", "enchanter_idle_8dir_spritesheet")
     ));
 
     protected List<Effect> effects;
@@ -66,10 +66,12 @@ public abstract class Humanoid extends MovingEntity {
     public void update(State state) {
         super.update(state);
         handleAction(state);
-        Iterator<Effect> iterator = effects.iterator();
-        while (iterator.hasNext()) {
-            Effect effect = iterator.next();
-            effect.update(state, this);
+        if (this instanceof NPC) {
+            Iterator<Effect> iterator = effects.iterator();
+            while (iterator.hasNext()) {
+                Effect effect = iterator.next();
+                effect.update(state, this);
+            }
         }
 
         decideAnimation();
@@ -77,11 +79,11 @@ public abstract class Humanoid extends MovingEntity {
         cleanEffects();
     }
 
-    @SuppressWarnings("all")
     private void handleAction(State state) {
-        if (action.isPresent()) {
-            action.get().update(state, this);
-        }
+        action.ifPresent(value -> {
+            value.update(state, this);
+            value.playSound(state.getAudioPlayer());
+        });
     }
 
     /**
@@ -111,30 +113,37 @@ public abstract class Humanoid extends MovingEntity {
      */
     @Override
     protected void handleCollision(GameObject other) {
-
     }
 
     @Override
     protected String decideAnimation() {
-        if (this instanceof Player) {
-            if (motion.isMoving()) {
-                return "player_walking_8dir_spritesheet";
-            } else {
-                return "player_idle_8dir_spritesheet";
+        switch (this) {
+            case Player player -> {
+                if (player.action.isPresent()) {
+                    return action.get().getAnimationName();
+                } else if (player.motion.isMoving()) {
+                    return "player_walking_8dir_spritesheet";
+                } else {
+                    return "player_idle_8dir_spritesheet";
+                }
             }
-        } else if (this instanceof NPC) {
-            if (action.isPresent()) {
-                return action.get().getAnimationName();
-            } else if (motion.isMoving()) {
-                return "enchanter_walking_8dir_spritesheet";
-            } else {
-                return "enchanter_idle_8dir_spritesheet";
+            case NPC npc -> {
+                if (npc.action.isPresent()) {
+                    return action.get().getAnimationName();
+                } else if (motion.isMoving()) {
+                    return "enchanter_walking_8dir_spritesheet";
+                } else {
+                    return "enchanter_idle_8dir_spritesheet";
+                }
             }
-        } else if (this instanceof Enemy) {
-            if (motion.isMoving()) {
-                return "zombie_basic_walking_8dir_spritesheet";
-            } else {
-                return "zombie_basic_idle_8dir_spritesheet";
+            case Enemy enemy -> {
+                if (enemy.motion.isMoving()) {
+                    return "zombie_basic_walking_8dir_spritesheet";
+                } else {
+                    return "zombie_basic_idle_8dir_spritesheet";
+                }
+            }
+            default -> {
             }
         }
         return "";
