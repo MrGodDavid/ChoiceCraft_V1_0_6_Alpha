@@ -11,9 +11,12 @@ import ChoiceCraft_V1_0_6_Alpha.ai.AIManager;
 import ChoiceCraft_V1_0_6_Alpha.controller.EntityController;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.HumanoidID;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gfx.AnimationManager;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
+
+import java.util.Collections;
 
 /**
  * Superclass for all ChoiceCraft npc.
@@ -27,9 +30,15 @@ public abstract class NPC extends Humanoid {
 
     public NPC(EntityController entityController, SpriteLibrary spriteLibrary) {
         super(entityController, spriteLibrary);
-        this.animationManager = new AnimationManager("enchanter_idle_8dir_spritesheet",
-                spriteLibrary.getSpriteSet("enchanter"));
+        HumanoidID randomID = getRandomNPMHumanoid();
+        this.animationManager = new AnimationManager("enchanter_2",
+                spriteLibrary.getSpriteSet("enchanter_2_idle_8dir_spritesheet"));
         aiManager = new AIManager("npc_idle");
+    }
+
+    private HumanoidID getRandomNPMHumanoid() {
+        Collections.shuffle(humanoidAssetsIds);
+        return humanoidAssetsIds.getFirst();
     }
 
     /**

@@ -149,6 +149,7 @@ public class TexturePacker {
         PLAYER,
         ZOMBIE_BASIC,
         ENCHANTER,
+        ENCHANTER_2,
         ANGRY_PARTICLE;
 
         private final String key;
@@ -187,7 +188,7 @@ public class TexturePacker {
 
     public static void main(String[] args){
         String directory = "src/asset_raw/";
-            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER, ANIMATION_STATE.SCARED, 12, 8);
+            TexturePacker texturePacker = new TexturePacker(directory, ENTITY_NAME.ENCHANTER_2, ANIMATION_STATE.SCARED, 12, 8);
         texturePacker.pack();
     }
 }

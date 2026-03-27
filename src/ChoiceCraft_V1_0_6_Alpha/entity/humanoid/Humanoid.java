@@ -33,6 +33,11 @@ import java.util.Optional;
  */
 public abstract class Humanoid extends MovingEntity {
 
+    protected final List<HumanoidID> humanoidAssetsIds = new ArrayList<>(List.of(
+            new HumanoidID("enchanter", "enchanter_idle_8dir_spritesheet"),
+            new HumanoidID("enchanter_2", "enchanter_2_idle_8dir_spritesheet")
+    ));
+
     protected List<Effect> effects;
     protected Optional<Action> action;
 
