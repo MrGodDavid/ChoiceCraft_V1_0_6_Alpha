@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action.Action;
 import ChoiceCraft_V1_0_6_Alpha.entity.character.player.Player;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Effect;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;

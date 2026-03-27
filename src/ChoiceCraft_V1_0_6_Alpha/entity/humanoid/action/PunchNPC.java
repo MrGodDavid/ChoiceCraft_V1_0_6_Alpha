@@ -10,6 +10,7 @@ package ChoiceCraft_V1_0_6_Alpha.entity.humanoid.action;
 import ChoiceCraft_V1_0_6_Alpha.controller.NPCController;
 import ChoiceCraft_V1_0_6_Alpha.entity.Angry_Particle;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.Humanoid;
+import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Happy;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.GameLoop;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
@@ -82,6 +83,7 @@ public final class PunchNPC extends Action {
     private void emitParticles(State state) {
         target.perform(new JumpScared());
         target.addEffect(new Scared());
+
         particle = new Angry_Particle(new NPCController(), state.getSpriteLibrary());
         particle.setEmitter(target);
         state.spawn(particle);

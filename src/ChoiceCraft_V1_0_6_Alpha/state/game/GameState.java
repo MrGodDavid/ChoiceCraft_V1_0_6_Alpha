@@ -103,7 +103,6 @@ public final class GameState extends State {
                 win();
             }
             if (defeatConditions.stream().allMatch(Condition::isMet)) {
-                System.out.println("here");
                 lose();
             }
         }
@@ -156,7 +155,7 @@ public final class GameState extends State {
 
     public long getNumberOfHappy() {
         return getGameObjectsOfClass(Humanoid.class).stream()
-                .filter(humanoid -> humanoid.isAffectedBy(Happy.class))
+                .filter(humanoid -> humanoid.isAffectedBy(Happy.class) && !humanoid.isAffectedBy(Scared.class))
                 .count();
     }
 
