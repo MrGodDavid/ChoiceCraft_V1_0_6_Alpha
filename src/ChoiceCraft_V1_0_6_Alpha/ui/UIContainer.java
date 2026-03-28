@@ -133,7 +133,8 @@ public abstract class UIContainer extends UIComponent {
     }
 
     /**
-     * Update the UIComponents in ChoiceCraft.
+     * Update the UIComponents in ChoiceCraft. Iterate and then update each child component in the list of
+     * UIComponent children.
      * <p>Precondition: none.</p>
      * <p>Postcondition: UIComponent subclasses each behaves the way defined by the implementation of this method.</p>
      *

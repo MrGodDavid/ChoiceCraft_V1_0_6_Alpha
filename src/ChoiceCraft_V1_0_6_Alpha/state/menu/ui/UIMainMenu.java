@@ -8,6 +8,7 @@
 package ChoiceCraft_V1_0_6_Alpha.state.menu.ui;
 
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
+import ChoiceCraft_V1_0_6_Alpha.state.editor.EditorState;
 import ChoiceCraft_V1_0_6_Alpha.state.game.GameState;
 import ChoiceCraft_V1_0_6_Alpha.state.menu.MenuState;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
@@ -30,6 +31,7 @@ public final class UIMainMenu extends VerticalContainer {
         addUIComponent(new UIText("ChoiceCraft V1.0.6a"));
         addUIComponent(new UIButton("PLAY", (state) -> state.setNextState(new GameState(windowSize, state.getInput(), state.getGameSettings()))));
         addUIComponent(new UIButton("OPTIONS", (state) -> ((MenuState) state).enterMenu(new UIOptionMenu(windowSize, state.getGameSettings()))));
+        addUIComponent(new UIButton("EDITOR", (state) -> state.setNextState(new EditorState(windowSize, state.getInput(), state.getGameSettings()))));
         addUIComponent(new UIButton("EXIT", (state) -> System.exit(0)));
     }
 }

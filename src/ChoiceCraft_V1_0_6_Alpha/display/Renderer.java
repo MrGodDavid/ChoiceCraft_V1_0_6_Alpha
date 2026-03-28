@@ -85,6 +85,16 @@ public final class Renderer {
                         col * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intY(),
                         null
                 );
+
+                if (state.getGameSettings().getRenderSettings().getShouldRenderGrid().getValue()) {
+                    g.setColor(Color.BLUE);
+                    g.drawRect(
+                            row * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intX(),
+                            col * ChoiceCraft.SPRITE_SIZE - camera.getPosition().intY(),
+                            ChoiceCraft.SPRITE_SIZE,
+                            ChoiceCraft.SPRITE_SIZE
+                    );
+                }
             }
         }
     }

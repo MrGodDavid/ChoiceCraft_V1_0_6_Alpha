@@ -16,12 +16,14 @@ package ChoiceCraft_V1_0_6_Alpha.game.settings;
 public final class GameSettings {
 
     private final AudioSettings audioSettings;
+    private final RenderSettings renderSettings;
 
     private boolean debugMode;
     private double gameSpeedMultiplier;
 
     public GameSettings(boolean debugMode) {
         this.audioSettings = new AudioSettings();
+        this.renderSettings = new RenderSettings();
         this.debugMode = debugMode;
         this.gameSpeedMultiplier = 1.0;
     }
@@ -48,5 +50,9 @@ public final class GameSettings {
 
     public AudioSettings getAudioSettings() {
         return audioSettings;
+    }
+
+    public RenderSettings getRenderSettings() {
+        return renderSettings;
     }
 }
