@@ -31,14 +31,17 @@ public abstract class UIContainer extends UIComponent {
     protected final List<UIComponent> children;
 
     protected Alignment alignment;
-    protected Size windowSize;
     protected Color backgroundColor;
 
+    protected Size windowSize;
     protected Size fixedSize;
+
+    protected boolean centerChildren;
 
     public UIContainer(Size windowSize) {
         super();
         this.windowSize = windowSize;
+        centerChildren = false;
         alignment = new Alignment(Alignment.Position.START, Alignment.Position.START);
         backgroundColor = new Color(0, 0, 0, 0);
         margin = new Spacing(5);
@@ -164,5 +167,9 @@ public abstract class UIContainer extends UIComponent {
 
     public void setFixedSize(Size fixedSize) {
         this.fixedSize = fixedSize;
+    }
+
+    public void setCenterChildren(boolean centerChildren) {
+        this.centerChildren = centerChildren;
     }
 }

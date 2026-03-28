@@ -14,6 +14,7 @@ import ChoiceCraft_V1_0_6_Alpha.ui.UIComponent;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIText;
 import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
+import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Spacing;
 
 import java.awt.*;
 
@@ -34,7 +35,10 @@ public class UIButton extends UIClickable {
         this.clickAction = clickAction;
         this.label = new UIText(label);
 
+        setMargin(new Spacing(5, 0, 0, 0));
+
         container = new VerticalContainer(new Size(0, 0));
+        container.setCenterChildren(true);
         container.addUIComponent(this.label);
         container.setFixedSize(new Size(240, 36));
     }

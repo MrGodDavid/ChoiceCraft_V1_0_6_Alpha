@@ -16,6 +16,8 @@ import ChoiceCraft_V1_0_6_Alpha.ui.VerticalContainer;
 import ChoiceCraft_V1_0_6_Alpha.ui.auxiliary.Alignment;
 import ChoiceCraft_V1_0_6_Alpha.ui.clickable.UIButton;
 
+import java.awt.*;
+
 /**
  * Main menu of ChoiceCraft.
  *
@@ -27,6 +29,7 @@ public final class UIMainMenu extends VerticalContainer {
     public UIMainMenu(Size windowSize) {
         super(windowSize);
         alignment = new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER);
+        setBackground(Color.DARK_GRAY);
 
         addUIComponent(new UIText("ChoiceCraft V1.0.6a"));
         addUIComponent(new UIButton("PLAY", (state) -> state.setNextState(new GameState(windowSize, state.getInput(), state.getGameSettings()))));

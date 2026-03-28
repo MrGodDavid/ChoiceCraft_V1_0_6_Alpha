@@ -26,6 +26,7 @@ public final class MenuState extends State {
     public MenuState(Size windowSize, Input input, GameSettings gameSettings) {
         super(windowSize, input, gameSettings);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
+        gameSettings.getRenderSettings().getShouldRenderGrid().setValue(false);
 
         uiContainers.add(new UIMainMenu(windowSize));
         audioPlayer.playMusic("ChoiceCraft_MainTheme.wav");

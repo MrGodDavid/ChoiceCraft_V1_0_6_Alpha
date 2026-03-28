@@ -51,6 +51,8 @@ public final class GameState extends State {
     public GameState(Size windowSize, Input input, GameSettings gameSettings) {
         super(windowSize, input,  gameSettings);
         this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
+        gameSettings.getRenderSettings().getShouldRenderGrid().setValue(false);
+
         playing = true;
         initializeCharacters();
         initializeUI(windowSize);
