@@ -38,7 +38,7 @@ public class TextureResizer {
             g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
             g2d.dispose();
 
-            String outputFileName = "resized" + fileName;
+            String outputFileName = "resized_" + fileName;
             String outputDir = inputDir + outputFileName;
             try {
                 File output = new File(outputDir);
