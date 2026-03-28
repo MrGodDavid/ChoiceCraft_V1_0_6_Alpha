@@ -24,6 +24,7 @@ public class TextureResizer {
     }
 
     public void resize(int newWidth, int newHeight) {
+        System.out.println("[ChoiceCraft TextureResizer V1.0.5]: Resizing texture [" + fileName + "]...");
         File file = new File(inputDir + fileName);
         try {
             BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
@@ -44,6 +45,8 @@ public class TextureResizer {
                 if (!ImageIO.write(resizedImage, "png", output)) {
                     throw new RuntimeException(outputDir + " could not be created");
                 }
+                System.out.println("[ChoiceCraft TextureResizer V1.0.5]: Resized texture [" + fileName + "] to [" + outputDir + "], " +
+                        "Size [" + newWidth + "x" + newHeight + "]");
             }catch (IOException ex) {
                 throw new RuntimeException(ex.getMessage());
             }
@@ -57,9 +60,9 @@ public class TextureResizer {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Please input file directory:");
+        System.out.print("Please input file directory:"); // starts with /resources/
         String inputDir = scanner.nextLine();
-        System.out.print("Please input file name:");
+        System.out.print("Please input file name:"); // with extensions. (.png)
         String fileName = scanner.nextLine();
         System.out.print("Please input target width: (Cannot be zero or negative!)");
         int width = scanner.nextInt();
