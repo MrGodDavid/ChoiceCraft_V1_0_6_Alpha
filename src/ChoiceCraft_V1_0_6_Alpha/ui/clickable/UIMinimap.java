@@ -116,8 +116,8 @@ public final class UIMinimap extends UIClickable {
         Position cursorPosition = Position.copyOf(state.getInput().getCursorPosition());
         cursorPosition.subtract(absolutePosition);
         state.getCamera().setPosition(new Position(
-                cursorPosition.getX() / ratio - cameraViewBounds.getSize().getWidth() / 2,
-                cursorPosition.getY() / ratio - cameraViewBounds.getSize().getHeight() / 2
+                cursorPosition.getX() / ratio - cameraViewBounds.getSize().getWidth() / ratio / 2,
+                cursorPosition.getY() / ratio - cameraViewBounds.getSize().getHeight() / ratio / 2
         ));
     }
 
