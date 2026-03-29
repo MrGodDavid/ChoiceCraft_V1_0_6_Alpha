@@ -74,7 +74,15 @@ public final class ChoiceCraftMap {
         return tiles[0].length  * ChoiceCraft.SPRITE_SIZE;
     }
 
+    public boolean gridWithinBounds(int gridX, int gridY) {
+        return gridX >= 0 && gridX < tiles.length && gridY >= 0 && gridY < tiles[0].length;
+    }
+
     public Tile[][] getTiles() {
         return tiles;
+    }
+
+    public void setTile(int gridX, int gridY, Tile tile) {
+        tiles[gridX][gridY] = tile;
     }
 }

@@ -39,6 +39,13 @@ public final class Renderer {
     }
 
     private void renderUI(State state, Graphics g) {
+        state.getMouseHandler().getPrimaryButtonUI().ifPresent(uiImage -> g.drawImage(
+                uiImage.getSprite(),
+                uiImage.getAbsolutePosition().intX(),
+                uiImage.getAbsolutePosition().intY(),
+                null
+        ));
+
         for (UIContainer uiContainer : state.getUiContainers()) {
             g.drawImage(
                     uiContainer.getSprite(),

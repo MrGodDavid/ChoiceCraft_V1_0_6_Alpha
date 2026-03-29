@@ -22,7 +22,19 @@ public final class Tile {
     private Image sprite;
 
     public Tile(SpriteLibrary spriteLibrary) {
-        this.sprite = spriteLibrary.getImage("resized_grass_block_top");
+        this(spriteLibrary, "resized_grass_block_top");
+    }
+
+    public Tile(SpriteLibrary spriteLibrary, String tileName) {
+        this.sprite = spriteLibrary.getImage(tileName);
+    }
+
+    private Tile(Image sprite) {
+        this.sprite = sprite;
+    }
+
+    public static Tile copyOf(Tile other) {
+        return new Tile(other.getSprite());
     }
 
     public Image getSprite() {
