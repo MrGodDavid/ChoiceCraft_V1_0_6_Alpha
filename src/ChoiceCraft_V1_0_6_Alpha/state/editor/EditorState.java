@@ -16,6 +16,7 @@ import ChoiceCraft_V1_0_6_Alpha.map.Tile;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.state.editor.ui.UIButtonMenu;
 import ChoiceCraft_V1_0_6_Alpha.state.editor.ui.UIRenderSettings;
+import ChoiceCraft_V1_0_6_Alpha.state.editor.ui.UITileset;
 
 /**
  * Editor state. Editor of ChoiceCraft.
@@ -33,5 +34,6 @@ public final class EditorState extends State {
 
         uiContainers.add(new UIButtonMenu(windowSize));
         uiContainers.add(new UIRenderSettings(windowSize, gameSettings.getRenderSettings(), gameMap));
+        uiContainers.add(new UITileset(windowSize, spriteLibrary));
     }
 }

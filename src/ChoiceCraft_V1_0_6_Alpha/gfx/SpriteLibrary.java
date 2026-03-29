@@ -46,8 +46,10 @@ public final class SpriteLibrary {
      */
     private void loadSpritesFromDisk() {
         loadSpriteSets("/sprites/entity");
-        loadImages("/sprites/tiles_resized");
+
         loadImages("/sprites/effect");
+        loadImages("/sprites/tiles_resized");
+        loadImages("/sprites/tilesets");
     }
 
     /**

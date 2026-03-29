@@ -51,7 +51,7 @@ public final class UIMinimap extends UIClickable {
         for (int row = 0; row < gameMap.getTiles().length; row++) {
             for (int col = 0; col < gameMap.getTiles()[0].length; col++) {
                 g2d.drawImage(
-                        gameMap.getTiles()[row][col].getSprite().getScaledInstance(pixelsPerGrid, pixelsPerGrid, 0),
+                        gameMap.getTiles()[row][col].getSprite().getScaledInstance(pixelsPerGrid, pixelsPerGrid, Image.SCALE_AREA_AVERAGING),
                         row * pixelsPerGrid + pixelOffset.intX(),
                         col * pixelsPerGrid + pixelOffset.intY(),
                         null
