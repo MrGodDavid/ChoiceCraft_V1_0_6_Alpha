@@ -29,6 +29,8 @@ import java.awt.image.BufferedImage;
 public final class UIMinimap extends UIClickable {
 
     private double ratio;
+    private int pixelsPerGrid;
+    private Position pixelOffset;
     private Rectangle cameraViewBounds;
     private BufferedImage mapImage;
     private Color color;
@@ -46,13 +48,12 @@ public final class UIMinimap extends UIClickable {
         mapImage = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_OPAQUE);
         Graphics2D g2d = mapImage.createGraphics();
 
-        int pixelsPerGrid = (int) Math.round(ChoiceCraft.SPRITE_SIZE * ratio);
         for (int row = 0; row < gameMap.getTiles().length; row++) {
             for (int col = 0; col < gameMap.getTiles()[0].length; col++) {
                 g2d.drawImage(
                         gameMap.getTiles()[row][col].getSprite().getScaledInstance(pixelsPerGrid, pixelsPerGrid, 0),
-                        row * pixelsPerGrid + (size.getWidth() - gameMap.getTiles().length * pixelsPerGrid) / 2,
-                        col * pixelsPerGrid + (size.getHeight() - gameMap.getTiles()[0].length * pixelsPerGrid) / 2,
+                        row * pixelsPerGrid + pixelOffset.intX(),
+                        col * pixelsPerGrid + pixelOffset.intY(),
                         null
                 );
             }
@@ -64,6 +65,12 @@ public final class UIMinimap extends UIClickable {
         ratio = Math.min(
                 size.getWidth() / (double) gameMap.getWidth(),
                 size.getHeight() / (double) gameMap.getHeight()
+        );
+
+        pixelsPerGrid = (int) Math.round(ChoiceCraft.SPRITE_SIZE * ratio);
+        pixelOffset = new Position(
+                (size.getWidth() - gameMap.getTiles().length * pixelsPerGrid) / 2,
+                (size.getHeight() - gameMap.getTiles()[0].length * pixelsPerGrid) / 2
         );
     }
 
@@ -79,8 +86,8 @@ public final class UIMinimap extends UIClickable {
         super.update(state);
         Camera camera = state.getCamera();
         cameraViewBounds = new Rectangle(
-                (int) (camera.getPosition().getX() * ratio),
-                (int) (camera.getPosition().getY() * ratio),
+                (int) (camera.getPosition().getX() * ratio + pixelOffset.intX()),
+                (int) (camera.getPosition().getY() * ratio + pixelOffset.intY()),
                 (int) (camera.getSize().getWidth() * ratio),
                 (int) (camera.getSize().getHeight() * ratio)
         );
@@ -100,7 +107,7 @@ public final class UIMinimap extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onClick(State state) {
+    public void onClick(State state) {
     }
 
     /**
@@ -112,9 +119,11 @@ public final class UIMinimap extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onDrag(State state) {
+    public void onDrag(State state) {
         Position cursorPosition = Position.copyOf(state.getInput().getCursorPosition());
         cursorPosition.subtract(absolutePosition);
+        cursorPosition.subtract(pixelOffset);
+
         state.getCamera().setPosition(new Position(
                 cursorPosition.getX() / ratio - cameraViewBounds.getSize().getWidth() / ratio / 2,
                 cursorPosition.getY() / ratio - cameraViewBounds.getSize().getHeight() / ratio / 2

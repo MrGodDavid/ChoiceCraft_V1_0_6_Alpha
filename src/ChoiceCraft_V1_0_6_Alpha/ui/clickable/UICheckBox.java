@@ -105,8 +105,10 @@ public class UICheckBox extends UIComponent {
          * @param state that is not null.
          */
         @Override
-        protected void onClick(State state) {
-            setting.setValue(!setting.getValue());
+        public void onClick(State state) {
+            if (hasFocus) {
+                setting.setValue(!setting.getValue());
+            }
         }
 
         /**
@@ -118,7 +120,7 @@ public class UICheckBox extends UIComponent {
          * @param state that is not null.
          */
         @Override
-        protected void onDrag(State state) {
+        public void onDrag(State state) {
         }
 
         /**

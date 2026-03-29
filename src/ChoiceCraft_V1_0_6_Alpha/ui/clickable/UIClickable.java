@@ -7,6 +7,7 @@
  */
 package ChoiceCraft_V1_0_6_Alpha.ui.clickable;
 
+import ChoiceCraft_V1_0_6_Alpha.input.mouse.MouseConsumer;
 import ChoiceCraft_V1_0_6_Alpha.state.State;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIComponent;
@@ -20,30 +21,10 @@ import java.awt.*;
  * @author David Liu.
  * @since 3/24/2026
  */
-public abstract class UIClickable extends UIComponent {
+public abstract class UIClickable extends UIComponent implements MouseConsumer {
 
     protected boolean hasFocus;
     protected boolean isPressed;
-
-    /**
-     * Define the click function of clickable ui component of ChoiceCraft.
-     * <p>Precondition: none.</p>
-     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onClick() that is
-     * specified by user.</p>
-     *
-     * @param state that is not null.
-     */
-    protected abstract void onClick(State state);
-
-    /**
-     * Define the drag function of clickable ui component of ChoiceCraft.
-     * <p>Precondition: none.</p>
-     * <p>Postcondition: Each non-abstract subclass of UIClickable has its own implementation of onDrag() that is
-     * specified by user.</p>
-     *
-     * @param state that is not null.
-     */
-    protected abstract void onDrag(State state);
 
     /**
      * Define the focusing function of clickable ui component of ChoiceCraft.
@@ -70,14 +51,12 @@ public abstract class UIClickable extends UIComponent {
         hasFocus = getBounds().contains(cursorPosition.intX(), cursorPosition.intY());
         isPressed = hasFocus && state.getInput().isMousePressed();
 
-        if (hasFocus && state.getInput().isMouseClicked()) {
-            onClick(state);
-        }
-        if (hasFocus && state.getInput().isMousePressed()) {
-            onDrag(state);
-        }
         if (!previousFocus && hasFocus) {
             onFocus(state);
+        }
+
+        if (hasFocus) {
+            state.getMouseHandler().setActiveConsumer(this);
         }
     }
 

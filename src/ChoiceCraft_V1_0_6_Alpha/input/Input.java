@@ -1,6 +1,6 @@
 /**
  * ========================================================================================================================
- * KeyHandler of ChoiceCraft.
+ * KeyHandler, MouseListener, and MouseMotionListener of ChoiceCraft.
  * <p>
  * Author: David Liu.                                                                                   Date:3/15/2026
  * ========================================================================================================================
@@ -12,7 +12,8 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import java.awt.event.*;
 
 /**
- * Listen user keyboard input. Process ChoiceCraft based on user input.
+ * Listen user's keyboard input. Process ChoiceCraft based on user's input.
+ * <p>Listen user's mouse clicking, pressing, and moving event. Process ChoiceCraft based on user's input.</p>
  * <p>This class DOES NOT define behaviors (key input commands) in ChoiceCraft.</p>
  *
  * @author David Liu

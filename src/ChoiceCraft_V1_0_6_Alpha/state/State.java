@@ -17,6 +17,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
+import ChoiceCraft_V1_0_6_Alpha.input.mouse.MouseHandler;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
@@ -36,6 +37,7 @@ public abstract class State {
     protected final List<UIContainer> uiContainers;
     protected final SpriteLibrary spriteLibrary;
     protected final Input input;
+    protected final MouseHandler mouseHandler;
     protected final GameSettings gameSettings;
 
     protected AudioPlayer audioPlayer;
@@ -51,6 +53,7 @@ public abstract class State {
         this.uiContainers = new ArrayList<>();
         this.spriteLibrary = new SpriteLibrary();
         this.input = input;
+        this.mouseHandler = new MouseHandler();
         this.gameSettings = gameSettings;
         this.audioPlayer = new AudioPlayer(this.gameSettings.getAudioSettings());
         this.windowSize = windowSize;
@@ -72,18 +75,11 @@ public abstract class State {
         updateGameObjects();
         List.copyOf(uiContainers).forEach(uiContainer -> uiContainer.update(this));
         camera.update(this);
-        handleMouseInputs();
+        mouseHandler.update(this);
 
         if (nextState != null) {
             game.enterState(nextState);
         }
-    }
-
-    private void handleMouseInputs() {
-        if (input.isMouseClicked()) {
-            System.out.println("Mouse clicked at position: " + input.getCursorPosition());
-        }
-        input.clearMouseClick();
     }
 
     private void updateGameObjects() {
@@ -186,5 +182,9 @@ public abstract class State {
 
     public AudioPlayer getAudioPlayer() {
         return audioPlayer;
+    }
+
+    public MouseHandler getMouseHandler() {
+        return mouseHandler;
     }
 }

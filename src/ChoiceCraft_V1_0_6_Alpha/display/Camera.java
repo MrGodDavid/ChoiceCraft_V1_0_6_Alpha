@@ -61,11 +61,11 @@ public final class Camera {
     }
 
     /**
-     * Update ChoiceCraft camera based on current game ChoiceCraft_V1_0_6_Alpha.state.
-     * <p>Precondition: current ChoiceCraft_V1_0_6_Alpha.state is not null.</p>
-     * <p>Postcondition: update ChoiceCraft camera based on current game ChoiceCraft_V1_0_6_Alpha.state.</p>
+     * Update ChoiceCraft camera based on current game state.
+     * <p>Precondition: current state is not null.</p>
+     * <p>Postcondition: update ChoiceCraft camera based on current game state.</p>
      *
-     * @param state current ChoiceCraft game ChoiceCraft_V1_0_6_Alpha.state that is not null.
+     * @param state current ChoiceCraft game state that is not null.
      */
     public void update(State state) {
         if (objectWithFocus.isPresent()) {

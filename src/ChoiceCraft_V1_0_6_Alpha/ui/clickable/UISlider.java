@@ -45,7 +45,7 @@ public class UISlider extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onClick(State state) {
+    public void onClick(State state) {
     }
 
     /**
@@ -57,8 +57,10 @@ public class UISlider extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onDrag(State state) {
+    public void onDrag(State state) {
         this.value = getValueAt(state.getInput().getCursorPosition().getX());
+        this.value = Math.min(max, this.value);
+        this.value = Math.max(min, this.value);
     }
 
     /**

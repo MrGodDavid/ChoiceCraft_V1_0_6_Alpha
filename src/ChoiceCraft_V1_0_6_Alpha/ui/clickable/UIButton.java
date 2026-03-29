@@ -72,8 +72,10 @@ public class UIButton extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onClick(State state) {
-        clickAction.execute(state);
+    public void onClick(State state) {
+        if (hasFocus) {
+            clickAction.execute(state);
+        }
     }
 
     /**
@@ -85,7 +87,7 @@ public class UIButton extends UIClickable {
      * @param state that is not null.
      */
     @Override
-    protected void onDrag(State state) {
+    public void onDrag(State state) {
 
     }
 
