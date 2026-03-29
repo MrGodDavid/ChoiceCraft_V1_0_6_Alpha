@@ -60,9 +60,9 @@ public class TextureResizer {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Please input file directory:"); // starts with /resources/
+        System.out.print("Please input file directory:"); // starts with resources/
         String inputDir = scanner.nextLine();
-        System.out.print("Please input file name:"); // with extensions. (.png)
+        System.out.print("Please input file name:"); // with file extensions. (.png)
         String fileName = scanner.nextLine();
         System.out.print("Please input target width: (Cannot be zero or negative!)");
         int width = scanner.nextInt();
