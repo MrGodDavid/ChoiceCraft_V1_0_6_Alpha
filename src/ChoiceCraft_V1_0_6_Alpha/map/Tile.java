@@ -12,6 +12,7 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 /**
  * Individual tile of ChoiceCraft game map.
@@ -19,11 +20,12 @@ import java.awt.image.BufferedImage;
  * @author David Liu.
  * @since 3/18/2026
  */
-public final class Tile {
+public final class Tile implements Serializable {
 
-    private Image image; // used for the entire tileset image.
-    private Image sprite; // used for a specific tile image in tileset.
+    private transient Image image; // used for the entire tileset image.
+    private transient Image sprite; // used for a specific tile image in tileset.
     private int tileIndex;
+    private String tileName;
 
     public Tile(SpriteLibrary spriteLibrary) {
         this(spriteLibrary, "resized_grass_block_top");
@@ -31,12 +33,14 @@ public final class Tile {
 
     public Tile(SpriteLibrary spriteLibrary, String tileName) {
         this.image = spriteLibrary.getImage(tileName);
+        this.tileName = tileName;
         generateSprite();
     }
 
-    private Tile(Image image, int tileIndex) {
+    private Tile(Image image, int tileIndex, String tileName) {
         this.image = image;
         this.tileIndex = tileIndex;
+        this.tileName = tileName;
         generateSprite();
     }
 
@@ -50,7 +54,12 @@ public final class Tile {
     }
 
     public static Tile copyOf(Tile other) {
-        return new Tile(other.getImage(), other.getTileIndex());
+        return new Tile(other.getImage(), other.getTileIndex(), other.getTileName());
+    }
+
+    public void reloadGraphics(SpriteLibrary spriteLibrary) {
+        image = spriteLibrary.getImage(tileName);
+        generateSprite();
     }
 
     public Image getSprite() {
@@ -68,5 +77,9 @@ public final class Tile {
     public void setTileIndex(int tileIndex) {
         this.tileIndex = tileIndex;
         generateSprite();
+    }
+
+    public String getTileName() {
+        return tileName;
     }
 }

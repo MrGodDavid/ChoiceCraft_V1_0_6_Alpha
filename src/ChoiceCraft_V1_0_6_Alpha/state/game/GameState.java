@@ -20,6 +20,7 @@ import ChoiceCraft_V1_0_6_Alpha.entity.character.npc.Enchanter;
 import ChoiceCraft_V1_0_6_Alpha.entity.humanoid.effect.Scared;
 import ChoiceCraft_V1_0_6_Alpha.game.ChoiceCraft;
 import ChoiceCraft_V1_0_6_Alpha.game.settings.GameSettings;
+import ChoiceCraft_V1_0_6_Alpha.map.MapIO;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIGameTime;
 import ChoiceCraft_V1_0_6_Alpha.state.game.ui.UIHappinessStats;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Condition;
@@ -50,7 +51,7 @@ public final class GameState extends State {
 
     public GameState(Size windowSize, Input input, GameSettings gameSettings) {
         super(windowSize, input,  gameSettings);
-        this.gameMap = new ChoiceCraftMap(new Size(20, 20), spriteLibrary);
+        this.gameMap = MapIO.load(spriteLibrary);
         gameSettings.getRenderSettings().getShouldRenderGrid().setValue(false);
 
         playing = true;

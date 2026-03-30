@@ -19,6 +19,7 @@ import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 import ChoiceCraft_V1_0_6_Alpha.input.Input;
 import ChoiceCraft_V1_0_6_Alpha.input.mouse.MouseHandler;
 import ChoiceCraft_V1_0_6_Alpha.map.ChoiceCraftMap;
+import ChoiceCraft_V1_0_6_Alpha.map.MapIO;
 import ChoiceCraft_V1_0_6_Alpha.ui.UIContainer;
 
 import java.util.*;
@@ -140,6 +141,10 @@ public abstract class State {
 
     public void cleanUp() {
         audioPlayer.clear();
+    }
+
+    public void loadGameMap() {
+        gameMap = MapIO.load(spriteLibrary);
     }
 
     // =============================================== [GETTERS & SETTERS] ===============================================

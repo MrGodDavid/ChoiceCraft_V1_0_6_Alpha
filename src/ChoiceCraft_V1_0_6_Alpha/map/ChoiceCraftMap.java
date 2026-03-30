@@ -13,6 +13,7 @@ import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Position;
 import ChoiceCraft_V1_0_6_Alpha.gameObject_component.Size;
 import ChoiceCraft_V1_0_6_Alpha.gfx.SpriteLibrary;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Arrays;
  * @author David Liu.
  * @since 3/18/2026
  */
-public final class ChoiceCraftMap {
+public final class ChoiceCraftMap implements Serializable {
 
     private static final int SAFETY_SPACE = 2;
 
@@ -84,5 +85,13 @@ public final class ChoiceCraftMap {
 
     public void setTile(int gridX, int gridY, Tile tile) {
         tiles[gridX][gridY] = tile;
+    }
+
+    public void reloadGraphics(SpriteLibrary spriteLibrary) {
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                tile.reloadGraphics(spriteLibrary);
+            }
+        }
     }
 }
